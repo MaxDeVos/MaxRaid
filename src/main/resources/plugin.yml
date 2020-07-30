@@ -1,0 +1,8 @@
+name: MaxCraft
+version: @version@
+main: maxdevos.maxcraft.MaxCraft
+api-version: 1.16
+prefix: [MaxPlugin]
+authors: [Max]
+description: Catchall plugin for minecraft server so I don't have shitty external bloaty plugins to maintain.
+website: libtards.space
