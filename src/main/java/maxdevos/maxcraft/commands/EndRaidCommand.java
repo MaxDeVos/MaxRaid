@@ -12,10 +12,10 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-public class EndRaid implements CommandExecutor{
+public class EndRaidCommand implements CommandExecutor{
     MaxPlugin plugin;
 
-    public EndRaid(MaxPlugin plugin) {
+    public EndRaidCommand(MaxPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -45,7 +45,7 @@ public class EndRaid implements CommandExecutor{
             }
         }
 
-        return false;
+        return true;
     }
 
 

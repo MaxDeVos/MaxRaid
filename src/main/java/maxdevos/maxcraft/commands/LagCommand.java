@@ -1,15 +1,16 @@
 package maxdevos.maxcraft.commands;
 
+import maxdevos.maxcraft.util.TPSCalc;
 import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class Lag implements CommandExecutor {
+public class LagCommand implements CommandExecutor {
     MaxPlugin plugin;
 
-    public Lag(MaxPlugin plugin) {
+    public LagCommand(MaxPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -22,7 +23,7 @@ public class Lag implements CommandExecutor {
             return false;
         }
 
-        sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE +);
+        sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + TPSCalc.getTPS());
 
         return true;
     }

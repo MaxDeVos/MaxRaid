@@ -1,5 +1,6 @@
-package maxdevos.maxcraft;
+package maxdevos.maxcraft.commands;
 
+import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
