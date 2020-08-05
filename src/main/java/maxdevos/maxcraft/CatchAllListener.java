@@ -2,13 +2,12 @@ package maxdevos.maxcraft;
 
 import maxdevos.maxcraft.newRaids.FancyRaid;
 import org.bukkit.ChatColor;
-import org.bukkit.Difficulty;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.raid.RaidTriggerEvent;
@@ -52,5 +51,23 @@ public final class CatchAllListener implements Listener {
         else{
             event.setJoinMessage(ChatColor.YELLOW + username + " " + quip);
         }
+    }
+
+    @EventHandler
+    private void antiGolem(EntityTargetLivingEntityEvent e){
+        if(e.getEntityType().equals(EntityType.IRON_GOLEM)) {
+            try{
+                if(e.getTarget() instanceof Player){
+                    e.setCancelled(true);
+                }
+            }
+            catch (Exception ignored){
+            }
+        }
+    }
+
+    @EventHandler
+    private void raidTime(RaidTriggerEvent e){
+        new FancyRaid(plugin, e.getRaid());
     }
 }

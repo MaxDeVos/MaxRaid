@@ -176,14 +176,7 @@ public class FancyRaid implements Listener {
         }
     }
 
-    @EventHandler
-    private void antiGolem(EntityTargetLivingEntityEvent e){
-        if(e.getEntityType().equals(EntityType.IRON_GOLEM)) {
-            if(e.getTarget() instanceof Player){
-                e.setCancelled(true);
-            }
-        }
-    }
+
 
     @EventHandler
     private void antiVex2(EntitySpawnEvent e){

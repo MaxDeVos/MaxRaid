@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -56,7 +58,7 @@ class RaidMobManager {
                 giveSuperBow(mob);
             } else {
                 ItemStack bow = new ItemStack(Material.BOW, 1);
-                bow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
+                bow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
                 bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 2);
 
                 EntityEquipment ee = mob.getEquipment();
@@ -113,7 +115,7 @@ class RaidMobManager {
     }
 
     void spawnCustomIllusioner(World w, Player target, RaidSpawnWaveEvent e){
-        if(r.nextInt(4) == 0) {
+        if(r.nextInt(8) == 0) {
             LivingEntity mob = (LivingEntity) w.spawnEntity(Objects.requireNonNull(e.getPatrolLeader()).getLocation(), EntityType.ILLUSIONER);
             Illusioner i = (Illusioner) mob;
 
@@ -145,7 +147,7 @@ class RaidMobManager {
     }
 
     void spawnCustomEnderman(World w, Player target, RaidSpawnWaveEvent e){
-        if(r.nextInt(2) == 0) {
+        if(r.nextInt(4) == 0) {
             LivingEntity mob = (LivingEntity) w.spawnEntity(Objects.requireNonNull(e.getPatrolLeader()).getLocation(), EntityType.ENDERMAN);
             Enderman m = (Enderman) mob;
 
@@ -157,7 +159,6 @@ class RaidMobManager {
 
     void spawnCustomBlaze(World w, Player target, RaidSpawnWaveEvent e){
         if(r.nextInt(5) == 0) {
-            System.out.println("FUCK");
             LivingEntity mob = (LivingEntity) w.spawnEntity(Objects.requireNonNull(e.getPatrolLeader()).getLocation(), EntityType.BLAZE);
             Blaze b = (Blaze) mob;
 
@@ -253,15 +254,15 @@ class RaidMobManager {
         Skeleton s = (Skeleton)mob;
         s.setCustomName("§cAirdrop Skeleton");
         s.setCustomNameVisible(true);
-        s.setMaxHealth(10);
-        s.setHealth(10);
+        s.setMaxHealth(15);
+        s.setHealth(15);
         s.setTarget(target);
 
     }
 
     private void giveSuperBow(LivingEntity mob) {
         ItemStack bow = new ItemStack(Material.BOW, 1);
-        bow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
+        bow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
         bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 
         EntityEquipment ee = mob.getEquipment();
