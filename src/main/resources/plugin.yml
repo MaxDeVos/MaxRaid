@@ -1,8 +1,29 @@
-name: MaxCraft
-version: @version@
-main: maxdevos.maxcraft.MaxCraft
-api-version: 1.16
+name: MaxPlugin
+version: ${project.version}
+main: maxdevos.maxcraft.MaxPlugin
+api-version: 1.13
 prefix: [MaxPlugin]
-authors: [Max]
-description: Catchall plugin for minecraft server so I don't have shitty external bloaty plugins to maintain.
-website: libtards.space
+authors: [Max, Jeff]
+description: Quality of life or something
+website: somuchforthetolerant.left
+
+commands:
+  maxhelp:
+    description: sends a thing to my phone telling
+    usage: /maxhelp <description of the problem>
+  fuckyou:
+    description: fuck you
+    usage: /fuckyou
+  nickname:
+    description: set your nickname as your name
+    usage: /nickname <your name>
+  lag:
+    description: see TPS.
+    usage: /lag
+  maxv:
+    description: fuck off
+    usage: /maxv
+    permission: maxcraft.max
+  endraid:
+    description: kills all mobs related to raid
+    usage: /endraid

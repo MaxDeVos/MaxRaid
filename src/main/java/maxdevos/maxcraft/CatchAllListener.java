@@ -1,0 +1,56 @@
+package maxdevos.maxcraft;
+
+import maxdevos.maxcraft.newRaids.FancyRaid;
+import org.bukkit.ChatColor;
+import org.bukkit.Difficulty;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.raid.RaidTriggerEvent;
+
+import java.util.Random;
+
+public final class CatchAllListener implements Listener {
+
+    private MaxPlugin plugin;
+    private Random rand;
+
+    public CatchAllListener(MaxPlugin plugin) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        this.plugin = plugin;
+        rand = new Random();
+    }
+
+    @EventHandler
+    public void normalQuit(PlayerQuitEvent event) {
+        String username = event.getPlayer().getName().toLowerCase();
+        String nickname = plugin.getCustomConfig().getString("nicknames."+username);
+        String quip = plugin.getCustomConfig().getString("messages.quit");
+        if(nickname != null) {
+            event.setQuitMessage(ChatColor.YELLOW + nickname + " " + quip);
+        }
+        else{
+            event.setQuitMessage(ChatColor.YELLOW + username + " " + quip);
+        }
+    }
+
+    @EventHandler
+    public void normalLogin(PlayerJoinEvent event) {
+        String username = event.getPlayer().getName().toLowerCase();
+        String nickname = plugin.getCustomConfig().getString("nicknames."+username);
+        String quip = plugin.getCustomConfig().getString("messages.join");
+        if(nickname != null) {
+            event.setJoinMessage(ChatColor.YELLOW + nickname + " " + quip);
+            event.getPlayer().setDisplayName(nickname);
+            event.getPlayer().setPlayerListName(nickname);
+        }
+        else{
+            event.setJoinMessage(ChatColor.YELLOW + username + " " + quip);
+        }
+    }
+}

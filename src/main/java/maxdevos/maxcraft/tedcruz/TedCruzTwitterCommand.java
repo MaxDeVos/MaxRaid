@@ -1,14 +1,14 @@
 package maxdevos.maxcraft.tedcruz;
 
-import maxdevos.maxcraft.MaxCraft;
+import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class TedCruzTwitterCommand implements CommandExecutor {
-    MaxCraft plugin;
+    MaxPlugin plugin;
 
-    public TedCruzTwitterCommand(MaxCraft plugin) {
+    public TedCruzTwitterCommand(MaxPlugin plugin) {
         this.plugin = plugin;
     }
 

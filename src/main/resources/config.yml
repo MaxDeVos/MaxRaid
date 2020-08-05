@@ -1,0 +1,7 @@
+sleep_vote_percentage: 50
+
+nicknames:
+
+messages:
+  join: "has joined.  Bully them extensively."
+  quit: "ragequit because they are bad."

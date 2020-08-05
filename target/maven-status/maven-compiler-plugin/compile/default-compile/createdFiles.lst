@@ -1,0 +1,16 @@
+maxdevos\maxcraft\commands\FuckYouCommand.class
+maxdevos\maxcraft\commands\EndRaidCommand.class
+maxdevos\maxcraft\commands\NicknameCommand.class
+maxdevos\maxcraft\tedcruz\TedCruzTwitterCommand.class
+maxdevos\maxcraft\commands\MaxInvisible.class
+maxdevos\maxcraft\util\VectorTools.class
+maxdevos\maxcraft\tedcruz\TedCruzTweetFactory.class
+maxdevos\maxcraft\util\PlayerUtils.class
+maxdevos\maxcraft\MaxPlugin.class
+maxdevos\maxcraft\util\TPSCalc.class
+maxdevos\maxcraft\commands\MaxHelp.class
+maxdevos\maxcraft\CatchAllListener.class
+maxdevos\maxcraft\commands\LagCommand.class
+maxdevos\maxcraft\newRaids\RaidMobManager.class
+maxdevos\maxcraft\tedcruz\TedCruzTwitterTask.class
+maxdevos\maxcraft\newRaids\FancyRaid.class
