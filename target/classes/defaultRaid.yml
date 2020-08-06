@@ -1,34 +1,34 @@
 waves:
   2:
-    airdrops: 1
+    airdrops: 0
     airdrop-mobs:
-      blaze: 1
-      creeper: 1
-      enderman: 1
-      evoker: 1
-      ghast: 1
-      magma-cube: 1
-      phantom: 1
-      pillager: 1
-      ravager: 1
-      skeleton: 1
-      vindicator: 1
-      wither-skeleton: 1
-      zombie: 1
+      blaze: 0
+      creeper: 0
+      enderman: 0
+      evoker: 0
+      ghast: 0
+      magma-cube: 0
+      phantom: 0
+      pillager: 0
+      ravager: 0
+      skeleton: 0
+      vindicator: 0
+      wither-skeleton: 0
+      zombie: 0
     wave-mobs:
-      blaze: 1
-      creeper: 1
-      enderman: 1
-      evoker: 1
-      ghast: 1
-      magma-cube: 1
-      phantom: 1
-      pillager: 1
-      ravager: 1
-      skeleton: 1
-      vindicator: 1
-      wither-skeleton: 1
-      zombie: 1
+      blaze: 0
+      creeper: 0
+      enderman: 0
+      evoker: 0
+      ghast: 0
+      magma-cube: 0
+      phantom: 0
+      pillager: 0
+      ravager: 0
+      skeleton: 0
+      vindicator: 0
+      wither-skeleton: 0
+      zombie: 0
   3:
     airdrops: 0
     airdrop-mobs:
