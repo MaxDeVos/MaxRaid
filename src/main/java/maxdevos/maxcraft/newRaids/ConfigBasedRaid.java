@@ -19,7 +19,7 @@ import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class FancyRaid implements Listener {
+public class ConfigBasedRaid implements Listener {
 
     private final MaxPlugin plugin;
     private final RaidMobManager rmm;
@@ -29,7 +29,7 @@ public class FancyRaid implements Listener {
     ArrayList<Player> players = new ArrayList<>();
     RaidEventHandler handler;
 
-    public FancyRaid(MaxPlugin plugin, Raid raid){
+    public ConfigBasedRaid(MaxPlugin plugin, Raid raid){
 
         handler = new RaidEventHandler(plugin);
         rmm = new RaidMobManager();
