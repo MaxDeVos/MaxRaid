@@ -1,6 +1,7 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
+import maxdevos.maxcraft.newRaids.newRaidMods.RaidCreeper;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,7 +36,8 @@ public class FuckYouCommand implements CommandExecutor {
             }
         }
         else{
-            sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Fuck you too");
+            RaidCreeper c = new RaidCreeper(sender.getServer().getPlayer(sender.getName()));
+            sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Fuck you");
         }
 
         return true;

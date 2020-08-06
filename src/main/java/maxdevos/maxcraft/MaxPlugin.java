@@ -29,6 +29,7 @@ public final class MaxPlugin extends JavaPlugin implements Listener{
         getCommand("nickname").setExecutor(new NicknameCommand(this));
         getCommand("maxv").setExecutor(new MaxInvisible(this));
         getCommand("endraid").setExecutor(new EndRaidCommand(this));
+        getCommand("setraid").setExecutor(new SetRaidCommand(this));
         BukkitScheduler scheduler = getServer().getScheduler();
         BukkitTask tedCruz = new TedCruzTwitterTask(this).runTaskTimer(this,100,12000);
 

@@ -3,6 +3,7 @@ package maxdevos.maxcraft.util;
 import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -27,6 +28,14 @@ public class PlayerUtils {
             return players.get(p);
         }
         return players.get(0);
+    }
+
+    public static ArrayList<Player> getPlayersFromUUIDs(MaxPlugin p, Set<UUID> ids){
+        ArrayList<Player> players = new ArrayList<>();
+        for(UUID id:ids){
+            players.add(p.getServer().getPlayer(id));
+        }
+        return players;
     }
 }
 

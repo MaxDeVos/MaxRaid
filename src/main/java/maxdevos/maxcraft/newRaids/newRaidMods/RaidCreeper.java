@@ -1,0 +1,31 @@
+package maxdevos.maxcraft.newRaids.newRaidMods;
+
+import org.bukkit.Location;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.raid.RaidSpawnWaveEvent;
+
+public class RaidCreeper extends RaidMob {
+
+    public RaidCreeper(Player target, RaidSpawnWaveEvent w) {
+        super(target, w, EntityType.CREEPER);
+    }
+
+    public RaidCreeper(Player target) {
+        super(target, EntityType.CREEPER);
+    }
+
+    public RaidCreeper(Player target, Location spawnLocation) {
+        super(target, spawnLocation, EntityType.CREEPER);
+    }
+
+    public void setParams(LivingEntity e){
+        Creeper c = (Creeper)e;
+        c.setTarget(target);
+        c.setMaxHealth(20);
+        c.setHealth(20);
+    }
+
+}

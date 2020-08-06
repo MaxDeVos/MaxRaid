@@ -1,7 +1,8 @@
-sleep_vote_percentage: 50
-
 nicknames:
+
+current-raid: defaultRaid
 
 messages:
   join: "has joined.  Bully them extensively."
   quit: "ragequit because they are bad."
+

@@ -1,6 +1,7 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
+import maxdevos.maxcraft.newRaids.newRaidMods.*;
 import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -22,7 +23,6 @@ import java.util.UUID;
 public class FancyRaid implements Listener {
 
     private final MaxPlugin plugin;
-    private final RaidMobManager rmm;
     private final Raid raid;
     private final World w;
     private int wave = 0;
@@ -32,7 +32,6 @@ public class FancyRaid implements Listener {
     public FancyRaid(MaxPlugin plugin, Raid raid){
 
         handler = new RaidEventHandler(plugin);
-        rmm = new RaidMobManager();
         this.plugin = plugin;
         this.raid = raid;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -44,47 +43,12 @@ public class FancyRaid implements Listener {
     }
 
     @EventHandler
-    private void newWave(RaidSpawnWaveEvent e){
+    private void newWave(RaidSpawnWaveEvent raidEvent){
 
         System.out.println("Wave #: " + wave);
         raid.getHeroes();
         ArrayList<Player> players = new ArrayList<>();
         for (UUID d:raid.getHeroes()) {
-                Player p = plugin.getServer().getPlayer(d);
-                players.add(p);
-                for (int i = 1; i < wave; i++) {
-                    rmm.spawnCustomZombie(w, p, e, false);
-                    rmm.spawnCustomSkeleton(w, p, e, wave, false, false);
-                    rmm.spawnCustomSkeleton(w, p, e, wave, false, true);
-                    rmm.spawnCustomPillager(w, p, e);
-                    rmm.spawnCustomCreeper(w, p, e, wave);
-                    rmm.spawnCustomSpider(w, p, e, wave);
-                }
-                if (wave > 2) {
-                    rmm.spawnCustomZombie(w, p, e, true);
-                    rmm.spawnCustomSkeleton(w, p, e, wave, true, true);
-                    rmm.spawnCustomIllusioner(w, p, e);
-                }
-                if (wave > 3) {
-                    rmm.spawnCustomGhast(w, p, e);
-                }
-                if (wave > 4) {
-                    rmm.spawnCustomEnderman(w, p, e);
-                }
-                if (wave > 5) {
-                    rmm.spawnCustomBlaze(w, p, e);
-                }
-                players.add(p);
-            }
-            if (wave > 2) {
-                spawnAirDrop(PlayerUtils.getRandomPlayer(players));
-            }
-            if (wave > 5) {
-                spawnAirDrop(PlayerUtils.getRandomPlayer(players));
-            }
-        wave++;
-        if(wave == 1){
-            this.players = players;
         }
     }
 
@@ -97,10 +61,6 @@ public class FancyRaid implements Listener {
         int tempWave = Math.min(wave, 4);
 
         for(int i = 2; i < tempWave; i++){
-            rmm.spawnAirDropZombie(w,p,l);
-            rmm.spawnAirDropCreeper(w,p,l);
-            rmm.spawnAirDropSkeleton(w,p,l);
-            rmm.spawnAirDropSpider(w,p,l);
         }
 
     }

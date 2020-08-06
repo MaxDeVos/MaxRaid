@@ -1,5 +1,6 @@
 package maxdevos.maxcraft;
 
+import maxdevos.maxcraft.newRaids.ConfigBasedRaid;
 import maxdevos.maxcraft.newRaids.FancyRaid;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
@@ -68,6 +69,6 @@ public final class CatchAllListener implements Listener {
 
     @EventHandler
     private void raidTime(RaidTriggerEvent e){
-        new FancyRaid(plugin, e.getRaid());
+        new ConfigBasedRaid(plugin, e.getRaid());
     }
 }

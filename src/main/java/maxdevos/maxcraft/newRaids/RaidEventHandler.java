@@ -1,15 +1,14 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.*;
 
 public class RaidEventHandler implements Listener {
 
@@ -49,6 +48,15 @@ public class RaidEventHandler implements Listener {
     private void antiVex2(EntitySpawnEvent e){
         if(e.getEntityType().equals(EntityType.VEX)){
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onEntityExplode(EntityExplodeEvent event) {
+        Entity ent = event.getEntity();
+
+        if (ent instanceof Fireball) {
+            event.setCancelled(true);
         }
     }
 
