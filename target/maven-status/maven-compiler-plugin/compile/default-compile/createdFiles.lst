@@ -1,8 +1,10 @@
+maxdevos\maxcraft\commands\EndWaveCommand.class
 maxdevos\maxcraft\commands\FuckYouCommand.class
 maxdevos\maxcraft\commands\SetRaidCommand.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidEnderman.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidWitherSkeleton.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMagmaCube.class
+maxdevos\maxcraft\newRaids\KillWaveEvent.class
 maxdevos\maxcraft\tedcruz\TedCruzTweetFactory.class
 maxdevos\maxcraft\util\PlayerUtils.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidPillager.class
@@ -13,14 +15,15 @@ maxdevos\maxcraft\newRaids\RaidWave.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMob$ArmorType.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidGhast.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidRavager.class
-maxdevos\maxcraft\newRaids\FancyRaid.class
 maxdevos\maxcraft\newRaids\ConfigBasedRaid.class
 maxdevos\maxcraft\commands\EndRaidCommand.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidPhantom.class
+maxdevos\maxcraft\newRaids\StopRaidEvent.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMob.class
 maxdevos\maxcraft\commands\NicknameCommand.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidEvoker.class
 maxdevos\maxcraft\tedcruz\TedCruzTwitterCommand.class
+maxdevos\maxcraft\newRaids\LegacyRaid.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMob$1.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidCreeper.class
 maxdevos\maxcraft\commands\MaxInvisible.class
@@ -35,3 +38,4 @@ maxdevos\maxcraft\newRaids\newRaidMods\RaidSkeleton.class
 maxdevos\maxcraft\newRaids\RaidConfig.class
 maxdevos\maxcraft\commands\LagCommand.class
 maxdevos\maxcraft\tedcruz\TedCruzTwitterTask.class
+maxdevos\maxcraft\newRaids\ConfigBasedRaid$1.class

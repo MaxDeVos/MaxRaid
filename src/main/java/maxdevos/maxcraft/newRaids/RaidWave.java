@@ -41,8 +41,11 @@ class RaidWave {
     private int dropWitherSkeletons = 0;
     private int dropZombies = 0;
 
+    ArrayList<RaidMob> mobs;
+
     RaidWave(){
         players = new ArrayList<>();
+        mobs = new ArrayList<>();
     }
 
     void configWave(ArrayList<Player> players, RaidSpawnWaveEvent e){
@@ -52,43 +55,43 @@ class RaidWave {
 
     void spawnWave(){
         for(int i = 0; i < blazes; i++){
-            new RaidBlaze(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidBlaze(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < creepers; i++){
-            new RaidCreeper(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidCreeper(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < endermen; i++){
-            new RaidEnderman(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidEnderman(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < evokers; i++){
-            new RaidEvoker(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidEvoker(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < ghasts; i++){
-            new RaidGhast(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidGhast(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < magmaCubes; i++){
-            new RaidMagmaCube(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidMagmaCube(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < phantoms; i++){
-            new RaidPhantom(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidPhantom(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < pillagers; i++){
-            new RaidPillager(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidPillager(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < ravagers; i++){
-            new RaidRavager(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidRavager(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < skeletons; i++){
-            new RaidSkeleton(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidSkeleton(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < vindicators; i++){
-            new RaidVindicator(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidVindicator(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < witherSkeletons; i++){
-            new RaidWitherSkeleton(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidWitherSkeleton(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < zombies; i++){
-            new RaidZombie(PlayerUtils.getRandomPlayer(players),e);
+            mobs.add(new RaidZombie(PlayerUtils.getRandomPlayer(players),e));
         }
     }
 
@@ -97,43 +100,43 @@ class RaidWave {
             System.out.println(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Airdrop");
             Player p = PlayerUtils.getRandomPlayer(players);
             for(int i = 0; i < dropBlazes; i++){
-                new RaidBlaze(p);
+                mobs.add(new RaidBlaze(p));
             }
             for(int i = 0; i < dropCreepers; i++){
-                new RaidCreeper(p);
+                mobs.add(new RaidCreeper(p));
             }
             for(int i = 0; i < dropEndermen; i++){
-                new RaidEnderman(p);
+                mobs.add(new RaidEnderman(p));
             }
             for(int i = 0; i < dropEvokers; i++){
-                new RaidEvoker(p);
+                mobs.add(new RaidEvoker(p));
             }
             for(int i = 0; i < dropGhasts; i++){
-                new RaidGhast(p);
+                mobs.add(new RaidGhast(p));
             }
             for(int i = 0; i < dropMagmaCubes; i++){
-                new RaidMagmaCube(p);
+                mobs.add(new RaidMagmaCube(p));
             }
             for(int i = 0; i < dropPhantoms; i++){
-                new RaidPhantom(p);
+                mobs.add(new RaidPhantom(p));
             }
             for(int i = 0; i < dropPillagers; i++){
-                new RaidPillager(p);
+                mobs.add(new RaidPillager(p));
             }
             for(int i = 0; i < dropRavagers; i++){
-                new RaidRavager(p);
+                mobs.add(new RaidRavager(p));
             }
             for(int i = 0; i < dropSkeletons; i++){
-                new RaidSkeleton(p);
+                mobs.add(new RaidSkeleton(p));
             }
             for(int i = 0; i < dropVindicators; i++){
-                new RaidVindicator(p);
+                mobs.add(new RaidVindicator(p));
             }
             for(int i = 0; i < dropWitherSkeletons; i++){
-                new RaidWitherSkeleton(p);
+                mobs.add(new RaidWitherSkeleton(p));
             }
             for(int i = 0; i < dropZombies; i++){
-                new RaidZombie(p);
+                mobs.add(new RaidZombie(p));
             }
         }
     }
@@ -248,6 +251,12 @@ class RaidWave {
 
     void setZombies(int zombies) {
         this.zombies = zombies;
+    }
+
+    void killAll(){
+        for(RaidMob m: mobs){
+            m.kill();
+        }
     }
 
 }

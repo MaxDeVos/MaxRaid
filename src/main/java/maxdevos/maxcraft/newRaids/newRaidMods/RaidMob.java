@@ -132,4 +132,8 @@ public class RaidMob {
 
     }
 
+    public void kill(){
+        m.setHealth(0);
+    }
+
 }

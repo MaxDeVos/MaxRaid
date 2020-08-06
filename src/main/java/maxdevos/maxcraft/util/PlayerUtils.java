@@ -30,10 +30,21 @@ public class PlayerUtils {
         return players.get(0);
     }
 
-    public static ArrayList<Player> getPlayersFromUUIDs(MaxPlugin p, Set<UUID> ids){
+    public static ArrayList<Player> getPlayersFromUUIDs(MaxPlugin plugin, Set<UUID> ids){
         ArrayList<Player> players = new ArrayList<>();
+        if(plugin.getServer().getOnlinePlayers().size() == 1){
+            try {
+                Player max = plugin.getServer().getPlayer("maxcr1");
+                players.add(max);
+                max.sendMessage("Debug Mode.  Added you as target.");
+            }
+            catch(Exception ignored){
+
+            }
+        }
+
         for(UUID id:ids){
-            players.add(p.getServer().getPlayer(id));
+            players.add(plugin.getServer().getPlayer(id));
         }
         return players;
     }

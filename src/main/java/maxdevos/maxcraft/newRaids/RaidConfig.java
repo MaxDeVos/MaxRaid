@@ -17,6 +17,7 @@ public class RaidConfig{
     private FileConfiguration raidSetup;
     private MaxPlugin plugin;
     private ArrayList<RaidWave> waves;
+    private String raidName = "Default";
 
     public RaidConfig(MaxPlugin plugin, String raidName){
         this.plugin = plugin;
@@ -35,6 +36,7 @@ public class RaidConfig{
         raidSetup = new YamlConfiguration();
         try {
             raidSetup.load(raidSetupFile);
+            this.raidName = raidName;
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
@@ -78,6 +80,10 @@ public class RaidConfig{
 
     RaidWave getWave(int wave){
         return(waves.get(wave-1));
+    }
+
+    String getRaidName(){
+        return raidName;
     }
 
 }

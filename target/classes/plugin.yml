@@ -27,6 +27,10 @@ commands:
   endraid:
     description: kills all mobs related to raid
     usage: /endraid
+  endwave:
+    description: kills all mobs in a specific wave
+    usage: /endwave
+    permission: maxcraft.max
   setraid:
     description: kills all mobs related to raid
     usage: /setraid
