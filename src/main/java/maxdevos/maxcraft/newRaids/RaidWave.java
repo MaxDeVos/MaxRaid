@@ -48,14 +48,14 @@ class RaidWave {
         mobs = new ArrayList<>();
     }
 
-    void configWave(ArrayList<Player> players, RaidSpawnWaveEvent e){
-        this.players = players;
+    void configWave(ArrayList<RaidPlayer> players, RaidSpawnWaveEvent e){
+        this.players = RaidPlayer.getPlayersFromRaidPlayers(players);
         this.e = e;
     }
 
     void spawnWave(){
         for(int i = 0; i < blazes; i++){
-            mobs.add(new RaidBlaze(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < creepers; i++){
             mobs.add(new RaidCreeper(PlayerUtils.getRandomPlayer(players),e));
@@ -67,13 +67,13 @@ class RaidWave {
             mobs.add(new RaidEvoker(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < ghasts; i++){
-            mobs.add(new RaidGhast(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new RaidGhast(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < magmaCubes; i++){
             mobs.add(new RaidMagmaCube(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < phantoms; i++){
-            mobs.add(new RaidPhantom(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new RaidPhantom(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < pillagers; i++){
             mobs.add(new RaidPillager(PlayerUtils.getRandomPlayer(players),e));

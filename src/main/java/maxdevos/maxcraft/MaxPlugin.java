@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public final class MaxPlugin extends JavaPlugin implements Listener{
 
@@ -23,16 +24,14 @@ public final class MaxPlugin extends JavaPlugin implements Listener{
         // Plugin startup logic
         createCustomConfig();
         new CatchAllListener(this);
-        getCommand("fuckyou").setExecutor(new FuckYouCommand(this));
-        getCommand("lag").setExecutor(new LagCommand(this));
-        getCommand("maxhelp").setExecutor(new MaxHelp(this));
-        getCommand("nickname").setExecutor(new NicknameCommand(this));
-        getCommand("maxv").setExecutor(new MaxInvisible(this));
-        getCommand("endraid").setExecutor(new EndRaidCommand(this));
-        getCommand("endwave").setExecutor(new EndWaveCommand(this));
-        getCommand("setraid").setExecutor(new SetRaidCommand(this));
-        BukkitScheduler scheduler = getServer().getScheduler();
-        BukkitTask tedCruz = new TedCruzTwitterTask(this).runTaskTimer(this,100,12000);
+        Objects.requireNonNull(getCommand("fuckyou")).setExecutor(new FuckYouCommand(this));
+        Objects.requireNonNull(getCommand("lag")).setExecutor(new LagCommand(this));
+        Objects.requireNonNull(getCommand("maxhelp")).setExecutor(new MaxHelp(this));
+        Objects.requireNonNull(getCommand("nickname")).setExecutor(new NicknameCommand(this));
+        Objects.requireNonNull(getCommand("maxv")).setExecutor(new MaxInvisible(this));
+        Objects.requireNonNull(getCommand("endraid")).setExecutor(new EndRaidCommand(this));
+        Objects.requireNonNull(getCommand("endwave")).setExecutor(new EndWaveCommand(this));
+        Objects.requireNonNull(getCommand("setraid")).setExecutor(new SetRaidCommand(this));
 
         getServer().getPluginManager().registerEvents(this, this);
 

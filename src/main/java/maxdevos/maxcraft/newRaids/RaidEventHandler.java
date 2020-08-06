@@ -33,13 +33,9 @@ public class RaidEventHandler implements Listener {
                 e.setCancelled(true);
             }
         }
-    }
-
-    @EventHandler
-    private void antiVex(EntityDamageByEntityEvent e){
-        if(!(e.getEntity() instanceof Player)) {
-            if(e.getDamager().getType().equals(EntityType.VEX)){
-                e.setCancelled(true);
+        if((e.getEntity() instanceof Player)) {
+            if(e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)){
+                e.setDamage(e.getDamage() * .30);
             }
         }
     }
@@ -57,6 +53,7 @@ public class RaidEventHandler implements Listener {
 
         if (ent instanceof Fireball) {
             event.setCancelled(true);
+            plugin.getServer().getWorlds().get(0).createExplosion(ent.getLocation(), 3);
         }
     }
 

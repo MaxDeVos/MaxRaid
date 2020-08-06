@@ -22,9 +22,9 @@ public class ConfigBasedRaid implements Listener {
     private final Raid raid;
     private final World w;
     private int wave = 1;
-    ArrayList<Player> players = new ArrayList<>();
-    private RaidEventHandler handler;
-    private RaidConfig raidConfig;
+    ArrayList<RaidPlayer> players = new ArrayList<>();
+    private final RaidEventHandler handler;
+    private final RaidConfig raidConfig;
     private RaidWave currentWave;
 
     public ConfigBasedRaid(MaxPlugin plugin, Raid raid){
@@ -46,7 +46,11 @@ public class ConfigBasedRaid implements Listener {
 
         plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "Wave # "
                 + wave + " has spawned!");
-        players = PlayerUtils.getPlayersFromUUIDs(plugin, raid.getHeroes());
+        players = RaidPlayer.addNewPlayers(plugin,raid.getHeroes(),players);
+
+        for(RaidPlayer p:players){
+            System.out.println(p.getPlayer().getCustomName());
+        }
 
         if(wave != 1) {
             currentWave = raidConfig.getWave(wave);
@@ -68,7 +72,7 @@ public class ConfigBasedRaid implements Listener {
     private void endRaid(StopRaidEvent e){
         w.setGameRule(GameRule.DISABLE_RAIDS, true);
         currentWave.killAll();
-        Bukkit.getPluginManager().callEvent(new RaidFinishEvent(raid, w, players));
+        Bukkit.getPluginManager().callEvent(new RaidFinishEvent(raid, w, RaidPlayer.getPlayersFromRaidPlayers(players)));
         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
             public void run() {
                 w.setGameRule(GameRule.DISABLE_RAIDS, false);

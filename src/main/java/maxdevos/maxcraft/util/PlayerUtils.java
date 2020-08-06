@@ -3,7 +3,6 @@ package maxdevos.maxcraft.util;
 import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
@@ -48,5 +47,16 @@ public class PlayerUtils {
         }
         return players;
     }
+
+    public static Player getHighestPlayer(ArrayList<Player> players){
+        Player out = players.get(0);
+        for(Player p:players){
+            if(p.getLocation().getBlockY() > out.getLocation().getBlockY()){
+                out = p;
+            }
+        }
+        return out;
+    }
+
 }
 
