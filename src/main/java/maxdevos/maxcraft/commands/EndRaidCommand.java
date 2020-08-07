@@ -1,7 +1,7 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.StopRaidEvent;
+import maxdevos.maxcraft.newRaids.raidEvents.StopRaidEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,12 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.event.raid.RaidFinishEvent;
-import org.bukkit.event.raid.RaidStopEvent;
-
-import java.io.File;
-import java.io.IOException;
 
 public class EndRaidCommand implements CommandExecutor{
     MaxPlugin plugin;

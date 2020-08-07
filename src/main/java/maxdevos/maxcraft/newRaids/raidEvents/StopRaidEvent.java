@@ -1,9 +1,9 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.newRaids.raidEvents;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class KillWaveEvent extends Event {
+public class StopRaidEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 

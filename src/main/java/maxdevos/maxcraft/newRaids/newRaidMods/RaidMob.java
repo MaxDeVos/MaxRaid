@@ -1,12 +1,17 @@
 package maxdevos.maxcraft.newRaids.newRaidMods;
 
+import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
 import maxdevos.maxcraft.util.VectorTools;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +19,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Objects;
 
-public class RaidMob {
+public class RaidMob implements Listener {
 
     LivingEntity m;
     private Location spawnLocation;
@@ -134,6 +139,13 @@ public class RaidMob {
 
     public void kill(){
         m.setHealth(0);
+    }
+
+    @EventHandler
+    private void raidMobKilled(EntityDeathEvent e){
+        if(e.getEntity().getKiller() != null){
+            Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
+        }
     }
 
 }

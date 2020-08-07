@@ -1,20 +1,18 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.commands.EndRaidCommand;
-import maxdevos.maxcraft.util.PlayerUtils;
+import maxdevos.maxcraft.newRaids.raidEvents.KillWaveEvent;
+import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
+import maxdevos.maxcraft.newRaids.raidEvents.StopRaidEvent;
+import maxdevos.maxcraft.util.ChatFunctions;
 import org.bukkit.*;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
-import org.bukkit.event.raid.RaidStopEvent;
 
 import java.util.ArrayList;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class ConfigBasedRaid implements Listener {
 
@@ -35,9 +33,9 @@ public class ConfigBasedRaid implements Listener {
         this.raid = raid;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.w = plugin.getServer().getWorlds().get(0);
-        plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.LIGHT_PURPLE + "Running Raid: " + raidConfig.getRaidName());
-        plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "This Raid is sponsored by RAID Shadow Legends");
-        currentWave = new RaidWave();
+        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Running Raid: " + raidConfig.getRaidName());
+        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "This Raid is sponsored by RAID Shadow Legends");
+        currentWave = new RaidWave(plugin);
         RaidPlayer.checkDevMode(plugin, players);
 
     }
@@ -45,12 +43,11 @@ public class ConfigBasedRaid implements Listener {
     @EventHandler
     private void newWave(RaidSpawnWaveEvent e){
 
-        plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "Wave # "
-                + wave + " has spawned!");
+        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
         RaidPlayer.addNewPlayers(plugin, raid.getHeroes(), players);
 
         for(RaidPlayer p: players){
-            System.out.println(p.getPlayer().getName());
+            System.out.println(p.getPlayer(plugin).getName());
         }
 
         if(wave != 1 && wave < 8) {
@@ -64,7 +61,7 @@ public class ConfigBasedRaid implements Listener {
 
     @EventHandler
     private void endRaid(RaidFinishEvent e){
-        plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "The Raid is Over.");
+        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "The Raid is Over.");
         HandlerList.unregisterAll(this);
         handler.unregister();
     }
@@ -81,6 +78,16 @@ public class ConfigBasedRaid implements Listener {
     @EventHandler
     private void killWave(KillWaveEvent e){
         currentWave.killAll();
+    }
+
+    @EventHandler
+    private void killedMob(RaidMobKilledEvent e){
+        for(RaidPlayer p:players){
+            if(p.getPlayer().getUniqueId().equals(e.player.getUniqueId())){
+                p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "Kill Registered");
+                p.addKill();
+            }
+        }
     }
 
 }

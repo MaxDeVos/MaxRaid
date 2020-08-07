@@ -9,14 +9,15 @@ import java.util.UUID;
 
 public class RaidPlayer {
 
-    private Player p;
+    private UUID p;
+    private int killedMobs = 0;
 
     static ArrayList<RaidPlayer> addNewPlayers(MaxPlugin plugin, Set<UUID> ids, ArrayList<RaidPlayer> players){
 
         for(UUID u:ids){
             boolean match = false;
             for(RaidPlayer rp : players){
-                if(rp.getPlayer().getUniqueId().equals(u)){
+                if(rp.getPlayerID().equals(u)){
                     match = true;
                     break;
                 }
@@ -29,10 +30,10 @@ public class RaidPlayer {
 
     }
 
-    static ArrayList<Player> getPlayersFromRaidPlayers(ArrayList<RaidPlayer> raidPlayers){
+    static ArrayList<Player> getPlayersFromRaidPlayers(MaxPlugin plugin, ArrayList<RaidPlayer> raidPlayers){
         ArrayList<Player> players = new ArrayList<>();
         for(RaidPlayer rP: raidPlayers){
-            players.add(rP.getPlayer());
+            players.add(rP.getPlayer(plugin));
         }
         return players;
     }
@@ -49,12 +50,24 @@ public class RaidPlayer {
         return raidPlayers;
     }
 
-    RaidPlayer(Player p){
-        this.p = p;
+    public RaidPlayer(Player p){
+        this.p = p.getUniqueId();
     }
 
-    Player getPlayer(){
+    public Player getPlayer(MaxPlugin plugin){
+        return plugin.getServer().getPlayer(p);
+    }
+
+    public UUID getPlayerID(){
         return p;
+    }
+
+    public void addKill(){
+        killedMobs++;
+    }
+
+    public int getKills(){
+        return killedMobs;
     }
 
 }

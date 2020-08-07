@@ -1,5 +1,6 @@
 package maxdevos.maxcraft.newRaids;
 
+import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.newRaids.newRaidMods.*;
 import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.ChatColor;
@@ -42,14 +43,16 @@ class RaidWave {
     private int dropZombies = 0;
 
     ArrayList<RaidMob> mobs;
+    MaxPlugin plugin;
 
-    RaidWave(){
+    RaidWave(MaxPlugin plugin){
+        this.plugin = plugin;
         players = new ArrayList<>();
         mobs = new ArrayList<>();
     }
 
     void configWave(ArrayList<RaidPlayer> players, RaidSpawnWaveEvent e){
-        this.players = RaidPlayer.getPlayersFromRaidPlayers(players);
+        this.players = RaidPlayer.getPlayersFromRaidPlayers(plugin, players);
         this.e = e;
     }
 
