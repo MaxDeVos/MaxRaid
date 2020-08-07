@@ -38,6 +38,7 @@ public class ConfigBasedRaid implements Listener {
         plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.LIGHT_PURPLE + "Running Raid: " + raidConfig.getRaidName());
         plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "This Raid is sponsored by RAID Shadow Legends");
         currentWave = new RaidWave();
+        RaidPlayer.checkDevMode(plugin, players);
 
     }
 
@@ -46,13 +47,13 @@ public class ConfigBasedRaid implements Listener {
 
         plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "Wave # "
                 + wave + " has spawned!");
-        players = RaidPlayer.addNewPlayers(plugin,raid.getHeroes(),players);
+        RaidPlayer.addNewPlayers(plugin, raid.getHeroes(), players);
 
-        for(RaidPlayer p:players){
-            System.out.println(p.getPlayer().getCustomName());
+        for(RaidPlayer p: players){
+            System.out.println(p.getPlayer().getName());
         }
 
-        if(wave != 1) {
+        if(wave != 1 && wave < 8) {
             currentWave = raidConfig.getWave(wave);
             currentWave.configWave(players, e);
             currentWave.spawnWave();
@@ -73,11 +74,8 @@ public class ConfigBasedRaid implements Listener {
         w.setGameRule(GameRule.DISABLE_RAIDS, true);
         currentWave.killAll();
         Bukkit.getPluginManager().callEvent(new RaidFinishEvent(raid, w, RaidPlayer.getPlayersFromRaidPlayers(players)));
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            public void run() {
-                w.setGameRule(GameRule.DISABLE_RAIDS, false);
-            }
-        }, 2L);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () ->
+                w.setGameRule(GameRule.DISABLE_RAIDS, false), 2L);
     }
 
     @EventHandler

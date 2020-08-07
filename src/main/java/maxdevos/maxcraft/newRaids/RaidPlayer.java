@@ -13,21 +13,16 @@ public class RaidPlayer {
 
     static ArrayList<RaidPlayer> addNewPlayers(MaxPlugin plugin, Set<UUID> ids, ArrayList<RaidPlayer> players){
 
-        if(plugin.getServer().getOnlinePlayers().size() == 1){
-            try {
-                Player max = plugin.getServer().getPlayer("maxcr1");
-                players.add(new RaidPlayer(max));
-                max.sendMessage("Debug Mode.  Added you as target.");
-            }
-            catch(Exception ignored){
-
-            }
-        }
-
         for(UUID u:ids){
-            Player p = plugin.getServer().getPlayer(u);
-            if(!players.contains(p)){
-                players.add(new RaidPlayer(p));
+            boolean match = false;
+            for(RaidPlayer rp : players){
+                if(rp.getPlayer().getUniqueId().equals(u)){
+                    match = true;
+                    break;
+                }
+            }
+            if(!match){
+                players.add(new RaidPlayer(plugin.getServer().getPlayer(u)));
             }
         }
         return players;
@@ -40,6 +35,18 @@ public class RaidPlayer {
             players.add(rP.getPlayer());
         }
         return players;
+    }
+
+    static ArrayList<RaidPlayer> checkDevMode(MaxPlugin plugin, ArrayList<RaidPlayer> raidPlayers){
+        if(plugin.getServer().getOnlinePlayers().size() == 1){
+            try {
+                raidPlayers.add(new RaidPlayer(plugin.getServer().getPlayer("maxcr1")));
+            }
+            catch(Exception ignored){
+
+            }
+        }
+        return raidPlayers;
     }
 
     RaidPlayer(Player p){
