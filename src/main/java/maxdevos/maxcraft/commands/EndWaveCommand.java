@@ -11,11 +11,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
 public class EndWaveCommand implements CommandExecutor{
-    MaxPlugin plugin;
-
-    public EndWaveCommand(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -32,6 +28,11 @@ public class EndWaveCommand implements CommandExecutor{
         }
 
         Bukkit.getPluginManager().callEvent(new KillWaveEvent());
+        return killRaidMobs(plugin);
+    }
+
+    @SuppressWarnings("SameReturnValue")
+    static boolean killRaidMobs(MaxPlugin plugin) {
         for(Entity e : plugin.getServer().getWorlds().get(0).getEntities()){
             if(e.getType().equals(EntityType.VEX) || e.getType().equals(EntityType.PILLAGER) ||
                     e.getType().equals(EntityType.RAVAGER) || e.getType().equals(EntityType.WITCH) ||
@@ -44,7 +45,6 @@ public class EndWaveCommand implements CommandExecutor{
 
         return true;
     }
-
 
 
 }

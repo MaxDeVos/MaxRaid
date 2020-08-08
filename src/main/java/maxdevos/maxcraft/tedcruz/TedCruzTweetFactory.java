@@ -9,7 +9,8 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TedCruzTweetFactory {
+@SuppressWarnings("unused")
+class TedCruzTweetFactory {
 
     public static String getRandomTweetCommand(String user){
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -56,7 +57,7 @@ public class TedCruzTweetFactory {
 
 
     private static String removeUrl(String commentstr) {
-    String urlPattern = "((https?|ftp|gopher|telnet|file|Unsure|http):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+    String urlPattern = "((https?|ftp|gopher|telnet|file|Unsure|http):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?+-=\\\\.&]*)";
     Pattern p = Pattern.compile(urlPattern,Pattern.CASE_INSENSITIVE);
     Matcher m = p.matcher(commentstr);
     int i = 0;

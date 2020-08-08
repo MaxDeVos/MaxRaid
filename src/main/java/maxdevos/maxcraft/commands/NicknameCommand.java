@@ -9,13 +9,11 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class NicknameCommand implements CommandExecutor{
-    MaxPlugin plugin;
 
-    public NicknameCommand(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -92,8 +90,8 @@ public class NicknameCommand implements CommandExecutor{
         plugin.getCustomConfig().set("nicknames."+username, nickname);
 
         try{
-            plugin.getServer().getPlayer(username).getPlayer().setDisplayName(nickname);
-            plugin.getServer().getPlayer(username).getPlayer().setPlayerListName(nickname);
+            Objects.requireNonNull(Objects.requireNonNull(plugin.getServer().getPlayer(username)).getPlayer()).setDisplayName(nickname);
+            Objects.requireNonNull(Objects.requireNonNull(plugin.getServer().getPlayer(username)).getPlayer()).setPlayerListName(nickname);
         }
         catch (Exception e){
             e.printStackTrace();

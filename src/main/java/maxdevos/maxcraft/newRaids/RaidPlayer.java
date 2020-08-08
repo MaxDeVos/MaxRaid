@@ -4,15 +4,17 @@ import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-public class RaidPlayer {
+class RaidPlayer {
 
-    private UUID p;
+    private final UUID p;
     private int killedMobs = 0;
+    private static final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    static ArrayList<RaidPlayer> addNewPlayers(MaxPlugin plugin, Set<UUID> ids, ArrayList<RaidPlayer> players){
+    static void addNewPlayers(Set<UUID> ids, ArrayList<RaidPlayer> players){
 
         for(UUID u:ids){
             boolean match = false;
@@ -23,42 +25,40 @@ public class RaidPlayer {
                 }
             }
             if(!match){
-                players.add(new RaidPlayer(plugin.getServer().getPlayer(u)));
+                players.add(new RaidPlayer(Objects.requireNonNull(plugin.getServer().getPlayer(u))));
             }
         }
-        return players;
 
     }
 
-    static ArrayList<Player> getPlayersFromRaidPlayers(MaxPlugin plugin, ArrayList<RaidPlayer> raidPlayers){
+    static ArrayList<Player> getPlayersFromRaidPlayers(ArrayList<RaidPlayer> raidPlayers){
         ArrayList<Player> players = new ArrayList<>();
         for(RaidPlayer rP: raidPlayers){
-            players.add(rP.getPlayer(plugin));
+            players.add(rP.getPlayer());
         }
         return players;
     }
 
-    static ArrayList<RaidPlayer> checkDevMode(MaxPlugin plugin, ArrayList<RaidPlayer> raidPlayers){
+    static void checkDevMode(ArrayList<RaidPlayer> raidPlayers){
         if(plugin.getServer().getOnlinePlayers().size() == 1){
             try {
-                raidPlayers.add(new RaidPlayer(plugin.getServer().getPlayer("maxcr1")));
+                raidPlayers.add(new RaidPlayer(Objects.requireNonNull(plugin.getServer().getPlayer("maxcr1"))));
             }
             catch(Exception ignored){
 
             }
         }
-        return raidPlayers;
     }
 
-    public RaidPlayer(Player p){
+    private RaidPlayer(Player p){
         this.p = p.getUniqueId();
     }
 
-    public Player getPlayer(MaxPlugin plugin){
+    public Player getPlayer(){
         return plugin.getServer().getPlayer(p);
     }
 
-    public UUID getPlayerID(){
+    private UUID getPlayerID(){
         return p;
     }
 
@@ -66,6 +66,7 @@ public class RaidPlayer {
         killedMobs++;
     }
 
+    @SuppressWarnings("unused")
     public int getKills(){
         return killedMobs;
     }

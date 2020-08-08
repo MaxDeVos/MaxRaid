@@ -11,29 +11,27 @@ import java.util.ArrayList;
 
 import static org.bukkit.ChatColor.*;
 
-public class RaidConfig{
+class RaidConfig{
 
-    private File raidSetupFile;
-    private FileConfiguration raidSetup;
-    private MaxPlugin plugin;
-    private ArrayList<RaidWave> waves;
+    private final ArrayList<RaidWave> waves;
     private String raidName = "Default";
+    private static final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    public RaidConfig(MaxPlugin plugin, String raidName){
-        this.plugin = plugin;
+    RaidConfig(String raidName){
         waves = new ArrayList<>();
-        raidSetupFile = new File(plugin.getDataFolder(), raidName + ".yml");
+        File raidSetupFile = new File(plugin.getDataFolder(), raidName + ".yml");
         if (!raidSetupFile.exists()) {
             plugin.getServer().broadcastMessage(DARK_RED+ "[RAID ERROR] " + WHITE + "Raid Config File: " +
                     raidName + " not found.  Running default raid.");
             raidSetupFile = new File(plugin.getDataFolder(), "defaultRaid.yml");
             if (!raidSetupFile.exists()) {
+                //noinspection ResultOfMethodCallIgnored
                 raidSetupFile.getParentFile().mkdirs();
                 plugin.saveResource("defaultRaid.yml", false);
             }
         }
 
-        raidSetup = new YamlConfiguration();
+        FileConfiguration raidSetup = new YamlConfiguration();
         try {
             raidSetup.load(raidSetupFile);
             this.raidName = raidName;
@@ -46,7 +44,6 @@ public class RaidConfig{
         for(int i=2;i<=7;i++){
             System.out.println("Loading Wave " + i + " into memory.");
             RaidWave wave = new RaidWave();
-            wave.setWaveNum(i);
             wave.setAirDrops(raidSetup.getInt("waves."+i+".airdrops"));
             wave.setBlazes(raidSetup.getInt("waves."+i+".wave-mobs."+"blaze"));
             wave.setCreepers(raidSetup.getInt("waves."+i+".wave-mobs."+"creeper"));

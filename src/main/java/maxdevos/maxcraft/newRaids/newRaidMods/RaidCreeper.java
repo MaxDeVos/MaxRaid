@@ -7,6 +7,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidCreeper extends RaidMob {
 
     public RaidCreeper(Player target, RaidSpawnWaveEvent w) {
@@ -17,6 +18,7 @@ public class RaidCreeper extends RaidMob {
         super(target, EntityType.CREEPER);
     }
 
+    @SuppressWarnings("unused")
     public RaidCreeper(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.CREEPER);
     }

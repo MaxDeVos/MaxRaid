@@ -1,30 +1,25 @@
 package maxdevos.maxcraft.commands;
 
-import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfStringBuilder")
 public class MaxHelp implements CommandExecutor {
-    MaxPlugin plugin;
-
-    public MaxHelp(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         String cmdName = cmd.getName().toLowerCase();
-        String problem = "";
+        StringBuilder problem = new StringBuilder();
 
         if (!cmdName.equals("maxhelp")) {
             return false;
         }
 
         for(String word:args){
-            problem += word + " ";
+            problem.append(word).append(" ");
         }
 
         sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Message sent straight to the recycling bin.  Fuck you.");

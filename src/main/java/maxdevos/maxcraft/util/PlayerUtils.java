@@ -3,14 +3,14 @@ package maxdevos.maxcraft.util;
 import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
+@SuppressWarnings("unused")
 public class PlayerUtils {
 
-    public static Player getRandomPlayer(MaxPlugin plugin, Set<UUID> uuids){
+    private static final MaxPlugin plugin = MaxPlugin.getInstance();
+
+    public static Player getRandomPlayer(Set<UUID> uuids){
         Random r = new Random();
         ArrayList<Player> out = new ArrayList<>();
         for(UUID p:uuids){
@@ -29,13 +29,13 @@ public class PlayerUtils {
         return players.get(0);
     }
 
-    public static ArrayList<Player> getPlayersFromUUIDs(MaxPlugin plugin, Set<UUID> ids){
+    public static ArrayList<Player> getPlayersFromUUIDs(Set<UUID> ids){
         ArrayList<Player> players = new ArrayList<>();
         if(plugin.getServer().getOnlinePlayers().size() == 1){
             try {
                 Player max = plugin.getServer().getPlayer("maxcr1");
                 players.add(max);
-                max.sendMessage("Debug Mode.  Added you as target.");
+                Objects.requireNonNull(max).sendMessage("Debug Mode.  Added you as target.");
             }
             catch(Exception ignored){
 

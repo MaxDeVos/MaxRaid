@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidPillager extends RaidMob {
 
     public RaidPillager(Player target, RaidSpawnWaveEvent w) {
@@ -14,6 +15,7 @@ public class RaidPillager extends RaidMob {
         super(target, EntityType.PILLAGER);
     }
 
+    @SuppressWarnings("unused")
     public RaidPillager(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.PILLAGER);
     }

@@ -19,17 +19,18 @@ import org.bukkit.util.Vector;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class RaidMob implements Listener {
 
-    LivingEntity m;
-    private Location spawnLocation;
-    Player target;
+    private final LivingEntity m;
+    private final Location spawnLocation;
+    final Player target;
 
     RaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
 
 
         this.target = target;
-        spawnLocation = w.getPatrolLeader().getLocation().add(new Vector(0,1,0));
+        spawnLocation = Objects.requireNonNull(w.getPatrolLeader()).getLocation().add(new Vector(0,1,0));
         m = (LivingEntity)target.getWorld().spawnEntity(spawnLocation, mobType);
         setParams(m);
 
@@ -53,7 +54,7 @@ public class RaidMob implements Listener {
         setParams(m);
     }
 
-    public void setParams(LivingEntity e) {
+    void setParams(LivingEntity e) {
     }
 
     public enum ArmorType {DIAMOND, GOLD, IRON, CHAIN, LEATHER}

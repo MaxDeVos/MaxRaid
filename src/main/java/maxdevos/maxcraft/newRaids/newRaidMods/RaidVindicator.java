@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidVindicator extends RaidMob {
 
     public RaidVindicator(Player target, RaidSpawnWaveEvent w) {
@@ -14,6 +15,7 @@ public class RaidVindicator extends RaidMob {
         super(target, EntityType.VINDICATOR);
     }
 
+    @SuppressWarnings("unused")
     public RaidVindicator(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.VINDICATOR);
     }

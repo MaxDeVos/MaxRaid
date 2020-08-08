@@ -1,15 +1,11 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.newRaidMods.*;
-import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Raid;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -17,23 +13,18 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
-import java.util.ArrayList;
-import java.util.UUID;
+@SuppressWarnings("unused")
+class LegacyRaid implements Listener {
 
-public class LegacyRaid implements Listener {
-
-    private final MaxPlugin plugin;
     private final Raid raid;
     private final World w;
-    private int wave = 0;
-    ArrayList<Player> players = new ArrayList<>();
-    RaidEventHandler handler;
+    private final RaidEventHandler handler;
 
-    public LegacyRaid(MaxPlugin plugin, Raid raid){
+    public LegacyRaid(Raid raid){
 
-        handler = new RaidEventHandler(plugin);
-        this.plugin = plugin;
+        handler = new RaidEventHandler();
         this.raid = raid;
+        MaxPlugin plugin = MaxPlugin.getInstance();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.w = plugin.getServer().getWorlds().get(0);
         plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.LIGHT_PURPLE + "YOU'RE IN MY TURF NOW MOTHERFUCKERS.");
@@ -45,25 +36,11 @@ public class LegacyRaid implements Listener {
     @EventHandler
     private void newWave(RaidSpawnWaveEvent raidEvent){
 
+        int wave = 0;
         System.out.println("Wave #: " + wave);
         raid.getHeroes();
-        ArrayList<Player> players = new ArrayList<>();
-        for (UUID d:raid.getHeroes()) {
-        }
     }
 
-    private void spawnAirDrop(Player p){
-
-        plugin.getServer().broadcastMessage(ChatColor.DARK_RED + "[MaxCraft RAID] " + ChatColor.WHITE + "AIRDROP INCOMING ON "
-                + p.getDisplayName());
-        Location l = p.getLocation().add(0,15,0);
-
-        int tempWave = Math.min(wave, 4);
-
-        for(int i = 2; i < tempWave; i++){
-        }
-
-    }
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
@@ -71,11 +48,7 @@ public class LegacyRaid implements Listener {
 
         if (ent instanceof Fireball) {
             event.setCancelled(true);
-            if (wave != 7) {
-                w.createExplosion(ent.getLocation(), 2);
-            } else {
-                w.createExplosion(ent.getLocation(), 7);
-            }
+            w.createExplosion(ent.getLocation(), 2);
         }
     }
 

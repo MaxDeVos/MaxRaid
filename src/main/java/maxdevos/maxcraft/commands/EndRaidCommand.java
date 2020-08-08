@@ -7,15 +7,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
+
+import static maxdevos.maxcraft.commands.EndWaveCommand.killRaidMobs;
 
 public class EndRaidCommand implements CommandExecutor{
-    MaxPlugin plugin;
-
-    public EndRaidCommand(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -32,17 +28,7 @@ public class EndRaidCommand implements CommandExecutor{
         }
 
         Bukkit.getPluginManager().callEvent(new StopRaidEvent());
-        for(Entity e : plugin.getServer().getWorlds().get(0).getEntities()){
-            if(e.getType().equals(EntityType.VEX) || e.getType().equals(EntityType.PILLAGER) ||
-                    e.getType().equals(EntityType.RAVAGER) || e.getType().equals(EntityType.WITCH) ||
-                    e.getType().equals(EntityType.ENDERMAN) || e.getType().equals(EntityType.GHAST) ||
-                    e.getType().equals(EntityType.ILLUSIONER) || e.getType().equals(EntityType.EVOKER) ||
-                    e.getType().equals(EntityType.VINDICATOR)){
-                e.remove();
-            }
-        }
-
-        return true;
+        return killRaidMobs(plugin);
     }
 
 

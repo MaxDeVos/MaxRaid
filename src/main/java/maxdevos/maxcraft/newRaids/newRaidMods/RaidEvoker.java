@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidEvoker extends RaidMob {
 
     public RaidEvoker(Player target, RaidSpawnWaveEvent w) {
@@ -14,6 +15,7 @@ public class RaidEvoker extends RaidMob {
         super(target, EntityType.EVOKER);
     }
 
+    @SuppressWarnings("unused")
     public RaidEvoker(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.EVOKER);
     }

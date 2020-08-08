@@ -4,9 +4,10 @@ import org.bukkit.util.Vector;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class VectorTools {
 
-    static Random random;
+    private static Random random;
 
     public static Vector generateRandomVector(int range){
         random = new Random();

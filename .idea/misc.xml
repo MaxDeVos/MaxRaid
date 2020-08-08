@@ -4,6 +4,8 @@
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="org.bukkit.event.EventHandler" />
     </list>
+    <pattern value="maxdevos.maxcraft.newRaids.newRaidMods.RaidCreeper" />
+    <pattern value="maxdevos.maxcraft.newRaids.newRaidMods.RaidCreeper" method="setParams" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

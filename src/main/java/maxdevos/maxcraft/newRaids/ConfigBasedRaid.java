@@ -16,27 +16,26 @@ import java.util.ArrayList;
 
 public class ConfigBasedRaid implements Listener {
 
-    private final MaxPlugin plugin;
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
     private final Raid raid;
     private final World w;
     private int wave = 1;
-    ArrayList<RaidPlayer> players = new ArrayList<>();
+    private final ArrayList<RaidPlayer> players = new ArrayList<>();
     private final RaidEventHandler handler;
     private final RaidConfig raidConfig;
     private RaidWave currentWave;
 
-    public ConfigBasedRaid(MaxPlugin plugin, Raid raid){
+    public ConfigBasedRaid(Raid raid){
 
-        raidConfig = new RaidConfig(plugin, plugin.getCustomConfig().getString("current-raid"));
-        handler = new RaidEventHandler(plugin);
-        this.plugin = plugin;
+        raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
+        handler = new RaidEventHandler();
         this.raid = raid;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.w = plugin.getServer().getWorlds().get(0);
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Running Raid: " + raidConfig.getRaidName());
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "This Raid is sponsored by RAID Shadow Legends");
-        currentWave = new RaidWave(plugin);
-        RaidPlayer.checkDevMode(plugin, players);
+        currentWave = new RaidWave();
+        RaidPlayer.checkDevMode(players);
 
     }
 
@@ -44,10 +43,10 @@ public class ConfigBasedRaid implements Listener {
     private void newWave(RaidSpawnWaveEvent e){
 
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
-        RaidPlayer.addNewPlayers(plugin, raid.getHeroes(), players);
+        RaidPlayer.addNewPlayers(raid.getHeroes(), players);
 
         for(RaidPlayer p: players){
-            System.out.println(p.getPlayer(plugin).getName());
+            System.out.println(p.getPlayer().getName());
         }
 
         if(wave != 1 && wave < 8) {

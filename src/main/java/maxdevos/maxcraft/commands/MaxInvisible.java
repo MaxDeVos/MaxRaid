@@ -1,21 +1,20 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class MaxInvisible implements CommandExecutor {
-    MaxPlugin plugin;
 
-    public MaxInvisible(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    boolean hidden = false;
+    private boolean hidden = false;
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -28,13 +27,13 @@ public class MaxInvisible implements CommandExecutor {
         if (!hidden){
             Player p = plugin.getServer().getPlayer("maxcr1");
             for (Player players : plugin.getServer().getOnlinePlayers()) {
-                players.hidePlayer(p);
+                players.hidePlayer(Objects.requireNonNull(p));
             }
             hidden = true;
         } else{
             Player p = plugin.getServer().getPlayer("maxcr1");
             for (Player players : plugin.getServer().getOnlinePlayers()) {
-                players.showPlayer(p);
+                players.showPlayer(Objects.requireNonNull(p));
             }
         }
             hidden = false;

@@ -5,6 +5,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.util.Vector;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidGhast extends RaidMob {
 
     public RaidGhast(Player target, RaidSpawnWaveEvent w) {
@@ -15,6 +16,7 @@ public class RaidGhast extends RaidMob {
         super(target, target.getLocation().add(new Vector(0,30,0)), EntityType.GHAST);
     }
 
+    @SuppressWarnings("unused")
     public RaidGhast(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.GHAST);
     }

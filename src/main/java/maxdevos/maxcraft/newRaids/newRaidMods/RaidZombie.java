@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class RaidZombie extends RaidMob {
 
     public RaidZombie(Player target, RaidSpawnWaveEvent w) {
@@ -19,6 +20,7 @@ public class RaidZombie extends RaidMob {
         super(target, EntityType.ZOMBIE);
     }
 
+    @SuppressWarnings("unused")
     public RaidZombie(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.ZOMBIE);
     }

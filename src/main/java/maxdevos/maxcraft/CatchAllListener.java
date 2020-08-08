@@ -13,15 +13,14 @@ import org.bukkit.event.raid.RaidTriggerEvent;
 
 import java.util.Random;
 
-public final class CatchAllListener implements Listener {
+@SuppressWarnings("unused")
+final class CatchAllListener implements Listener {
 
-    private MaxPlugin plugin;
-    private Random rand;
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    public CatchAllListener(MaxPlugin plugin) {
+    public CatchAllListener() {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        this.plugin = plugin;
-        rand = new Random();
+        Random rand = new Random();
     }
 
     @EventHandler
@@ -67,6 +66,6 @@ public final class CatchAllListener implements Listener {
 
     @EventHandler
     private void raidTime(RaidTriggerEvent e){
-        new ConfigBasedRaid(plugin, e.getRaid());
+        new ConfigBasedRaid(e.getRaid());
     }
 }

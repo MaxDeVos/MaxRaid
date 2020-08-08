@@ -9,11 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class FuckYouCommand implements CommandExecutor {
-    MaxPlugin plugin;
 
-    public FuckYouCommand(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -36,7 +33,7 @@ public class FuckYouCommand implements CommandExecutor {
             }
         }
         else{
-            RaidCreeper c = new RaidCreeper(sender.getServer().getPlayer(sender.getName()));
+            new RaidCreeper(sender.getServer().getPlayer(sender.getName()));
             sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Fuck you");
         }
 

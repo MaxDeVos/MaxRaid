@@ -1,8 +1,8 @@
 name: MaxPlugin
 version: 0.1
 main: maxdevos.maxcraft.MaxPlugin
-api-version: 1.13
-prefix: [MaxPlugin]
+api-version: "1.13"
+prefix: MaxPlugin
 authors: [Max, Jeff]
 description: Quality of life or something
 website: somuchforthetolerant.left
@@ -17,9 +17,6 @@ commands:
   nickname:
     description: set your nickname as your name
     usage: /nickname <your name>
-  lag:
-    description: see TPS.
-    usage: /lag
   maxv:
     description: fuck off
     usage: /maxv

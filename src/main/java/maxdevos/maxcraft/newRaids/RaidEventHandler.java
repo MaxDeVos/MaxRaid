@@ -10,12 +10,11 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 
-public class RaidEventHandler implements Listener {
+class RaidEventHandler implements Listener {
 
-    MaxPlugin plugin;
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    RaidEventHandler(MaxPlugin plugin){
-        this.plugin = plugin;
+    RaidEventHandler(){
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

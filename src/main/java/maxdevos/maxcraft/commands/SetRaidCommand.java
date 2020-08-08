@@ -1,12 +1,9 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.newRaidMods.RaidCreeper;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +11,8 @@ import java.io.IOException;
 import static org.bukkit.ChatColor.*;
 
 public class SetRaidCommand implements CommandExecutor {
-    MaxPlugin plugin;
 
-    public SetRaidCommand(MaxPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final MaxPlugin plugin = MaxPlugin.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
