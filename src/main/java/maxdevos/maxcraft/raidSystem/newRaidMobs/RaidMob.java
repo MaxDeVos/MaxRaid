@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.raidSystem.newRaidMods;
+package maxdevos.maxcraft.raidSystem.newRaidMobs;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.util.VectorTools;

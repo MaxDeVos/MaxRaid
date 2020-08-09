@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.newRaids.raidEvents;
+package maxdevos.maxcraft.raidSystem.raidEvents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
