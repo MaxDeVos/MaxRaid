@@ -23,6 +23,7 @@ public class RaidGhast extends RaidMob {
 
     public void setParams(LivingEntity e){
         Ghast b = (Ghast)e;
+        b.setCustomName("§4Raid Ghast");
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);

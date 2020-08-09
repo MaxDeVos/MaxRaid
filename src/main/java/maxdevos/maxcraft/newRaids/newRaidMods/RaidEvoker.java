@@ -22,6 +22,8 @@ public class RaidEvoker extends RaidMob {
 
     public void setParams(LivingEntity e){
         Evoker b = (Evoker)e;
+        b.setCustomName("§4Raid Evoker");
+        b.setCanJoinRaid(true);
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);

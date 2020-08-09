@@ -1,6 +1,10 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
+import net.minecraft.server.v1_16_R1.ChatMessageType;
+import net.minecraft.server.v1_16_R1.IChatBaseComponent;
+import net.minecraft.server.v1_16_R1.PacketPlayOutChat;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-class RaidPlayer {
+public class RaidPlayer {
 
     private final UUID p;
     private int killedMobs = 0;
@@ -62,13 +66,19 @@ class RaidPlayer {
         return p;
     }
 
-    public void addKill(){
+    void addKill(){
         killedMobs++;
     }
 
     @SuppressWarnings("unused")
-    public int getKills(){
+    int getKills(){
         return killedMobs;
+    }
+
+    void setInfoText(String message){
+        IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a(("{\"text\": \"" + message + "\"}"));
+        PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, ChatMessageType.GAME_INFO, getPlayerID());
+        ((CraftPlayer)getPlayer()).getHandle().playerConnection.sendPacket(ppoc);
     }
 
 }

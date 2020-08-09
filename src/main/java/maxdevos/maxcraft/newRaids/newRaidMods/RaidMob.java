@@ -1,17 +1,14 @@
 package maxdevos.maxcraft.newRaids.newRaidMods;
 
-import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
+import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.util.VectorTools;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -25,15 +22,16 @@ public class RaidMob implements Listener {
     private final LivingEntity m;
     private final Location spawnLocation;
     final Player target;
+    private MaxPlugin plugin;
 
     RaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
-
 
         this.target = target;
         spawnLocation = Objects.requireNonNull(w.getPatrolLeader()).getLocation().add(new Vector(0,1,0));
         m = (LivingEntity)target.getWorld().spawnEntity(spawnLocation, mobType);
         setParams(m);
-
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
     RaidMob(Player target, EntityType mobType){
@@ -44,6 +42,8 @@ public class RaidMob implements Listener {
         spawnLocation = target.getLocation().add(randVec).add(0,10,0);
         m = (LivingEntity)target.getWorld().spawnEntity(spawnLocation, mobType);
         setParams(m);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
     RaidMob(Player target, Location spawnLocation, EntityType mobType){
@@ -52,9 +52,16 @@ public class RaidMob implements Listener {
         this.spawnLocation = spawnLocation;
         m = (LivingEntity)target.getWorld().spawnEntity(spawnLocation, mobType);
         setParams(m);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
     void setParams(LivingEntity e) {
+
+    }
+
+    public LivingEntity getEntity(){
+        return m;
     }
 
     public enum ArmorType {DIAMOND, GOLD, IRON, CHAIN, LEATHER}
@@ -138,15 +145,15 @@ public class RaidMob implements Listener {
 
     }
 
-    public void kill(){
-        m.setHealth(0);
+    public void giveLeatherHelmet(){
+        ItemStack helm = new ItemStack(Material.LEATHER_HELMET, 1);
+        EntityEquipment ee = m.getEquipment();
+        Objects.requireNonNull(ee).setHelmetDropChance(0.0F);
+        ee.setHelmet(helm);
     }
 
-    @EventHandler
-    private void raidMobKilled(EntityDeathEvent e){
-        if(e.getEntity().getKiller() != null){
-            Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
-        }
+    public void kill(){
+        m.setHealth(0);
     }
 
 }

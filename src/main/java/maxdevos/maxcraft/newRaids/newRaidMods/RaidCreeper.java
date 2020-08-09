@@ -25,6 +25,7 @@ public class RaidCreeper extends RaidMob {
 
     public void setParams(LivingEntity e){
         Creeper c = (Creeper)e;
+        c.setCustomName("§4Raid Creeper");
         c.setTarget(target);
         c.setMaxHealth(20);
         c.setHealth(20);

@@ -22,6 +22,7 @@ public class RaidBlaze extends RaidMob {
 
     public void setParams(LivingEntity e){
         Blaze b = (Blaze)e;
+        b.setCustomName("§4Raid Blaze");
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);

@@ -1,6 +1,7 @@
 package maxdevos.maxcraft.util;
 
 import maxdevos.maxcraft.MaxPlugin;
+import maxdevos.maxcraft.newRaids.RaidPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -24,9 +25,18 @@ public class PlayerUtils {
         Random r = new Random();
         if (players.size() > 1) {
             int p = r.nextInt(players.size() - 1);
-            return players.get(p);
+            return players.get(p).getPlayer();
         }
-        return players.get(0);
+        return players.get(0).getPlayer();
+    }
+
+    public static Player getRandomRaidPlayer(ArrayList<RaidPlayer> players) {
+        Random r = new Random();
+        if (players.size() > 1) {
+            int p = r.nextInt(players.size() - 1);
+            return players.get(p).getPlayer();
+        }
+        return players.get(0).getPlayer();
     }
 
     public static ArrayList<Player> getPlayersFromUUIDs(Set<UUID> ids){

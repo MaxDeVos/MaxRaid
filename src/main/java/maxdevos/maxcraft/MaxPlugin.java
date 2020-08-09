@@ -1,6 +1,7 @@
 package maxdevos.maxcraft;
 
 import maxdevos.maxcraft.commands.*;
+import org.bukkit.Server;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,8 +20,9 @@ public final class MaxPlugin extends JavaPlugin implements Listener{
 
     @Override
     public void onEnable() {
-        plugin = this;
+
         // Plugin startup logic
+        plugin = this;
         createCustomConfig();
         new CatchAllListener();
         Objects.requireNonNull(getCommand("fuckyou")).setExecutor(new FuckYouCommand());
@@ -32,7 +34,7 @@ public final class MaxPlugin extends JavaPlugin implements Listener{
         Objects.requireNonNull(getCommand("setraid")).setExecutor(new SetRaidCommand());
 
         getServer().getPluginManager().registerEvents(this, this);
-
+        plugin = this;
 
     }
 
@@ -43,6 +45,9 @@ public final class MaxPlugin extends JavaPlugin implements Listener{
 
     public static MaxPlugin getInstance(){
         return plugin;
+    }
+    public static Server getServerInstance(){
+        return plugin.getServer();
     }
 
     public FileConfiguration getCustomConfig() {

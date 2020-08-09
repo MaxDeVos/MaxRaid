@@ -22,6 +22,7 @@ public class RaidRavager extends RaidMob {
 
     public void setParams(LivingEntity e){
         Ravager r = (Ravager)e;
+        r.setCustomName("§4Raid Ravager");
         r.setTarget(target);
         r.setMaxHealth(20);
         r.setHealth(20);

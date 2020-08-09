@@ -22,6 +22,8 @@ public class RaidVindicator extends RaidMob {
 
     public void setParams(LivingEntity e){
         Vindicator s = (Vindicator)e;
+        s.setCanJoinRaid(true);
+        s.setCustomName("§4Raid Vindicator");
         s.setTarget(target);
         s.setMaxHealth(20);
         s.setHealth(20);

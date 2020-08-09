@@ -1,14 +1,21 @@
 package maxdevos.maxcraft.newRaids;
 
 import maxdevos.maxcraft.MaxPlugin;
+import maxdevos.maxcraft.newRaids.newRaidMods.*;
 import maxdevos.maxcraft.newRaids.raidEvents.KillWaveEvent;
 import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
 import maxdevos.maxcraft.newRaids.raidEvents.StopRaidEvent;
 import maxdevos.maxcraft.util.ChatFunctions;
+import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Raider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
@@ -24,9 +31,11 @@ public class ConfigBasedRaid implements Listener {
     private final RaidEventHandler handler;
     private final RaidConfig raidConfig;
     private RaidWave currentWave;
+    private ArrayList<Location> locationBuffer;
 
     public ConfigBasedRaid(Raid raid){
 
+        locationBuffer = new ArrayList<>();
         raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
         handler = new RaidEventHandler();
         this.raid = raid;
@@ -42,10 +51,12 @@ public class ConfigBasedRaid implements Listener {
     @EventHandler
     private void newWave(RaidSpawnWaveEvent e){
 
+        locationBuffer.clear();
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
         RaidPlayer.addNewPlayers(raid.getHeroes(), players);
 
         for(RaidPlayer p: players){
+            p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "You have " + p.getKills() + " kills.");
             System.out.println(p.getPlayer().getName());
         }
 
@@ -56,6 +67,18 @@ public class ConfigBasedRaid implements Listener {
             currentWave.spawnAirdrops();
         }
         wave++;
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, this::purgeUnnamed, 30L);
+    }
+
+    private void purgeUnnamed() {
+        for(Entity e:w.getEntities()){
+            if((e.getType().equals(EntityType.VEX) || e.getType().equals(EntityType.PILLAGER) ||
+                    e.getType().equals(EntityType.RAVAGER) || e.getType().equals(EntityType.WITCH) ||
+                    e.getType().equals(EntityType.ILLUSIONER) || e.getType().equals(EntityType.EVOKER) ||
+                    e.getType().equals(EntityType.VINDICATOR)) && e.getCustomName() == null){
+                e.remove();
+            }
+        }
     }
 
     @EventHandler
@@ -83,8 +106,39 @@ public class ConfigBasedRaid implements Listener {
     private void killedMob(RaidMobKilledEvent e){
         for(RaidPlayer p:players){
             if(p.getPlayer().getUniqueId().equals(e.player.getUniqueId())){
-                p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "Kill Registered");
                 p.addKill();
+                p.setInfoText("§cYou Have Killed " + p.getKills() + " Raid Mobs");
+            }
+        }
+    }
+
+    @EventHandler
+    private void raidHandler(EntitySpawnEvent e){
+
+        if(!ChatFunctions.isRaider(e.getEntity()) && !locationBuffer.contains(e.getLocation())){
+            if(e.getEntityType().equals(EntityType.PILLAGER)){
+                locationBuffer.add(e.getLocation());
+                new RaidPillager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+            }
+            else if(e.getEntityType().equals(EntityType.RAVAGER)){
+                locationBuffer.add(e.getLocation());
+                new RaidRavager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+            }
+            else if(e.getEntityType().equals(EntityType.WITCH)){
+                locationBuffer.add(e.getLocation());
+                new RaidWitch(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+            }
+            else if(e.getEntityType().equals(EntityType.ILLUSIONER)){
+                locationBuffer.add(e.getLocation());
+                new RaidIllusioner(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+            }
+            else if(e.getEntityType().equals(EntityType.EVOKER)){
+                locationBuffer.add(e.getLocation());
+                new RaidEvoker(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+            }
+            else if(e.getEntityType().equals(EntityType.VINDICATOR)){
+                locationBuffer.add(e.getLocation());
+                new RaidVindicator(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
             }
         }
     }

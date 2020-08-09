@@ -5,6 +5,7 @@ M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\MaxPlugin.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\util\ChatFunctions.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\commands\EndRaidCommand.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\ConfigBasedRaid.java
+M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidWitch.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\CatchAllListener.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\raidEvents\RaidMobKilledEvent.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidZombie.java
@@ -22,6 +23,7 @@ M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\RaidPlayer.
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\util\VectorTools.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidEnderman.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\RaidWave.java
+M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidIllusioner.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidMagmaCube.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\util\PlayerUtils.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidSkeleton.java
@@ -34,3 +36,4 @@ M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\commands\MaxInvisibl
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidPhantom.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\newRaidMods\RaidPillager.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\newRaids\RaidConfig.java
+M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\util\ReflectionUtil.java

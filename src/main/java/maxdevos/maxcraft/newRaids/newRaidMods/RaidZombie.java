@@ -28,14 +28,12 @@ public class RaidZombie extends RaidMob {
     public void setParams(LivingEntity e){
 
         Zombie z = (Zombie)e;
+        z.setCustomName("§4Raid Zombie");
         z.setTarget(target);
         z.setMaxHealth(20);
         z.setHealth(20);
 
-        ItemStack helm = new ItemStack(Material.LEATHER_HELMET, 1);
-        EntityEquipment ee = z.getEquipment();
-        Objects.requireNonNull(ee).setHelmetDropChance(0.0F);
-        ee.setHelmet(helm);
+        this.giveLeatherHelmet();
 
     }
 

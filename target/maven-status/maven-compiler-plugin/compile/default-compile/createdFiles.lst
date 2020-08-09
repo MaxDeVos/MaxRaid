@@ -13,13 +13,16 @@ maxdevos\maxcraft\CatchAllListener.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidVindicator.class
 maxdevos\maxcraft\newRaids\RaidWave.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMob$ArmorType.class
+maxdevos\maxcraft\util\ReflectionUtil.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidGhast.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidRavager.class
+maxdevos\maxcraft\newRaids\newRaidMods\RaidIllusioner.class
 maxdevos\maxcraft\util\ChatFunctions.class
 maxdevos\maxcraft\newRaids\ConfigBasedRaid.class
 maxdevos\maxcraft\commands\EndRaidCommand.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidPhantom.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidMob.class
+maxdevos\maxcraft\newRaids\newRaidMods\RaidWitch.class
 maxdevos\maxcraft\commands\NicknameCommand.class
 maxdevos\maxcraft\newRaids\newRaidMods\RaidEvoker.class
 maxdevos\maxcraft\newRaids\LegacyRaid.class

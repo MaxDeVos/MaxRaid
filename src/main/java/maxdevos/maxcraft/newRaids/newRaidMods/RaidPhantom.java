@@ -22,6 +22,7 @@ public class RaidPhantom extends RaidMob {
 
     public void setParams(LivingEntity e){
         Phantom b = (Phantom)e;
+        b.setCustomName("§4Raid Phantom");
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);

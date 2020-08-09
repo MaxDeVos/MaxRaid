@@ -1,14 +1,14 @@
 package maxdevos.maxcraft.newRaids.newRaidMods;
 
+import net.minecraft.server.v1_16_R1.Raid;
 import org.bukkit.Location;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
+import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidEnderman extends RaidMob {
+public class RaidEnderman extends RaidMob{
+
 
     public RaidEnderman(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.ENDERMAN);
@@ -25,6 +25,7 @@ public class RaidEnderman extends RaidMob {
 
     public void setParams(LivingEntity e){
         Enderman z = (Enderman)e;
+        z.setCustomName("§4Raid Enderman");
         z.setTarget(target);
         z.setMaxHealth(20);
         z.setHealth(20);

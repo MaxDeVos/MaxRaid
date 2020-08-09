@@ -22,6 +22,8 @@ public class RaidPillager extends RaidMob {
 
     public void setParams(LivingEntity e){
         Pillager p = (Pillager)e;
+        p.setCustomName("§4Raid Pillager");
+        p.setCanJoinRaid(true);
         p.setTarget(target);
         p.setMaxHealth(20);
         p.setHealth(20);

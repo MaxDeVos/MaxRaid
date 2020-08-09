@@ -22,6 +22,7 @@ public class RaidWitherSkeleton extends RaidMob {
 
     public void setParams(LivingEntity e){
         WitherSkeleton s = (WitherSkeleton)e;
+        s.setCustomName("§4Raid Wither Skeleton");
         s.setTarget(target);
         s.setMaxHealth(20);
         s.setHealth(20);

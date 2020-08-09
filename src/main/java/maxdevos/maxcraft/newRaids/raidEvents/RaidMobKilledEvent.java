@@ -12,10 +12,15 @@ public class RaidMobKilledEvent extends Event {
 
     public RaidMobKilledEvent(EntityDeathEvent e){
         this.player = e.getEntity().getKiller();
+        assert player != null;
     }
 
     @Override
     public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 

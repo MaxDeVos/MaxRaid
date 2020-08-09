@@ -22,6 +22,7 @@ public class RaidMagmaCube extends RaidMob {
 
     public void setParams(LivingEntity e){
         MagmaCube b = (MagmaCube)e;
+        b.setCustomName("§4Raid Magma Cube");
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);

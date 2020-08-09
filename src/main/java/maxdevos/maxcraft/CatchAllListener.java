@@ -18,7 +18,7 @@ final class CatchAllListener implements Listener {
 
     private final MaxPlugin plugin = MaxPlugin.getInstance();
 
-    public CatchAllListener() {
+    CatchAllListener() {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
         Random rand = new Random();
     }
