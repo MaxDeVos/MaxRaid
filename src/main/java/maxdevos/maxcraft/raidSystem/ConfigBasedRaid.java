@@ -2,6 +2,7 @@ package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.raidSystem.newRaidMobs.*;
+import maxdevos.maxcraft.raidSystem.ordinances.RaidOrdinance;
 import maxdevos.maxcraft.raidSystem.raidEvents.KillWaveEvent;
 import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
 import maxdevos.maxcraft.raidSystem.raidEvents.StopRaidEvent;
@@ -13,6 +14,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
@@ -64,6 +66,7 @@ public class ConfigBasedRaid implements Listener {
             currentWave.spawnWave();
             currentWave.spawnAirdrops();
         }
+
         wave++;
         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, this::purgeUnnamed, 30L);
     }
@@ -103,10 +106,17 @@ public class ConfigBasedRaid implements Listener {
     @EventHandler
     private void killedMob(RaidMobKilledEvent e){
         for(RaidPlayer p:players){
+            p.handleOrdinance();
             if(p.getPlayer().getUniqueId().equals(e.player.getUniqueId())){
                 p.addKill();
-                p.setInfoText("§cYou Have Killed " + p.getKills() + " Raid Mobs");
             }
+        }
+    }
+
+    @EventHandler
+    private void raidMobKilled(EntityDeathEvent e){
+        if(e.getEntity().getKiller() != null && e.getEntity().getCustomName() != null){
+            Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
         }
     }
 

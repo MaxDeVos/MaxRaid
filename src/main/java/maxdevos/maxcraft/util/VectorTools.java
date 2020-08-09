@@ -11,7 +11,7 @@ public class VectorTools {
 
     public static Vector generateRandomVector(int range){
         random = new Random();
-        return new Vector(random.nextInt(range), random.nextInt(range), random.nextInt(range));
+        return new Vector(random.nextInt(range), 0, random.nextInt(range));
     }
 
 

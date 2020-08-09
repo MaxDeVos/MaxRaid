@@ -2,6 +2,7 @@ package maxdevos.maxcraft.util;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.raidSystem.RaidPlayer;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -66,6 +67,17 @@ public class PlayerUtils {
             }
         }
         return out;
+    }
+
+    public static Location getAveragePlayerLocation(ArrayList<RaidPlayer> players){
+        double x = 0, y = 0, z = 0;
+        for(RaidPlayer p: players){
+            x+=p.getPlayer().getLocation().getX();
+            y+=p.getPlayer().getLocation().getY();
+            z+=p.getPlayer().getLocation().getY();
+        }
+        double num = (double) players.size();
+        return new Location(players.get(0).getPlayer().getWorld(), x/num, y/num, z/num);
     }
 
 }

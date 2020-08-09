@@ -2,7 +2,6 @@ package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -28,8 +27,16 @@ class RaidEventHandler implements Listener {
 
     @EventHandler
     private void friendlyFire(EntityDamageByEntityEvent e) {
-        if (!(e instanceof Player) && !(e.getDamager() instanceof Player)) {
-            e.setCancelled(true);
+        if(!(e instanceof Player)){
+            if(e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)){
+                Projectile shot = (Projectile) e.getDamager();
+                if(!(shot.getShooter() instanceof Player)){
+                    e.setCancelled(true);
+                }
+            }
+            else if (!(e.getDamager() instanceof Player)) {
+                e.setCancelled(true);
+            }
         }
     }
 
@@ -61,20 +68,6 @@ class RaidEventHandler implements Listener {
         if (ent instanceof Fireball) {
             event.setCancelled(true);
             plugin.getServer().getWorlds().get(0).createExplosion(ent.getLocation(), 3);
-        }
-    }
-
-    @EventHandler
-    private void raidMobKilled(EntityDeathEvent e){
-        if(e.getEntity().getKiller() != null && e.getEntity().getCustomName() != null){
-            Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
-        }
-    }
-
-    @EventHandler
-    private void killedMob(EntitySpawnEvent e){
-        if(e.getEntity().getCustomName() == null){
-
         }
     }
 
