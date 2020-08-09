@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
 import net.minecraft.server.v1_16_R1.ChatMessageType;

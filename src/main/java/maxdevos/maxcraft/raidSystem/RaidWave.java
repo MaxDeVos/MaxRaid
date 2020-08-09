@@ -1,6 +1,6 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.raidSystem;
 
-import maxdevos.maxcraft.newRaids.newRaidMods.*;
+import maxdevos.maxcraft.raidSystem.newRaidMobs.*;
 import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -45,6 +45,10 @@ class RaidWave {
     RaidWave(){
         players = new ArrayList<>();
         mobs = new ArrayList<>();
+    }
+
+    void addMob(RaidMob m){
+        mobs.add(m);
     }
 
     void configWave(ArrayList<RaidPlayer> players, RaidSpawnWaveEvent e){

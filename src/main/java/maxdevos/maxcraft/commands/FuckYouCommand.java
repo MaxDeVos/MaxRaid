@@ -1,7 +1,7 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.newRaidMods.RaidCreeper;
+import maxdevos.maxcraft.raidSystem.newRaidMobs.RaidCreeper;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

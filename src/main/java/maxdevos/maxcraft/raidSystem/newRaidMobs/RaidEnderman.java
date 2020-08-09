@@ -1,8 +1,6 @@
-package maxdevos.maxcraft.newRaids.newRaidMods;
+package maxdevos.maxcraft.raidSystem.newRaidMods;
 
-import net.minecraft.server.v1_16_R1.Raid;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 

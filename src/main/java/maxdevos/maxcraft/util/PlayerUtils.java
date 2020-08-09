@@ -1,7 +1,7 @@
 package maxdevos.maxcraft.util;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.RaidPlayer;
+import maxdevos.maxcraft.raidSystem.RaidPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.*;

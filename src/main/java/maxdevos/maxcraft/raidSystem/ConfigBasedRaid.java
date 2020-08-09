@@ -1,17 +1,15 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.newRaidMods.*;
-import maxdevos.maxcraft.newRaids.raidEvents.KillWaveEvent;
-import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
-import maxdevos.maxcraft.newRaids.raidEvents.StopRaidEvent;
+import maxdevos.maxcraft.raidSystem.newRaidMobs.*;
+import maxdevos.maxcraft.raidSystem.raidEvents.KillWaveEvent;
+import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
+import maxdevos.maxcraft.raidSystem.raidEvents.StopRaidEvent;
 import maxdevos.maxcraft.util.ChatFunctions;
 import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Raider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -113,32 +111,38 @@ public class ConfigBasedRaid implements Listener {
     }
 
     @EventHandler
-    private void raidHandler(EntitySpawnEvent e){
+    private void naturalRaidMobHandler(EntitySpawnEvent e){
 
         if(!ChatFunctions.isRaider(e.getEntity()) && !locationBuffer.contains(e.getLocation())){
             if(e.getEntityType().equals(EntityType.PILLAGER)){
                 locationBuffer.add(e.getLocation());
-                new RaidPillager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidPillager p = new RaidPillager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
             else if(e.getEntityType().equals(EntityType.RAVAGER)){
                 locationBuffer.add(e.getLocation());
-                new RaidRavager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidRavager p = new RaidRavager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
             else if(e.getEntityType().equals(EntityType.WITCH)){
                 locationBuffer.add(e.getLocation());
-                new RaidWitch(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidWitch p = new RaidWitch(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
             else if(e.getEntityType().equals(EntityType.ILLUSIONER)){
                 locationBuffer.add(e.getLocation());
-                new RaidIllusioner(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidIllusioner p = new RaidIllusioner(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
             else if(e.getEntityType().equals(EntityType.EVOKER)){
                 locationBuffer.add(e.getLocation());
-                new RaidEvoker(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidEvoker p = new RaidEvoker(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
             else if(e.getEntityType().equals(EntityType.VINDICATOR)){
                 locationBuffer.add(e.getLocation());
-                new RaidVindicator(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                RaidVindicator p = new RaidVindicator(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                currentWave.addMob(p);
             }
         }
     }

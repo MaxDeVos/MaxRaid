@@ -1,13 +1,8 @@
-package maxdevos.maxcraft.newRaids.newRaidMods;
+package maxdevos.maxcraft.raidSystem.newRaidMods;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class RaidSkeleton extends RaidMob {

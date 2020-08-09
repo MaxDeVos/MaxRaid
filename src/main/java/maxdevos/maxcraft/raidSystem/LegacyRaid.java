@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
 import org.bukkit.ChatColor;

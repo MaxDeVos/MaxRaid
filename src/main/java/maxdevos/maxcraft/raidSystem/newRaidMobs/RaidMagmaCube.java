@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.newRaids.newRaidMods;
+package maxdevos.maxcraft.raidSystem.newRaidMods;
 
 import org.bukkit.Location;
 import org.bukkit.entity.*;

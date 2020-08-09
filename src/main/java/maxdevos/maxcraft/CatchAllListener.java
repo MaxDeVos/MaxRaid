@@ -1,6 +1,6 @@
 package maxdevos.maxcraft;
 
-import maxdevos.maxcraft.newRaids.ConfigBasedRaid;
+import maxdevos.maxcraft.raidSystem.ConfigBasedRaid;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

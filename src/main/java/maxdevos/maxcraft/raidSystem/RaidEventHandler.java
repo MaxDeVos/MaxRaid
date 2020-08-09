@@ -1,9 +1,7 @@
-package maxdevos.maxcraft.newRaids;
+package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.newRaids.newRaidMods.RaidPillager;
-import maxdevos.maxcraft.newRaids.newRaidMods.RaidVindicator;
-import maxdevos.maxcraft.newRaids.raidEvents.RaidMobKilledEvent;
+import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.*;
@@ -11,8 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
-
-import java.util.Objects;
 
 class RaidEventHandler implements Listener {
 
