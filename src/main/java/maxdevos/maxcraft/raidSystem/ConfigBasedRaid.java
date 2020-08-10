@@ -16,6 +16,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
@@ -123,6 +124,16 @@ public class ConfigBasedRaid implements Listener {
     private void raidMobKilled(EntityDeathEvent e){
         if(e.getEntity().getKiller() != null && e.getEntity().getCustomName() != null){
             Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
+        }
+    }
+
+    @EventHandler
+    public void normalQuit(PlayerQuitEvent event) {
+        if(RaidPlayer.isPlayerPresent(event.getPlayer().getUniqueId(), players)){
+            MaxPlugin.getServerInstance().broadcastMessage(ChatFunctions.raidPrefix +
+                    event.getPlayer().getDisplayName() + " has left the action to avoid danger.  Their " +
+                    "ordinance progress and kills have been reset.  Fuck you.");
+            RaidPlayer.removePlayer(event.getPlayer().getUniqueId(), players);
         }
     }
 

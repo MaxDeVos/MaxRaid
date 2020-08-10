@@ -1,5 +1,6 @@
 package maxdevos.maxcraft.raidSystem;
 
+import com.mysql.fabric.xmlrpc.base.Array;
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.raidSystem.ordinances.AK47;
 import maxdevos.maxcraft.raidSystem.ordinances.Excalibur;
@@ -29,6 +30,17 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
         for(UUID u:ids){
             checkDuplicatePlayers(u, players);
         }
+
+    }
+
+    static boolean isPlayerPresent(UUID p, ArrayList<RaidPlayer> players){
+
+        for(RaidPlayer rp : players){
+            if (p.equals(rp.getPlayerID())) {
+                return true;
+            }
+        }
+        return false;
 
     }
 
@@ -74,6 +86,14 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
 
     private RaidPlayer(Player p){
         this.p = p.getUniqueId();
+    }
+
+    static void removePlayer(UUID uniqueId, ArrayList<RaidPlayer> players) {
+        for(RaidPlayer p:players){
+            if(uniqueId.equals(p.getPlayerID())){
+                players.remove(p);
+            }
+        }
     }
 
     public Player getPlayer(){
