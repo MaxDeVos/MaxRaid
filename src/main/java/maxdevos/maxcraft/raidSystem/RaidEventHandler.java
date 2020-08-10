@@ -1,7 +1,6 @@
 package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
 import org.bukkit.Server;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;

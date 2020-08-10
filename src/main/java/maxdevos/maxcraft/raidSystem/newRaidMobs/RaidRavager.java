@@ -20,10 +20,16 @@ public class RaidRavager extends RaidMob {
         super(target, spawnLocation, EntityType.RAVAGER);
     }
 
+    public RaidRavager(Location spawnLocation){
+        super(spawnLocation, EntityType.RAVAGER);
+    }
+
     public void setParams(LivingEntity e){
         Ravager r = (Ravager)e;
         r.setCustomName("§4Raid Ravager");
-        r.setTarget(target);
+        if(target != null){
+            r.setTarget(target);
+        }
         r.setMaxHealth(20);
         r.setHealth(20);
     }

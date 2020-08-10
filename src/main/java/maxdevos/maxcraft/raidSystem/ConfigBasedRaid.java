@@ -26,7 +26,7 @@ public class ConfigBasedRaid implements Listener {
     private final MaxPlugin plugin = MaxPlugin.getInstance();
     private final Raid raid;
     private final World w;
-    private int wave = 1;
+    private int wave = 0;
     private final ArrayList<RaidPlayer> players = new ArrayList<>();
     private final RaidEventHandler handler;
     private final RaidConfig raidConfig;
@@ -49,25 +49,23 @@ public class ConfigBasedRaid implements Listener {
     }
 
     @EventHandler
-    private void newWave(RaidSpawnWaveEvent e){
-
+    private void newWave(RaidSpawnWaveEvent e) {
+        wave++;
         locationBuffer.clear();
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
         RaidPlayer.addNewPlayers(raid.getHeroes(), players);
 
-        for(RaidPlayer p: players){
+        for (RaidPlayer p : players) {
             p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "You have " + p.getKills() + " kills.");
-            System.out.println(p.getPlayer().getName());
         }
 
-        if(wave != 1 && wave < 8) {
+        if (wave != 1 && wave < 8) {
             currentWave = raidConfig.getWave(wave);
             currentWave.configWave(players, e);
             currentWave.spawnWave();
             currentWave.spawnAirdrops();
         }
 
-        wave++;
         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, this::purgeUnnamed, 30L);
     }
 
@@ -85,6 +83,7 @@ public class ConfigBasedRaid implements Listener {
     @EventHandler
     private void endRaid(RaidFinishEvent e){
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "The Raid is Over.");
+        PlayerUtils.printKillOrder(players);
         HandlerList.unregisterAll(this);
         handler.unregister();
     }
@@ -105,11 +104,14 @@ public class ConfigBasedRaid implements Listener {
 
     @EventHandler
     private void killedMob(RaidMobKilledEvent e){
+        if(wave == 1){
+            RaidPlayer.addNewPlayers(e.player.getUniqueId(), players);
+        }
         for(RaidPlayer p:players){
-            p.handleOrdinance();
             if(p.getPlayer().getUniqueId().equals(e.player.getUniqueId())){
                 p.addKill();
             }
+            p.handleOrdinance();
         }
     }
 
@@ -122,38 +124,66 @@ public class ConfigBasedRaid implements Listener {
 
     @EventHandler
     private void naturalRaidMobHandler(EntitySpawnEvent e){
-
-        if(!ChatFunctions.isRaider(e.getEntity()) && !locationBuffer.contains(e.getLocation())){
-            if(e.getEntityType().equals(EntityType.PILLAGER)){
-                locationBuffer.add(e.getLocation());
-                RaidPillager p = new RaidPillager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
+        try {
+            if (!ChatFunctions.isRaider(e.getEntity()) && !locationBuffer.contains(e.getLocation())) {
+                if(players.isEmpty()) {
+                    if (e.getEntityType().equals(EntityType.PILLAGER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidPillager p = new RaidPillager(e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.RAVAGER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidRavager p = new RaidRavager(e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.WITCH)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidWitch p = new RaidWitch(e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.ILLUSIONER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidIllusioner p = new RaidIllusioner(e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.EVOKER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidEvoker p = new RaidEvoker(e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.VINDICATOR)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidVindicator p = new RaidVindicator(e.getLocation());
+                        currentWave.addMob(p);
+                    }
+                }
+                else{
+                    if (e.getEntityType().equals(EntityType.PILLAGER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidPillager p = new RaidPillager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.RAVAGER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidRavager p = new RaidRavager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.WITCH)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidWitch p = new RaidWitch(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.ILLUSIONER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidIllusioner p = new RaidIllusioner(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.EVOKER)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidEvoker p = new RaidEvoker(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    } else if (e.getEntityType().equals(EntityType.VINDICATOR)) {
+                        locationBuffer.add(e.getLocation());
+                        RaidVindicator p = new RaidVindicator(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
+                        currentWave.addMob(p);
+                    }
+                }
             }
-            else if(e.getEntityType().equals(EntityType.RAVAGER)){
-                locationBuffer.add(e.getLocation());
-                RaidRavager p = new RaidRavager(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
-            }
-            else if(e.getEntityType().equals(EntityType.WITCH)){
-                locationBuffer.add(e.getLocation());
-                RaidWitch p = new RaidWitch(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
-            }
-            else if(e.getEntityType().equals(EntityType.ILLUSIONER)){
-                locationBuffer.add(e.getLocation());
-                RaidIllusioner p = new RaidIllusioner(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
-            }
-            else if(e.getEntityType().equals(EntityType.EVOKER)){
-                locationBuffer.add(e.getLocation());
-                RaidEvoker p = new RaidEvoker(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
-            }
-            else if(e.getEntityType().equals(EntityType.VINDICATOR)){
-                locationBuffer.add(e.getLocation());
-                RaidVindicator p = new RaidVindicator(PlayerUtils.getRandomRaidPlayer(players),e.getLocation());
-                currentWave.addMob(p);
-            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 

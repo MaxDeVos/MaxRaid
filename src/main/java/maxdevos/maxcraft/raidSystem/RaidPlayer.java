@@ -11,13 +11,11 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-public class RaidPlayer {
+public class RaidPlayer implements Comparable<RaidPlayer> {
 
     private final int ordThresh = 20;
     private final UUID p;
@@ -28,18 +26,28 @@ public class RaidPlayer {
     static void addNewPlayers(Set<UUID> ids, ArrayList<RaidPlayer> players){
 
         for(UUID u:ids){
-            boolean match = false;
-            for(RaidPlayer rp : players){
-                if(rp.getPlayerID().equals(u)){
-                    match = true;
-                    break;
-                }
-            }
-            if(!match){
-                players.add(new RaidPlayer(Objects.requireNonNull(plugin.getServer().getPlayer(u))));
-            }
+            checkDuplicatePlayers(u, players);
         }
 
+    }
+
+    static void addNewPlayers(UUID id, ArrayList<RaidPlayer> players){
+
+        checkDuplicatePlayers(id, players);
+
+    }
+
+    private static void checkDuplicatePlayers(UUID id, ArrayList<RaidPlayer> players) {
+        boolean match = false;
+        for(RaidPlayer rp : players){
+            if(rp.getPlayerID().equals(id)){
+                match = true;
+                break;
+            }
+        }
+        if(!match){
+            players.add(new RaidPlayer(Objects.requireNonNull(plugin.getServer().getPlayer(id))));
+        }
     }
 
     static ArrayList<Player> getPlayersFromRaidPlayers(ArrayList<RaidPlayer> raidPlayers){
@@ -94,7 +102,7 @@ public class RaidPlayer {
         }
     }
 
-    int getKills(){
+    public int getKills(){
         return totalKills;
     }
 
@@ -108,4 +116,14 @@ public class RaidPlayer {
         ((CraftPlayer)getPlayer()).getHandle().playerConnection.sendPacket(ppoc);
     }
 
+    @Override
+    public int compareTo(@NotNull RaidPlayer o) {
+        if(getKills() > o.getKills()){
+            return 1;
+        }
+        else if(getKills() == o.getKills()){
+            return 0;
+        }
+        return -1;
+    }
 }

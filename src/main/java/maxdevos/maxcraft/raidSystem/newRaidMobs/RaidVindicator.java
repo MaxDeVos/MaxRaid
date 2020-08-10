@@ -20,11 +20,17 @@ public class RaidVindicator extends RaidMob {
         super(target, spawnLocation, EntityType.VINDICATOR);
     }
 
+    public RaidVindicator(Location spawnLocation){
+        super(spawnLocation, EntityType.VINDICATOR);
+    }
+
     public void setParams(LivingEntity e){
         Vindicator s = (Vindicator)e;
         s.setCanJoinRaid(true);
         s.setCustomName("§4Raid Vindicator");
-        s.setTarget(target);
+        if(target != null){
+            s.setTarget(target);
+        }
         s.setMaxHealth(20);
         s.setHealth(20);
     }

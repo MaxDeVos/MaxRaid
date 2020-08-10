@@ -80,5 +80,16 @@ public class PlayerUtils {
         return new Location(players.get(0).getPlayer().getWorld(), x/num, y/num, z/num);
     }
 
+    public static void printKillOrder(ArrayList<RaidPlayer> players){
+        Collections.sort(players);
+        Collections.reverse(players);
+        int i = 1;
+        for(RaidPlayer p:players){
+            MaxPlugin.getServerInstance().broadcastMessage(ChatFunctions.raidPrefix + "[" + i + "] " +
+                    p.getPlayer().getDisplayName() + "  -  " + p.getKills() + " kills");
+            i++;
+        }
+    }
+
 }
 

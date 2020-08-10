@@ -20,11 +20,17 @@ public class RaidPillager extends RaidMob {
         super(target, spawnLocation, EntityType.PILLAGER);
     }
 
+    public RaidPillager(Location spawnLocation){
+        super(spawnLocation, EntityType.PILLAGER);
+    }
+
     public void setParams(LivingEntity e){
         Pillager p = (Pillager)e;
         p.setCustomName("§4Raid Pillager");
         p.setCanJoinRaid(true);
-        p.setTarget(target);
+        if(target != null){
+            p.setTarget(target);
+        }
         p.setMaxHealth(20);
         p.setHealth(20);
     }

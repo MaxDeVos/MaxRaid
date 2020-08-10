@@ -20,11 +20,17 @@ public class RaidWitch extends RaidMob {
         super(target, spawnLocation, EntityType.WITCH);
     }
 
+    public RaidWitch(Location spawnLocation){
+        super(spawnLocation, EntityType.WITCH);
+    }
+
     public void setParams(LivingEntity e){
         Witch c = (Witch)e;
         c.setCustomName("§4Raid Witch");
         c.setCanJoinRaid(true);
-        c.setTarget(target);
+        if(target != null){
+            c.setTarget(target);
+        }
         c.setMaxHealth(20);
         c.setHealth(20);
     }

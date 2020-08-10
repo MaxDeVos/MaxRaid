@@ -3,7 +3,6 @@ package maxdevos.maxcraft.raidSystem.ordinances;
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.raidSystem.RaidPlayer;
 import maxdevos.maxcraft.util.ChatFunctions;
-import maxdevos.maxcraft.util.VectorTools;
 import maxdevos.maxcraft.util.WorldUtils;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;

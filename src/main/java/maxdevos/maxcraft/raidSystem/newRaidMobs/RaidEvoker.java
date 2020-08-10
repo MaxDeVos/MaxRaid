@@ -20,11 +20,17 @@ public class RaidEvoker extends RaidMob {
         super(target, spawnLocation, EntityType.EVOKER);
     }
 
+    public RaidEvoker(Location spawnLocation){
+        super(spawnLocation, EntityType.EVOKER);
+    }
+
     public void setParams(LivingEntity e){
         Evoker b = (Evoker)e;
         b.setCustomName("§4Raid Evoker");
         b.setCanJoinRaid(true);
-        b.setTarget(target);
+        if(target != null){
+            b.setTarget(target);
+        }
         b.setMaxHealth(20);
         b.setHealth(20);
     }

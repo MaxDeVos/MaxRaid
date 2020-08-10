@@ -21,7 +21,7 @@ public class RaidMob implements Listener {
 
     private final LivingEntity m;
     private final Location spawnLocation;
-    final Player target;
+    Player target;
     private MaxPlugin plugin;
 
     RaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
@@ -51,6 +51,15 @@ public class RaidMob implements Listener {
         this.target = target;
         this.spawnLocation = spawnLocation;
         m = (LivingEntity)target.getWorld().spawnEntity(spawnLocation, mobType);
+        setParams(m);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
+    }
+
+    RaidMob(Location spawnLocation, EntityType mobType){
+
+        this.spawnLocation = spawnLocation;
+        m = (LivingEntity)spawnLocation.getWorld().spawnEntity(spawnLocation, mobType);
         setParams(m);
         this.plugin = MaxPlugin.getInstance();
         MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);

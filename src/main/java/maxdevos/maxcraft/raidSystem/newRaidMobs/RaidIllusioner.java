@@ -20,11 +20,17 @@ public class RaidIllusioner extends RaidMob {
         super(target, spawnLocation, EntityType.ILLUSIONER);
     }
 
+    public RaidIllusioner(Location spawnLocation){
+        super(spawnLocation, EntityType.ILLUSIONER);
+    }
+
     public void setParams(LivingEntity e){
         Illusioner c = (Illusioner)e;
         c.setCustomName("§4Raid Illusioner");
         c.setCanJoinRaid(true);
-        c.setTarget(target);
+        if(target != null){
+            c.setTarget(target);
+        }
         c.setMaxHealth(20);
         c.setHealth(20);
     }
