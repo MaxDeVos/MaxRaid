@@ -32,9 +32,11 @@ public class ConfigBasedRaid implements Listener {
     private final RaidConfig raidConfig;
     private RaidWave currentWave;
     private ArrayList<Location> locationBuffer;
+    private RaidScoreboard scoreboard;
 
     public ConfigBasedRaid(Raid raid){
 
+        scoreboard = new RaidScoreboard();
         locationBuffer = new ArrayList<>();
         raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
         handler = new RaidEventHandler();
@@ -85,6 +87,7 @@ public class ConfigBasedRaid implements Listener {
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "The Raid is Over.");
         PlayerUtils.printKillOrder(players);
         HandlerList.unregisterAll(this);
+        scoreboard.restoreScoreboard();
         handler.unregister();
     }
 
@@ -113,6 +116,7 @@ public class ConfigBasedRaid implements Listener {
             }
             p.handleOrdinance();
         }
+        scoreboard.updateScoreboard(players);
     }
 
     @EventHandler

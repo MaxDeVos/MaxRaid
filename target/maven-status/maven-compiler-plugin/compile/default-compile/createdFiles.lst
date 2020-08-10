@@ -33,6 +33,7 @@ maxdevos\maxcraft\util\PlayerUtils.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob$ArmorType.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidWitherSkeleton.class
 maxdevos\maxcraft\raidSystem\ordinances\AK47.class
+maxdevos\maxcraft\raidSystem\RaidScoreboard.class
 maxdevos\maxcraft\raidSystem\raidEvents\KillWaveEvent.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidZombie.class
 maxdevos\maxcraft\commands\NicknameCommand.class

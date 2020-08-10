@@ -34,6 +34,7 @@ M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\PlayerBas
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\raidEvents\RaidMobKilledEvent.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\newRaidMobs\RaidEvoker.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\ordinances\Excalibur.java
+M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\RaidScoreboard.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\newRaidMobs\RaidZombie.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\util\PlayerUtils.java
 M:\Workspace\Java\MaxPlugin\src\main\java\maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob.java

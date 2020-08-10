@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Scoreboard;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -114,6 +115,10 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
         IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a(("{\"text\": \"" + message + "\"}"));
         PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, ChatMessageType.GAME_INFO, getPlayerID());
         ((CraftPlayer)getPlayer()).getHandle().playerConnection.sendPacket(ppoc);
+    }
+
+    public void processScore(Scoreboard board){
+        getPlayer().setScoreboard(board);
     }
 
     @Override
