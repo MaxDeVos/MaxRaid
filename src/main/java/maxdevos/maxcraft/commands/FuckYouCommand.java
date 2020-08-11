@@ -1,11 +1,13 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.raidSystem.newRaidMobs.RaidCreeper;
+import maxdevos.maxcraft.raidSystem.newRaidMobs.SuicideCreeper;
+import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
 import org.bukkit.entity.Player;
 
 public class FuckYouCommand implements CommandExecutor {
@@ -33,8 +35,14 @@ public class FuckYouCommand implements CommandExecutor {
             }
         }
         else{
-            new RaidCreeper(sender.getServer().getPlayer(sender.getName()));
+//            new RaidCreeper(sender.getServer().getPlayer(sender.getName()));
             sender.sendMessage(ChatColor.DARK_RED + "[MaxCraft] " + ChatColor.WHITE + "Fuck you");
+            Player p = (Player) sender;
+            World w = ((CraftWorld)p.getWorld()).getHandle();
+            for(int i = 0; i < 1; i++) {
+                w.addEntity(new SuicideCreeper(p));
+//                w.addEntity(new NMSZombie(p));
+            }
         }
 
         return true;

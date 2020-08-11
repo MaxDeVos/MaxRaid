@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <copy file="M:\Workspace\Java\MaxPlugin\target/MaxPlugin-0.1.jar" todir="C:/Users/Max/Desktop/Serbwer/plugins"/>
-  <copy file="M:\Workspace\Java\MaxPlugin\target/MaxPlugin-0.1.jar" todir="C:/Users/Max/"/>
+  <copy file="C:\Workspace\Java\MaxPlugin\target/MaxPlugin-0.1.jar" todir="C:\Users\Max DeVos\Desktop\Serber\plugins"/>
 </target>
 </project>

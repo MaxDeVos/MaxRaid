@@ -14,6 +14,7 @@ maxdevos\maxcraft\raidSystem\newRaidMobs\RaidWitch.class
 maxdevos\maxcraft\util\ChatFunctions.class
 maxdevos\maxcraft\commands\EndRaidCommand.class
 maxdevos\maxcraft\util\WorldUtils.class
+maxdevos\maxcraft\raidSystem\NMSMobs\CustomMeleeAttack.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob$WeaponType.class
 maxdevos\maxcraft\raidSystem\RaidWave.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidEnderman.class
@@ -25,6 +26,7 @@ maxdevos\maxcraft\raidSystem\RaidConfig.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob$1.class
 maxdevos\maxcraft\raidSystem\ConfigBasedRaid.class
 maxdevos\maxcraft\raidSystem\raidEvents\StopRaidEvent.class
+maxdevos\maxcraft\raidSystem\NMSMobs\NMSCreeper.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidPhantom.class
 maxdevos\maxcraft\commands\SetRaidCommand.class
 maxdevos\maxcraft\raidSystem\LegacyRaid.class
@@ -34,12 +36,15 @@ maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob$ArmorType.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidWitherSkeleton.class
 maxdevos\maxcraft\raidSystem\ordinances\AK47.class
 maxdevos\maxcraft\raidSystem\RaidScoreboard.class
+maxdevos\maxcraft\raidSystem\NMSMobs\NMSZombie.class
 maxdevos\maxcraft\raidSystem\raidEvents\KillWaveEvent.class
+maxdevos\maxcraft\raidSystem\NMSMobs\CreeperStuckAgainstWall.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidZombie.class
 maxdevos\maxcraft\commands\NicknameCommand.class
 maxdevos\maxcraft\raidSystem\ordinances\RaidOrdinance.class
 maxdevos\maxcraft\util\VectorTools.class
 maxdevos\maxcraft\MaxPlugin.class
+maxdevos\maxcraft\raidSystem\NMSMobs\NMSSpider.class
 maxdevos\maxcraft\commands\MaxHelp.class
 maxdevos\maxcraft\raidSystem\raidEvents\RaidMobKilledEvent.class
 maxdevos\maxcraft\raidSystem\ordinances\Excalibur.class
