@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -48,6 +49,15 @@ final class CatchAllListener implements Listener {
         }
         else{
             event.setJoinMessage(ChatColor.YELLOW + username + " " + quip);
+        }
+    }
+
+    @EventHandler
+    public void handleFUCKCreeper(EntityExplodeEvent e){
+        System.out.println("EVENT");
+        if(e.getEntityType().equals(EntityType.CREEPER)){
+            e.setYield(1f);
+            e.getEntity().getWorld().createExplosion(e.getLocation(), 10);
         }
     }
 

@@ -61,7 +61,7 @@ class RaidWave {
             mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < creepers; i++){
-            mobs.add(new RaidCreeper(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new RaidSuicideCreeper(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < endermen; i++){
             mobs.add(new RaidEnderman(PlayerUtils.getRandomPlayer(players),e));
@@ -106,7 +106,7 @@ class RaidWave {
                 mobs.add(new RaidBlaze(p));
             }
             for(int i = 0; i < dropCreepers; i++){
-                mobs.add(new RaidCreeper(p));
+                mobs.add(new RaidSuicideCreeper(p));
             }
             for(int i = 0; i < dropEndermen; i++){
                 mobs.add(new RaidEnderman(p));

@@ -1,7 +1,7 @@
 package maxdevos.maxcraft.commands;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.raidSystem.newRaidMobs.SuicideCreeper;
+import maxdevos.maxcraft.raidSystem.NMSMobs.SuicideCreeper;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

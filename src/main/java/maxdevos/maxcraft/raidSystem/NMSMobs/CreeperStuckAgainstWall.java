@@ -50,7 +50,7 @@ public class CreeperStuckAgainstWall extends PathfinderGoal {
             oldBlock = ((Creeper) creeper.getBukkitEntity()).getTargetBlock((Set<Material>) null, 10);
             i = 0;
         }
-        System.out.println(i);
+//        System.out.println(i);
 
         if(i > 20){
             creeper.explode();

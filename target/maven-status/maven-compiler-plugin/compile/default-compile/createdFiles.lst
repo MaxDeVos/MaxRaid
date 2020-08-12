@@ -1,7 +1,9 @@
 maxdevos\maxcraft\commands\EndWaveCommand.class
 maxdevos\maxcraft\commands\FuckYouCommand.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidCreeper.class
+maxdevos\maxcraft\raidSystem\newRaidMobs\RaidSuicideCreeper.class
 maxdevos\maxcraft\raidSystem\PlayerBaseModel.class
+maxdevos\maxcraft\raidSystem\NMSMobs\SuicideCreeper.class
 maxdevos\maxcraft\tedcruz\TedCruzTweetFactory.class
 maxdevos\maxcraft\raidSystem\RaidEventHandler.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidBlaze.class
@@ -26,7 +28,6 @@ maxdevos\maxcraft\raidSystem\RaidConfig.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidMob$1.class
 maxdevos\maxcraft\raidSystem\ConfigBasedRaid.class
 maxdevos\maxcraft\raidSystem\raidEvents\StopRaidEvent.class
-maxdevos\maxcraft\raidSystem\NMSMobs\NMSCreeper.class
 maxdevos\maxcraft\raidSystem\newRaidMobs\RaidPhantom.class
 maxdevos\maxcraft\commands\SetRaidCommand.class
 maxdevos\maxcraft\raidSystem\LegacyRaid.class

@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.raidSystem.newRaidMobs;
+package maxdevos.maxcraft.raidSystem.NMSMobs;
 
 import maxdevos.maxcraft.raidSystem.NMSMobs.CreeperStuckAgainstWall;
 import net.minecraft.server.v1_16_R1.*;
@@ -23,6 +23,7 @@ public class SuicideCreeper extends EntityCreeper {
         this.setGoalTarget((((CraftPlayer)p).getHandle()), EntityTargetEvent.TargetReason.CUSTOM, true);
         this.setAggressive(true);
         Creeper c = ((Creeper) this.getBukkitEntity());
+        c.setPowered(true);
         c.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(5d);
         generateNotifierEffect(c.getLocation().add(new Vector(0,10,0)));
     }

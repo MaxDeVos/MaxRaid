@@ -2,8 +2,13 @@ package maxdevos.maxcraft.raidSystem.newRaidMobs;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.util.VectorTools;
+import net.minecraft.server.v1_16_R1.Entity;
+import net.minecraft.server.v1_16_R1.EntityInsentient;
+import net.minecraft.server.v1_16_R1.EntityMonster;
+import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -24,6 +29,7 @@ public class RaidMob implements Listener {
     Player target;
     private MaxPlugin plugin;
 
+    //Vanilla Mob Spawning
     RaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
 
         this.target = target;
@@ -63,6 +69,46 @@ public class RaidMob implements Listener {
         setParams(m);
         this.plugin = MaxPlugin.getInstance();
         MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
+    }
+
+
+    //NMS Mob Spawning
+    RaidMob(Player target, RaidSpawnWaveEvent w, EntityInsentient mob){
+
+        this.target = target;
+        spawnLocation = Objects.requireNonNull(w.getPatrolLeader()).getLocation().add(new Vector(0,1,0));
+        m = (LivingEntity) mob.getBukkitEntity();
+        setParams(m);
+        spawnMob(mob);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
+    }
+
+    RaidMob(Player target, EntityInsentient mob){
+
+        Vector randVec = VectorTools.generateRandomVector(2,5);
+
+        this.target = target;
+        spawnLocation = target.getLocation().add(randVec).add(0,10,0);
+        m = (LivingEntity) mob.getBukkitEntity();
+        setParams(m);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
+    }
+
+    RaidMob(Player player, Location spawnLocation, EntityInsentient mob){
+
+        this.spawnLocation = spawnLocation;
+        m = (LivingEntity) mob.getBukkitEntity();
+        setParams((LivingEntity) mob);
+        spawnMob(mob);
+        this.plugin = MaxPlugin.getInstance();
+        MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
+    }
+
+    private void spawnMob(Entity e){
+        World w = ((CraftWorld)target.getWorld()).getHandle();
+        w.addEntity(e);
     }
 
     void setParams(LivingEntity e) {
