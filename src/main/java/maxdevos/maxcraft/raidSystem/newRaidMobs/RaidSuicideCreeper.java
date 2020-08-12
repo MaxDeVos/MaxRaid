@@ -1,28 +1,29 @@
 package maxdevos.maxcraft.raidSystem.newRaidMobs;
 
+import maxdevos.maxcraft.raidSystem.NMSMobs.SuicideCreeper;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidBlaze extends RaidMob {
+public class RaidSuicideCreeper extends RaidMob {
 
-    public RaidBlaze(Player target, RaidSpawnWaveEvent w) {
-        super(target, w, EntityType.BLAZE);
+    public RaidSuicideCreeper(Player target, RaidSpawnWaveEvent w) {
+        super(target, w, new SuicideCreeper(target));
     }
 
-    public RaidBlaze(Player target) {
-        super(target, EntityType.BLAZE);
+    public RaidSuicideCreeper(Player target) {
+        super(target, new SuicideCreeper(target));
     }
 
     @SuppressWarnings("unused")
-    public RaidBlaze(Player target, Location spawnLocation) {
-        super(target, spawnLocation, EntityType.BLAZE);
+    public RaidSuicideCreeper(Player target, Location spawnLocation) {
+        super(target, spawnLocation, new SuicideCreeper(target));
     }
 
     public void setParams(LivingEntity e){
-        Blaze b = (Blaze)e;
-        b.setCustomName("§4Raid Blaze");
+        Creeper b = (Creeper)e;
+        b.setCustomName("§4Raid Suicide Creeper");
         b.setTarget(target);
         b.setMaxHealth(20);
         b.setHealth(20);
