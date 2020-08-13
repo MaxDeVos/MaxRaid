@@ -98,9 +98,11 @@ public class RaidMob implements Listener {
 
     RaidMob(Player player, Location spawnLocation, EntityInsentient mob){
 
+        this.target = player;
         this.spawnLocation = spawnLocation;
+        mob.setLocation(spawnLocation.getX(), spawnLocation.getY(), spawnLocation.getZ(), 1f, 1f);
         m = (LivingEntity) mob.getBukkitEntity();
-        setParams((LivingEntity) mob);
+        setParams((LivingEntity) mob.getBukkitEntity());
         spawnMob(mob);
         this.plugin = MaxPlugin.getInstance();
         MaxPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
