@@ -1,10 +1,9 @@
-package maxdevos.maxcraft.raidSystem.newRaidMobs;
+package maxdevos.maxcraft.raidSystem.raidMobs;
 
 import maxdevos.maxcraft.MaxPlugin;
 import maxdevos.maxcraft.util.VectorTools;
 import net.minecraft.server.v1_16_R1.Entity;
 import net.minecraft.server.v1_16_R1.EntityInsentient;
-import net.minecraft.server.v1_16_R1.EntityMonster;
 import net.minecraft.server.v1_16_R1.World;
 import org.bukkit.Location;
 import org.bukkit.Material;

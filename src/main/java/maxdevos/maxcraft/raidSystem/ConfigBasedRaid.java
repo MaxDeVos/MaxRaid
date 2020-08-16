@@ -1,8 +1,7 @@
 package maxdevos.maxcraft.raidSystem;
 
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.raidSystem.newRaidMobs.*;
-import maxdevos.maxcraft.raidSystem.ordinances.RaidOrdinance;
+import maxdevos.maxcraft.raidSystem.raidMobs.*;
 import maxdevos.maxcraft.raidSystem.raidEvents.KillWaveEvent;
 import maxdevos.maxcraft.raidSystem.raidEvents.RaidMobKilledEvent;
 import maxdevos.maxcraft.raidSystem.raidEvents.StopRaidEvent;

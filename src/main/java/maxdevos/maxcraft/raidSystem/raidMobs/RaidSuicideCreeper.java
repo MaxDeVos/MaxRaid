@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.raidSystem.newRaidMobs;
+package maxdevos.maxcraft.raidSystem.raidMobs;
 
 import maxdevos.maxcraft.raidSystem.NMSMobs.SuicideCreeper;
 import org.bukkit.Location;

@@ -1,4 +1,4 @@
-package maxdevos.maxcraft.raidSystem.newRaidMobs;
+package maxdevos.maxcraft.raidSystem.raidMobs;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Creeper;

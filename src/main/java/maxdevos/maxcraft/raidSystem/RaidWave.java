@@ -1,6 +1,6 @@
 package maxdevos.maxcraft.raidSystem;
 
-import maxdevos.maxcraft.raidSystem.newRaidMobs.*;
+import maxdevos.maxcraft.raidSystem.raidMobs.*;
 import maxdevos.maxcraft.util.PlayerUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
