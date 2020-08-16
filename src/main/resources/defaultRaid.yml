@@ -15,6 +15,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -29,6 +32,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
   3:
     airdrops: 0
     airdrop-mobs:
@@ -45,6 +51,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -59,6 +68,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
   4:
     airdrops: 0
     airdrop-mobs:
@@ -75,6 +87,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -89,6 +104,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
   5:
     airdrops: 0
     airdrop-mobs:
@@ -105,6 +123,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -119,6 +140,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
   6:
     airdrops: 0
     airdrop-mobs:
@@ -135,6 +159,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -149,6 +176,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
   7:
     airdrops: 0
     airdrop-mobs:
@@ -165,6 +195,9 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0
     wave-mobs:
       blaze: 0
       creeper: 0
@@ -179,3 +212,6 @@ waves:
       vindicator: 0
       wither-skeleton: 0
       zombie: 0
+      suicide-creeper: 0
+      super-zombie: 0
+      super-spider: 0

@@ -44,9 +44,14 @@ class RaidConfig{
         for(int i=2;i<=7;i++){
             System.out.println("Loading Wave " + i + " into memory.");
             RaidWave wave = new RaidWave();
+
+            //Wave Mobs
             wave.setAirDrops(raidSetup.getInt("waves."+i+".airdrops"));
             wave.setBlazes(raidSetup.getInt("waves."+i+".wave-mobs."+"blaze"));
             wave.setCreepers(raidSetup.getInt("waves."+i+".wave-mobs."+"creeper"));
+            wave.setSuperCreepers(raidSetup.getInt("waves."+i+".wave-mobs."+"suicide-creeper"));
+            wave.setSuperSpiders(raidSetup.getInt("waves."+i+".wave-mobs."+"super-spider"));
+            wave.setSuperZombies(raidSetup.getInt("waves."+i+".wave-mobs."+"super-zombie"));
             wave.setEndermen(raidSetup.getInt("waves."+i+".wave-mobs."+"enderman"));
             wave.setEvokers(raidSetup.getInt("waves."+i+".wave-mobs."+"evoker"));
             wave.setGhasts(raidSetup.getInt("waves."+i+".wave-mobs."+"ghast"));
@@ -58,8 +63,13 @@ class RaidConfig{
             wave.setVindicators(raidSetup.getInt("waves."+i+".wave-mobs."+"vindicator"));
             wave.setWitherSkeletons(raidSetup.getInt("waves."+i+".wave-mobs."+"wither-skeleton"));
             wave.setZombies(raidSetup.getInt("waves."+i+".wave-mobs."+"zombie"));
+
+            //Airdrop Mobs
             wave.setDropBlazes(raidSetup.getInt("waves."+i+".airdrop-mobs."+"blaze"));
             wave.setDropCreepers(raidSetup.getInt("waves."+i+".airdrop-mobs."+"creeper"));
+            wave.setDropSuperCreepers(raidSetup.getInt("waves."+i+".airdrop-mobs."+"suicide-creeper"));
+            wave.setDropSuperSpiders(raidSetup.getInt("waves."+i+".airdrop-mobs."+"super-spider"));
+            wave.setDropSuperZombies(raidSetup.getInt("waves."+i+".airdrop-mobs."+"super-zombie"));
             wave.setDropEndermen(raidSetup.getInt("waves."+i+".airdrop-mobs."+"enderman"));
             wave.setDropEvokers(raidSetup.getInt("waves."+i+".airdrop-mobs."+"evoker"));
             wave.setDropGhasts(raidSetup.getInt("waves."+i+".airdrop-mobs."+"ghast"));

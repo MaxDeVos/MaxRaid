@@ -15,6 +15,7 @@ class RaidWave {
     private int airDrops = 0;
     private int blazes = 0;
     private int creepers = 0;
+    private int superCreepers = 0;
     private int endermen = 0;
     private int evokers = 0;
     private int ghasts = 0;
@@ -39,6 +40,11 @@ class RaidWave {
     private int dropVindicators = 0;
     private int dropWitherSkeletons = 0;
     private int dropZombies = 0;
+    private int dropSuperCreepers = 0;
+    private int dropSuperSpiders = 0;
+    private int superSpiders = 0;
+    private int superZombies = 0;
+    private int dropSuperZombies = 0;
 
     private final ArrayList<RaidMob> mobs;
 
@@ -60,8 +66,20 @@ class RaidWave {
         for(int i = 0; i < blazes; i++){
             mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
         }
-        for(int i = 0; i < creepers; i++){
+        for(int i = 0; i < blazes; i++){
+            mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
+        }
+        for(int i = 0; i < superCreepers; i++){
             mobs.add(new RaidSuicideCreeper(PlayerUtils.getRandomPlayer(players),e));
+        }
+        for(int i = 0; i < superSpiders; i++){
+            mobs.add(new RaidSuperSpider(PlayerUtils.getRandomPlayer(players),e));
+        }
+        for(int i = 0; i < superZombies; i++){
+            mobs.add(new RaidSuperZombie(PlayerUtils.getRandomPlayer(players),e));
+        }
+        for(int i = 0; i < creepers; i++){
+            mobs.add(new RaidCreeper(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < endermen; i++){
             mobs.add(new RaidEnderman(PlayerUtils.getRandomPlayer(players),e));
@@ -106,7 +124,16 @@ class RaidWave {
                 mobs.add(new RaidBlaze(p));
             }
             for(int i = 0; i < dropCreepers; i++){
+                mobs.add(new RaidCreeper(p));
+            }
+            for(int i = 0; i < dropSuperCreepers; i++){
                 mobs.add(new RaidSuicideCreeper(p));
+            }
+            for(int i = 0; i < dropSuperSpiders; i++){
+                mobs.add(new RaidSuperSpider(p));
+            }
+            for(int i = 0; i < dropSuperZombies; i++){
+                mobs.add(new RaidSuperZombie(p));
             }
             for(int i = 0; i < dropEndermen; i++){
                 mobs.add(new RaidEnderman(p));
@@ -250,6 +277,30 @@ class RaidWave {
 
     void setZombies(int zombies) {
         this.zombies = zombies;
+    }
+
+    void setSuperCreepers(int superCreepers) {
+        this.superCreepers = superCreepers;
+    }
+
+    void setDropSuperCreepers(int superCreepers) {
+        this.dropSuperCreepers = superCreepers;
+    }
+
+    void setSuperSpiders(int superCreepers) {
+        this.superSpiders = superCreepers;
+    }
+
+    void setDropSuperSpiders(int superCreepers) {
+        this.dropSuperSpiders = superCreepers;
+    }
+
+    void setSuperZombies(int superCreepers) {
+        this.superZombies = superCreepers;
+    }
+
+    void setDropSuperZombies(int superCreepers) {
+        this.dropSuperZombies = superCreepers;
     }
 
     void killAll(){
