@@ -23,7 +23,7 @@ public class RaidOrdinance {
         p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "Your Ordiance Has Spawned!");
         l.getBlock().setType(Material.CHEST);
         Chest s = (Chest) l.getBlock().getState();
-        s.getBlockInventory().addItem(new Excalibur(10).getItem(), new AK47(10).getItem());
+        s.getBlockInventory().addItem(new Excalibur(10).getItem(), new AWP(10).getItem());
         MaxPlugin.getServerInstance().getScheduler().scheduleSyncDelayedTask(MaxPlugin.getInstance(),
                 this::generateNotifierEffect, 20L);
     }

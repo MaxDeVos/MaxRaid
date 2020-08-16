@@ -1,8 +1,7 @@
 package maxdevos.maxcraft.raidSystem;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 import maxdevos.maxcraft.MaxPlugin;
-import maxdevos.maxcraft.raidSystem.ordinances.AK47;
+import maxdevos.maxcraft.raidSystem.ordinances.AWP;
 import maxdevos.maxcraft.raidSystem.ordinances.Excalibur;
 import maxdevos.maxcraft.raidSystem.ordinances.RaidOrdinance;
 import net.minecraft.server.v1_16_R1.ChatMessageType;
@@ -76,7 +75,7 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
             try {
                 raidPlayers.add(new RaidPlayer(Objects.requireNonNull(plugin.getServer().getPlayer("maxcr1"))));
                 raidPlayers.get(0).getPlayer().getInventory().addItem(new Excalibur(1562).getItem(),
-                        new AK47(384).getItem(), new ItemStack(Material.ARROW));
+                        new AWP(384).getItem(), new ItemStack(Material.ARROW));
             }
             catch(Exception ignored){
 

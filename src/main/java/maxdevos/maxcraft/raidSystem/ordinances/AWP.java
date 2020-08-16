@@ -6,11 +6,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class AK47 {
+public class AWP {
 
     ItemStack i;
 
-    public AK47(int allowedKills){
+    public AWP(int allowedKills){
         i = new ItemStack(Material.BOW);
         i.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,32);
         i.addUnsafeEnchantment(Enchantment.ARROW_FIRE,32);
@@ -19,7 +19,7 @@ public class AK47 {
         i.setAmount(1);
         i.setDurability((short)	(384-allowedKills));
         ItemMeta meta = i.getItemMeta();
-        meta.setDisplayName("AK-47");
+        meta.setDisplayName("AWP");
         i.setItemMeta(meta);
     }
 
