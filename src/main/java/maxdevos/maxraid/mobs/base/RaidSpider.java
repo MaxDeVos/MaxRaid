@@ -16,7 +16,6 @@ public class RaidSpider extends CraftSpider {
         RaidSpider.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Spider");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

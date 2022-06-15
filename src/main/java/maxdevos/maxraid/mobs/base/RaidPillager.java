@@ -15,7 +15,6 @@ public class RaidPillager extends CraftPillager {
         RaidPillager.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Pillager");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

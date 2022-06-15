@@ -15,7 +15,6 @@ public class RaidSkeleton extends CraftSkeleton {
         RaidSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Skeleton");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

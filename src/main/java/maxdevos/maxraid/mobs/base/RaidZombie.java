@@ -15,7 +15,6 @@ public class RaidZombie extends CraftZombie {
         RaidZombie.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Zombie");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

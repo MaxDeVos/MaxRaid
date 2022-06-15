@@ -15,7 +15,6 @@ public class RaidWitch extends CraftWitch {
         RaidWitch.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Witch");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

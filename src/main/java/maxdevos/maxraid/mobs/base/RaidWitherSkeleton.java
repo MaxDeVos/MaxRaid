@@ -15,7 +15,6 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton {
         RaidWitherSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID WitherSkeleton");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

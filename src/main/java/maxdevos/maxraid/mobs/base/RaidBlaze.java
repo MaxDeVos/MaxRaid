@@ -16,7 +16,6 @@ public class RaidBlaze extends CraftBlaze {
         RaidBlaze.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Blaze");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

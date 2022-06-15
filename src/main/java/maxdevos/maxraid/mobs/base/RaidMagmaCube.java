@@ -16,7 +16,6 @@ public class RaidMagmaCube extends CraftMagmaCube {
         RaidMagmaCube.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID MagmaCube");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

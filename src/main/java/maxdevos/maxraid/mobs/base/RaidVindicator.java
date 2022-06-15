@@ -15,7 +15,6 @@ public class RaidVindicator extends CraftVindicator {
         RaidVindicator.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Vindicator");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

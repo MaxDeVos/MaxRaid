@@ -16,7 +16,6 @@ public class RaidEnderman extends CraftEnderman {
         RaidEnderman.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Enderman");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

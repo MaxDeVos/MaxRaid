@@ -16,7 +16,6 @@ public class RaidPhantom extends CraftPhantom {
         RaidPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 

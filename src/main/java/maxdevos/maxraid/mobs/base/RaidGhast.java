@@ -16,7 +16,6 @@ public class RaidGhast extends CraftGhast {
         RaidGhast.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Ghast");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         raid.getHandle().addMob(this.getHandle());
     }
 

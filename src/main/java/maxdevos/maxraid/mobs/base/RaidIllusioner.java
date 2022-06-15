@@ -16,7 +16,6 @@ public class RaidIllusioner extends CraftIllusioner {
         RaidIllusioner.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Illusioner");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         raid.getHandle().addMob(this.getHandle());
     }
 

@@ -78,6 +78,17 @@ public class NMSRaid extends Raid implements Listener {
     }
 
     @Override
+    public int getTotalRaidersAlive(){
+        int livingCounter = 0;
+        for(LivingEntity ent:raidMobs){
+            if(ent.isAlive()){
+                livingCounter++;
+            }
+        }
+        return livingCounter;
+    }
+
+    @Override
     public float getHealthOfLivingRaiders() {
         float currentHealth = 0.0F;
         for(LivingEntity mob:raidMobs){

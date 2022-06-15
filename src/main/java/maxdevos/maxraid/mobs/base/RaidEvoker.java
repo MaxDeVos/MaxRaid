@@ -16,7 +16,6 @@ public class RaidEvoker extends CraftEvoker {
         RaidEvoker.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Evoker");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         raid.getHandle().addMob(this.getHandle());
     }
 

@@ -16,7 +16,6 @@ public class RaidCreeper extends CraftCreeper {
         RaidCreeper.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        this.getHandle().goalSelector.removeAllGoals();
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
