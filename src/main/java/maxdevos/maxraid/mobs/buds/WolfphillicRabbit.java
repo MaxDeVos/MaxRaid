@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.experimental;
+package maxdevos.maxraid.mobs.buds;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
