@@ -14,6 +14,7 @@ import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
@@ -75,6 +76,7 @@ public class MaxRaid implements Listener {
         scoreboard.restoreScoreboard();
 
         HandlerList.unregisterAll(this);
+        nmsRaid.unregister();
         progressionEventHandler.unregister();
         mobEventHandler.unregister();
 
@@ -106,12 +108,20 @@ public class MaxRaid implements Listener {
             p.handleOrdinance();
         }
         scoreboard.updateScoreboard(players);
+        nmsRaid.updateBossbar();
     }
 
     @EventHandler
     private void raidMobKilled(EntityDeathEvent e){
         if(e.getEntity().getKiller() != null && nmsRaid.isUUIDRaider(e.getEntity().getUniqueId())){
             Bukkit.getPluginManager().callEvent(new RaidMobKilledEvent(e));
+        }
+    }
+
+    @EventHandler
+    private void handleEntityDamaged(EntityDamageEvent e){
+        if(nmsRaid.isUUIDRaider(e.getEntity().getUniqueId())){
+            nmsRaid.updateBossbar();
         }
     }
 

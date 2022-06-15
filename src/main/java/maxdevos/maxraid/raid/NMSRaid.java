@@ -14,6 +14,7 @@ import net.minecraft.world.entity.raid.Raider;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.raid.RaidTriggerEvent;
@@ -118,5 +119,9 @@ public class NMSRaid extends Raid implements Listener {
     @EventHandler
     private void triggerRaid(RaidTriggerEvent e){
         maxRaid = new MaxRaid(this, e.getRaid());
+    }
+
+    public void unregister(){
+        HandlerList.unregisterAll(this);
     }
 }

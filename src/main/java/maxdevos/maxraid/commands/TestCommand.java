@@ -1,19 +1,14 @@
 package maxdevos.maxraid.commands;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.nmsMobs.RaidCreeper;
 import maxdevos.maxraid.raid.NMSRaid;
 import maxdevos.maxraid.raid.RaidFactory;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Creeper;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
 import org.bukkit.entity.Player;
-import org.bukkit.util.BlockVector;
 
 public class TestCommand implements CommandExecutor {
 

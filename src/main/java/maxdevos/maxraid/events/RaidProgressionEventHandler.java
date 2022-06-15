@@ -1,7 +1,7 @@
 package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.nmsMobs.RaidCreeper;
+import maxdevos.maxraid.mobs.base.RaidCreeper;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
