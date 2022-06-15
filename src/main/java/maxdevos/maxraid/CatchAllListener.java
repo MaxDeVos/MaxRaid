@@ -1,6 +1,5 @@
 package maxdevos.maxraid;
 
-import maxdevos.maxraid.config.ConfigBasedRaid;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

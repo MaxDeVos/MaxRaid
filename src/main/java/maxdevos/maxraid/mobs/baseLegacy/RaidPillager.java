@@ -1,6 +1,7 @@
 package maxdevos.maxraid.mobs.baseLegacy;
 
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Pillager;

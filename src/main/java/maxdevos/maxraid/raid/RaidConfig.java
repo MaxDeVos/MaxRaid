@@ -1,6 +1,7 @@
-package maxdevos.maxraid.config;
+package maxdevos.maxraid.raid;
 
 import maxdevos.maxraid.RaidPlugin;
+import maxdevos.maxraid.raid.RaidWave;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,13 +13,13 @@ import java.util.ArrayList;
 import static org.bukkit.ChatColor.DARK_RED;
 import static org.bukkit.ChatColor.WHITE;
 
-class RaidConfig{
+public class RaidConfig{
 
     private final ArrayList<RaidWave> waves;
     private String raidName = "Default";
     private static final RaidPlugin plugin = RaidPlugin.getInstance();
 
-    RaidConfig(String raidName){
+    public RaidConfig(String raidName){
         waves = new ArrayList<>();
         File raidSetupFile = new File(plugin.getDataFolder(), raidName + ".yml");
         if (!raidSetupFile.exists()) {

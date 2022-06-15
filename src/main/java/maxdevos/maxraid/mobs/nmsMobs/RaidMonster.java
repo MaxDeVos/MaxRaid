@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.nmsMobs;
 
 import maxdevos.maxraid.raid.NMSRaid;
 import net.minecraft.world.damagesource.DamageSource;

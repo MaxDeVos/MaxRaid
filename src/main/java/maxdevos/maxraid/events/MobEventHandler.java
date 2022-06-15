@@ -1,6 +1,7 @@
-package maxdevos.maxraid.config;
+package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
+import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -8,11 +9,13 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 
-class RaidEventHandler implements Listener {
+public class MobEventHandler implements Listener {
 
+    private MaxRaid raid;
     private final RaidPlugin plugin = RaidPlugin.getInstance();
 
-    RaidEventHandler(){
+    public MobEventHandler(MaxRaid raid){
+        this.raid = raid;
         Server server = RaidPlugin.getServerInstance();
         server.getPluginManager().registerEvents(this, plugin);
     }
@@ -70,8 +73,7 @@ class RaidEventHandler implements Listener {
         }
     }
 
-    void unregister(){
+    public void unregister(){
         HandlerList.unregisterAll(this);
     }
-
 }

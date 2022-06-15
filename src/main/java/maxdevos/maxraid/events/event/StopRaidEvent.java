@@ -1,4 +1,4 @@
-package maxdevos.maxraid.events;
+package maxdevos.maxraid.events.event;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

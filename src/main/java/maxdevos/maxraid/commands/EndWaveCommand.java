@@ -1,7 +1,7 @@
 package maxdevos.maxraid.commands;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.events.KillWaveEvent;
+import maxdevos.maxraid.events.event.KillWaveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

@@ -1,4 +1,4 @@
-package maxdevos.maxraid.config;
+package maxdevos.maxraid.raid;
 
 import maxdevos.maxraid.mobs.baseLegacy.*;
 import maxdevos.maxraid.player.RaidPlayer;
@@ -9,7 +9,7 @@ import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 import java.util.ArrayList;
 
-class RaidWave {
+public class RaidWave {
 
     private ArrayList<Player> players;
     private RaidSpawnWaveEvent e;
@@ -43,7 +43,7 @@ class RaidWave {
 
     private final ArrayList<RaidMob> mobs;
 
-    RaidWave(){
+    public RaidWave(){
         players = new ArrayList<>();
         mobs = new ArrayList<>();
     }
@@ -148,111 +148,111 @@ class RaidWave {
         }
     }
 
-    void setDropBlazes(int dropBlazes) {
+    public void setDropBlazes(int dropBlazes) {
         this.dropBlazes = dropBlazes;
     }
 
-    void setDropCreepers(int dropCreepers) {
+    public void setDropCreepers(int dropCreepers) {
         this.dropCreepers = dropCreepers;
     }
 
-    void setDropEndermen(int dropEndermen) {
+    public void setDropEndermen(int dropEndermen) {
         this.dropEndermen = dropEndermen;
     }
 
-    void setDropEvokers(int dropEvokers) {
+    public void setDropEvokers(int dropEvokers) {
         this.dropEvokers = dropEvokers;
     }
 
-    void setDropGhasts(int dropGhasts) {
+    public void setDropGhasts(int dropGhasts) {
         this.dropGhasts = dropGhasts;
     }
 
-    void setDropMagmaCubes(int dropMagmaCubes) {
+    public void setDropMagmaCubes(int dropMagmaCubes) {
         this.dropMagmaCubes = dropMagmaCubes;
     }
 
-    void setDropPhantoms(int dropPhantoms) {
+    public void setDropPhantoms(int dropPhantoms) {
         this.dropPhantoms = dropPhantoms;
     }
 
-    void setDropPillagers(int dropPillagers) {
+    public void setDropPillagers(int dropPillagers) {
         this.dropPillagers = dropPillagers;
     }
 
-    void setDropRavagers(int dropRavagers) {
+    public void setDropRavagers(int dropRavagers) {
         this.dropRavagers = dropRavagers;
     }
 
-    void setDropSkeletons(int dropSkeletons) {
+    public void setDropSkeletons(int dropSkeletons) {
         this.dropSkeletons = dropSkeletons;
     }
 
-    void setDropVindicators(int dropVindicators) {
+    public void setDropVindicators(int dropVindicators) {
         this.dropVindicators = dropVindicators;
     }
 
-    void setDropWitherSkeletons(int dropWitherSkeletons) {
+    public void setDropWitherSkeletons(int dropWitherSkeletons) {
         this.dropWitherSkeletons = dropWitherSkeletons;
     }
 
-    void setDropZombies(int dropZombies) {
+    public void setDropZombies(int dropZombies) {
         this.dropZombies = dropZombies;
     }
 
-    void setAirDrops(int airDrops) {
+    public void setAirDrops(int airDrops) {
         this.airDrops = airDrops;
     }
 
-    void setBlazes(int blazes) {
+    public void setBlazes(int blazes) {
         this.blazes = blazes;
     }
 
-    void setCreepers(int creepers) {
+    public void setCreepers(int creepers) {
         this.creepers = creepers;
     }
 
-    void setEndermen(int endermen) {
+    public void setEndermen(int endermen) {
         this.endermen = endermen;
     }
 
-    void setEvokers(int evokers) {
+    public void setEvokers(int evokers) {
         this.evokers = evokers;
     }
 
-    void setGhasts(int ghasts) {
+    public void setGhasts(int ghasts) {
         this.ghasts = ghasts;
     }
 
-    void setMagmaCubes(int magma_cubes) {
+    public void setMagmaCubes(int magma_cubes) {
         this.magmaCubes = magma_cubes;
     }
 
-    void setPhantoms(int phantoms) {
+    public void setPhantoms(int phantoms) {
         this.phantoms = phantoms;
     }
 
-    void setPillagers(int pillagers) {
+    public void setPillagers(int pillagers) {
         this.pillagers = pillagers;
     }
 
-    void setRavagers(int ravagers) {
+    public void setRavagers(int ravagers) {
         this.ravagers = ravagers;
     }
 
-    void setSkeletons(int skeletons) {
+    public void setSkeletons(int skeletons) {
         this.skeletons = skeletons;
     }
 
-    void setVindicators(int vindicators) {
+    public void setVindicators(int vindicators) {
         this.vindicators = vindicators;
     }
 
-    void setWitherSkeletons(int wither_skeletons) {
+    public void setWitherSkeletons(int wither_skeletons) {
         this.witherSkeletons = wither_skeletons;
     }
 
-    void setZombies(int zombies) {
+    public void setZombies(int zombies) {
         this.zombies = zombies;
     }
 

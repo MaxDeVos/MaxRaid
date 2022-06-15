@@ -1,7 +1,7 @@
 package maxdevos.maxraid.commands;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.events.StopRaidEvent;
+import maxdevos.maxraid.events.event.StopRaidEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
