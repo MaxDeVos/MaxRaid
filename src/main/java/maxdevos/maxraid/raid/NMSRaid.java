@@ -1,7 +1,6 @@
 package maxdevos.maxraid.raid;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.nmsMobs.RaidMonster;
 import maxdevos.maxraid.util.MaxReflectionUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -12,6 +11,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.entity.raid.Raider;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -29,6 +29,8 @@ public class NMSRaid extends Raid implements Listener {
     public ServerLevel serverLevel;
     public World bukkitWorld;
     public float maxHealth = 0.0F;
+
+    public MaxRaid maxRaid;
 
     protected NMSRaid(int i, ServerLevel world, BlockPos pos){
         super(i, world, pos);
@@ -60,9 +62,9 @@ public class NMSRaid extends Raid implements Listener {
         recalculateMaxHealth();
     }
 
-    public void addMob(RaidMonster raidMonster){
-        serverLevel.addFreshEntity(raidMonster, CreatureSpawnEvent.SpawnReason.RAID);
-        this.raidMobs.add(raidMonster);
+    public void addMob(CraftMonster raidMonster){
+        serverLevel.addFreshEntity(raidMonster.getHandle(), CreatureSpawnEvent.SpawnReason.RAID);
+        this.raidMobs.add(raidMonster.getHandle());
         this.maxHealth += raidMonster.getMaxHealth();
         recalculateMaxHealth();
     }
@@ -114,6 +116,6 @@ public class NMSRaid extends Raid implements Listener {
 
     @EventHandler
     private void triggerRaid(RaidTriggerEvent e){
-        new MaxRaid(this, e.getRaid());
+        maxRaid = new MaxRaid(this, e.getRaid());
     }
 }
