@@ -8,22 +8,22 @@ import org.bukkit.entity.Vindicator;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidVindicator extends RaidMob {
+public class LegacyRaidVindicator extends LegacyRaidMob {
 
-    public RaidVindicator(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidVindicator(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.VINDICATOR);
     }
 
-    public RaidVindicator(Player target) {
+    public LegacyRaidVindicator(Player target) {
         super(target, EntityType.VINDICATOR);
     }
 
     @SuppressWarnings("unused")
-    public RaidVindicator(Player target, Location spawnLocation) {
+    public LegacyRaidVindicator(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.VINDICATOR);
     }
 
-    public RaidVindicator(Location spawnLocation){
+    public LegacyRaidVindicator(Location spawnLocation){
         super(spawnLocation, EntityType.VINDICATOR);
     }
 

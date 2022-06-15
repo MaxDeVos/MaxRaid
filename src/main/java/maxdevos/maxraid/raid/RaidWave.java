@@ -41,14 +41,14 @@ public class RaidWave {
     private int dropWitherSkeletons = 0;
     private int dropZombies = 0;
 
-    private final ArrayList<RaidMob> mobs;
+    private final ArrayList<LegacyRaidMob> mobs;
 
     public RaidWave(){
         players = new ArrayList<>();
         mobs = new ArrayList<>();
     }
 
-    void addMob(RaidMob m){
+    void addMob(LegacyRaidMob m){
         mobs.add(m);
     }
 
@@ -59,46 +59,46 @@ public class RaidWave {
 
     void spawnWave(){
         for(int i = 0; i < blazes; i++){
-            mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
+            mobs.add(new LegacyRaidBlaze(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < blazes; i++){
-            mobs.add(new RaidBlaze(PlayerUtils.getHighestPlayer(players),e));
+            mobs.add(new LegacyRaidBlaze(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < creepers; i++){
-            mobs.add(new RaidCreeper(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidCreeper(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < endermen; i++){
-            mobs.add(new RaidEnderman(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidEnderman(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < evokers; i++){
-            mobs.add(new RaidEvoker(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidEvoker(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < ghasts; i++){
-            mobs.add(new RaidGhast(PlayerUtils.getHighestPlayer(players),e));
+            mobs.add(new LegacyRaidGhast(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < magmaCubes; i++){
-            mobs.add(new RaidMagmaCube(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidMagmaCube(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < phantoms; i++){
-            mobs.add(new RaidPhantom(PlayerUtils.getHighestPlayer(players),e));
+            mobs.add(new LegacyRaidPhantom(PlayerUtils.getHighestPlayer(players),e));
         }
         for(int i = 0; i < pillagers; i++){
-            mobs.add(new RaidPillager(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidPillager(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < ravagers; i++){
-            mobs.add(new RaidRavager(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidRavager(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < skeletons; i++){
-            mobs.add(new RaidSkeleton(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidSkeleton(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < vindicators; i++){
-            mobs.add(new RaidVindicator(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidVindicator(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < witherSkeletons; i++){
-            mobs.add(new RaidWitherSkeleton(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidWitherSkeleton(PlayerUtils.getRandomPlayer(players),e));
         }
         for(int i = 0; i < zombies; i++){
-            mobs.add(new RaidZombie(PlayerUtils.getRandomPlayer(players),e));
+            mobs.add(new LegacyRaidZombie(PlayerUtils.getRandomPlayer(players),e));
         }
     }
 
@@ -107,43 +107,43 @@ public class RaidWave {
             System.out.println(ChatColor.DARK_RED + "[MaxRaid] " + ChatColor.WHITE + "Airdrop");
             Player p = PlayerUtils.getRandomPlayer(players);
             for(int i = 0; i < dropBlazes; i++){
-                mobs.add(new RaidBlaze(p));
+                mobs.add(new LegacyRaidBlaze(p));
             }
             for(int i = 0; i < dropCreepers; i++){
-                mobs.add(new RaidCreeper(p));
+                mobs.add(new LegacyRaidCreeper(p));
             }
             for(int i = 0; i < dropEndermen; i++){
-                mobs.add(new RaidEnderman(p));
+                mobs.add(new LegacyRaidEnderman(p));
             }
             for(int i = 0; i < dropEvokers; i++){
-                mobs.add(new RaidEvoker(p));
+                mobs.add(new LegacyRaidEvoker(p));
             }
             for(int i = 0; i < dropGhasts; i++){
-                mobs.add(new RaidGhast(p));
+                mobs.add(new LegacyRaidGhast(p));
             }
             for(int i = 0; i < dropMagmaCubes; i++){
-                mobs.add(new RaidMagmaCube(p));
+                mobs.add(new LegacyRaidMagmaCube(p));
             }
             for(int i = 0; i < dropPhantoms; i++){
-                mobs.add(new RaidPhantom(p));
+                mobs.add(new LegacyRaidPhantom(p));
             }
             for(int i = 0; i < dropPillagers; i++){
-                mobs.add(new RaidPillager(p));
+                mobs.add(new LegacyRaidPillager(p));
             }
             for(int i = 0; i < dropRavagers; i++){
-                mobs.add(new RaidRavager(p));
+                mobs.add(new LegacyRaidRavager(p));
             }
             for(int i = 0; i < dropSkeletons; i++){
-                mobs.add(new RaidSkeleton(p));
+                mobs.add(new LegacyRaidSkeleton(p));
             }
             for(int i = 0; i < dropVindicators; i++){
-                mobs.add(new RaidVindicator(p));
+                mobs.add(new LegacyRaidVindicator(p));
             }
             for(int i = 0; i < dropWitherSkeletons; i++){
-                mobs.add(new RaidWitherSkeleton(p));
+                mobs.add(new LegacyRaidWitherSkeleton(p));
             }
             for(int i = 0; i < dropZombies; i++){
-                mobs.add(new RaidZombie(p));
+                mobs.add(new LegacyRaidZombie(p));
             }
         }
     }
@@ -257,7 +257,7 @@ public class RaidWave {
     }
 
     void killAll(){
-        for(RaidMob m: mobs){
+        for(LegacyRaidMob m: mobs){
             m.kill();
         }
     }

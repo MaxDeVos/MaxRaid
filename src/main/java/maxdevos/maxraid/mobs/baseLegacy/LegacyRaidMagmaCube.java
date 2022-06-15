@@ -8,18 +8,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidMagmaCube extends RaidMob {
+public class LegacyRaidMagmaCube extends LegacyRaidMob {
 
-    public RaidMagmaCube(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidMagmaCube(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.MAGMA_CUBE);
     }
 
-    public RaidMagmaCube(Player target) {
+    public LegacyRaidMagmaCube(Player target) {
         super(target, EntityType.MAGMA_CUBE);
     }
 
     @SuppressWarnings("unused")
-    public RaidMagmaCube(Player target, Location spawnLocation) {
+    public LegacyRaidMagmaCube(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.MAGMA_CUBE);
     }
 

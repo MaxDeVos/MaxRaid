@@ -8,22 +8,22 @@ import org.bukkit.entity.Witch;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidWitch extends RaidMob {
+public class LegacyRaidWitch extends LegacyRaidMob {
 
-    public RaidWitch(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidWitch(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.WITCH);
     }
 
-    public RaidWitch(Player target) {
+    public LegacyRaidWitch(Player target) {
         super(target, EntityType.WITCH);
     }
 
     @SuppressWarnings("unused")
-    public RaidWitch(Player target, Location spawnLocation) {
+    public LegacyRaidWitch(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.WITCH);
     }
 
-    public RaidWitch(Location spawnLocation){
+    public LegacyRaidWitch(Location spawnLocation){
         super(spawnLocation, EntityType.WITCH);
     }
 

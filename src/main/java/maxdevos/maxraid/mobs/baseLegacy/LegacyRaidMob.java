@@ -17,7 +17,7 @@ import org.bukkit.util.Vector;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public class RaidMob implements Listener {
+public class LegacyRaidMob implements Listener {
 
     private final LivingEntity m;
     private final Location spawnLocation;
@@ -25,7 +25,7 @@ public class RaidMob implements Listener {
     private final RaidPlugin plugin;
 
     //Vanilla Mob Spawning
-    RaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
+    LegacyRaidMob(Player target, RaidSpawnWaveEvent w, EntityType mobType){
 
         this.target = target;
         System.out.println("SPAWNING ENTITY: " + mobType.name() + " AT " + target.getLocation());
@@ -36,7 +36,7 @@ public class RaidMob implements Listener {
         RaidPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
-    RaidMob(Player target, EntityType mobType){
+    LegacyRaidMob(Player target, EntityType mobType){
 
         Vector randVec = VectorTools.generateRandomVector(2,5);
 
@@ -49,7 +49,7 @@ public class RaidMob implements Listener {
         RaidPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
-    RaidMob(Player target, Location spawnLocation, EntityType mobType){
+    LegacyRaidMob(Player target, Location spawnLocation, EntityType mobType){
 
         this.target = target;
         this.spawnLocation = spawnLocation;
@@ -60,7 +60,7 @@ public class RaidMob implements Listener {
         RaidPlugin.getServerInstance().getPluginManager().registerEvents(this, plugin);
     }
 
-    RaidMob(Location spawnLocation, EntityType mobType){
+    LegacyRaidMob(Location spawnLocation, EntityType mobType){
 
         this.spawnLocation = spawnLocation;
         m = (LivingEntity)spawnLocation.getWorld().spawnEntity(spawnLocation, mobType);

@@ -8,18 +8,18 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidZombie extends RaidMob {
+public class LegacyRaidZombie extends LegacyRaidMob {
 
-    public RaidZombie(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidZombie(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.ZOMBIE);
     }
 
-    public RaidZombie(Player target) {
+    public LegacyRaidZombie(Player target) {
         super(target, EntityType.ZOMBIE);
     }
 
     @SuppressWarnings("unused")
-    public RaidZombie(Player target, Location spawnLocation) {
+    public LegacyRaidZombie(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.ZOMBIE);
     }
 

@@ -8,22 +8,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidIllusioner extends RaidMob {
+public class LegacyRaidIllusioner extends LegacyRaidMob {
 
-    public RaidIllusioner(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidIllusioner(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.ILLUSIONER);
     }
 
-    public RaidIllusioner(Player target) {
+    public LegacyRaidIllusioner(Player target) {
         super(target, EntityType.ILLUSIONER);
     }
 
     @SuppressWarnings("unused")
-    public RaidIllusioner(Player target, Location spawnLocation) {
+    public LegacyRaidIllusioner(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.ILLUSIONER);
     }
 
-    public RaidIllusioner(Location spawnLocation){
+    public LegacyRaidIllusioner(Location spawnLocation){
         super(spawnLocation, EntityType.ILLUSIONER);
     }
 

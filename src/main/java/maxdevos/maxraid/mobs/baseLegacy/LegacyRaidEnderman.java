@@ -8,19 +8,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidEnderman extends RaidMob{
+public class LegacyRaidEnderman extends LegacyRaidMob {
 
 
-    public RaidEnderman(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidEnderman(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.ENDERMAN);
     }
 
-    public RaidEnderman(Player target) {
+    public LegacyRaidEnderman(Player target) {
         super(target, EntityType.ENDERMAN);
     }
 
     @SuppressWarnings("unused")
-    public RaidEnderman(Player target, Location spawnLocation) {
+    public LegacyRaidEnderman(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.ENDERMAN);
     }
 

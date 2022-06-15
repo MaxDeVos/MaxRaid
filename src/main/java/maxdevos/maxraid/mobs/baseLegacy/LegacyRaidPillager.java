@@ -1,7 +1,6 @@
 package maxdevos.maxraid.mobs.baseLegacy;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Pillager;
@@ -9,22 +8,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidPillager extends RaidMob {
+public class LegacyRaidPillager extends LegacyRaidMob {
 
-    public RaidPillager(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidPillager(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.PILLAGER);
     }
 
-    public RaidPillager(Player target) {
+    public LegacyRaidPillager(Player target) {
         super(target, EntityType.PILLAGER);
     }
 
     @SuppressWarnings("unused")
-    public RaidPillager(Player target, Location spawnLocation) {
+    public LegacyRaidPillager(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.PILLAGER);
     }
 
-    public RaidPillager(Location spawnLocation){
+    public LegacyRaidPillager(Location spawnLocation){
         super(spawnLocation, EntityType.PILLAGER);
     }
 

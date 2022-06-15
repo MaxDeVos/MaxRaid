@@ -22,8 +22,7 @@ public class RaidProgressionEventHandler implements Listener {
     }
 
     @EventHandler
-    public void raidWave(RaidSpawnWaveEvent waveEvent){
-        System.out.println("RAID WAVE EVENT TRIGGERED");
+    public void newRaidWave(RaidSpawnWaveEvent waveEvent){
         new RaidCreeper(raid, new BlockVector(0, -55, 0));
     }
 

@@ -8,18 +8,18 @@ import org.bukkit.entity.Skeleton;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidSkeleton extends RaidMob {
+public class LegacyRaidSkeleton extends LegacyRaidMob {
 
-    public RaidSkeleton(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidSkeleton(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.SKELETON);
     }
 
-    public RaidSkeleton(Player target) {
+    public LegacyRaidSkeleton(Player target) {
         super(target, EntityType.SKELETON);
     }
 
     @SuppressWarnings("unused")
-    public RaidSkeleton(Player target, Location spawnLocation) {
+    public LegacyRaidSkeleton(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.SKELETON);
     }
 

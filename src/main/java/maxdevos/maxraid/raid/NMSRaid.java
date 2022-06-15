@@ -7,6 +7,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.entity.raid.Raider;
@@ -24,7 +25,7 @@ import java.util.UUID;
 
 public class NMSRaid extends Raid implements Listener {
 
-    public ArrayList<Mob> raidMobs = new ArrayList<>();
+    public ArrayList<LivingEntity> raidMobs = new ArrayList<>();
     ServerBossEvent bossEvent; // called raidEvent in NMS
     public ServerLevel serverLevel;
     public World bukkitWorld;
@@ -62,9 +63,9 @@ public class NMSRaid extends Raid implements Listener {
         recalculateMaxHealth();
     }
 
-    public void addMob(CraftMonster raidMonster){
-        serverLevel.addFreshEntity(raidMonster.getHandle(), CreatureSpawnEvent.SpawnReason.RAID);
-        this.raidMobs.add(raidMonster.getHandle());
+    public void addMob(LivingEntity raidMonster){
+        serverLevel.addFreshEntity(raidMonster, CreatureSpawnEvent.SpawnReason.RAID);
+        this.raidMobs.add(raidMonster);
         this.maxHealth += raidMonster.getMaxHealth();
         recalculateMaxHealth();
     }
@@ -78,7 +79,7 @@ public class NMSRaid extends Raid implements Listener {
     @Override
     public float getHealthOfLivingRaiders() {
         float currentHealth = 0.0F;
-        for(Mob mob:raidMobs){
+        for(LivingEntity mob:raidMobs){
             currentHealth += mob.getHealth();
         }
         return currentHealth;
@@ -86,7 +87,7 @@ public class NMSRaid extends Raid implements Listener {
 
     public void recalculateMaxHealth(){
         maxHealth = 0.0F;
-        for(Mob mob:raidMobs){
+        for(LivingEntity mob:raidMobs){
             maxHealth += mob.getMaxHealth();
         }
     }
@@ -106,7 +107,7 @@ public class NMSRaid extends Raid implements Listener {
     }
 
     public boolean isUUIDRaider(UUID mobUUID){
-        for(Mob m:raidMobs){
+        for(LivingEntity m:raidMobs){
             if(m.getUUID().equals(mobUUID)){
                 return true;
             }

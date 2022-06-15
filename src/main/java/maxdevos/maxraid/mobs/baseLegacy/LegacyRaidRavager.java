@@ -8,22 +8,22 @@ import org.bukkit.entity.Ravager;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
 
 @SuppressWarnings({"deprecation", "unused"})
-public class RaidRavager extends RaidMob {
+public class LegacyRaidRavager extends LegacyRaidMob {
 
-    public RaidRavager(Player target, RaidSpawnWaveEvent w) {
+    public LegacyRaidRavager(Player target, RaidSpawnWaveEvent w) {
         super(target, w, EntityType.RAVAGER);
     }
 
-    public RaidRavager(Player target) {
+    public LegacyRaidRavager(Player target) {
         super(target, EntityType.RAVAGER);
     }
 
     @SuppressWarnings("unused")
-    public RaidRavager(Player target, Location spawnLocation) {
+    public LegacyRaidRavager(Player target, Location spawnLocation) {
         super(target, spawnLocation, EntityType.RAVAGER);
     }
 
-    public RaidRavager(Location spawnLocation){
+    public LegacyRaidRavager(Location spawnLocation){
         super(spawnLocation, EntityType.RAVAGER);
     }
 

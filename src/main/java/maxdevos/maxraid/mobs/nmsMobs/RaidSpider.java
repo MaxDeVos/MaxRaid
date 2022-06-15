@@ -3,27 +3,27 @@ package maxdevos.maxraid.mobs.nmsMobs;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Spider;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreeper;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftSpider;
 import org.bukkit.util.BlockVector;
 
-public class RaidCreeper extends CraftCreeper {
+public class RaidSpider extends CraftSpider {
 
     static MaxRaid raid;
-    public RaidCreeper(MaxRaid raid, BlockVector loc) {
-        super(raid.getHandle().getLevel().getCraftServer(), new NMSCreeper(raid));
-        RaidCreeper.raid = raid;
-        setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
+    public RaidSpider(MaxRaid raid, BlockVector loc) {
+        super(raid.getHandle().getLevel().getCraftServer(), new NMSSpider(raid));
+        RaidSpider.raid = raid;
+        setCustomName(ChatColor.DARK_RED + "RAID Spider");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         this.getHandle().goalSelector.removeAllGoals();
         this.getHandle().getLevel().addFreshEntity(this.getHandle());
         raid.getHandle().addMob(this.getHandle());
     }
 
-    private static class NMSCreeper extends Creeper {
-        public NMSCreeper(MaxRaid raid) {
-            super(EntityType.CREEPER, raid.getHandle().serverLevel);
+    private static class NMSSpider extends Spider {
+        public NMSSpider(MaxRaid raid) {
+            super(EntityType.SPIDER, raid.getHandle().serverLevel);
         }
 
         @Override

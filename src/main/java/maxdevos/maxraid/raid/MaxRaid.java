@@ -4,7 +4,6 @@ import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.RaidScoreboard;
 import maxdevos.maxraid.events.MobEventHandler;
 import maxdevos.maxraid.events.RaidProgressionEventHandler;
-import maxdevos.maxraid.mobs.baseLegacy.*;
 import maxdevos.maxraid.player.RaidPlayer;
 import maxdevos.maxraid.events.event.KillWaveEvent;
 import maxdevos.maxraid.events.event.RaidMobKilledEvent;
@@ -12,12 +11,10 @@ import maxdevos.maxraid.events.event.StopRaidEvent;
 import maxdevos.maxraid.util.ChatFunctions;
 import maxdevos.maxraid.util.PlayerUtils;
 import org.bukkit.*;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
@@ -60,6 +57,10 @@ public class MaxRaid implements Listener {
         return nmsRaid;
     }
 
+
+//    public void addMob(RaidMob<? extends CraftMonster> mob){
+//        this.nmsRaid.addMob(mob);
+//    }
 
     @EventHandler
     private void newWave(RaidSpawnWaveEvent e) {
