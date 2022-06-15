@@ -9,10 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class RaidPlayer implements Comparable<RaidPlayer> {
 
@@ -28,6 +25,14 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
             checkDuplicatePlayers(u, players);
         }
 
+    }
+
+    public static List<Player> getPlayerListFromUUIDs(Set<UUID> set){
+        ArrayList<Player> out = new ArrayList<>();
+        for(UUID uuid:set){
+            out.add(RaidPlugin.getInstance().getServer().getPlayer(uuid));
+        }
+        return out;
     }
 
     public static boolean isPlayerPresent(UUID p, ArrayList<RaidPlayer> players){

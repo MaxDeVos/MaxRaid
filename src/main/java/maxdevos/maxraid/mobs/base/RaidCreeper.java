@@ -1,34 +1,28 @@
 package maxdevos.maxraid.mobs.base;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.raid.RaidSpawnWaveEvent;
+import maxdevos.maxraid.raid.NMSRaid;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.Level;
 
-@SuppressWarnings({"deprecation", "unused"})
-public class RaidCreeper extends RaidMob {
+public class RaidCreeper extends Creeper {
+    NMSRaid raid;
 
-    public RaidCreeper(Player target, RaidSpawnWaveEvent w) {
-        super(target, w, EntityType.CREEPER);
+    public RaidCreeper(EntityType<? extends Creeper> entitytypes, Level world) {
+        super(entitytypes, world);
     }
 
-    public RaidCreeper(Player target) {
-        super(target, EntityType.CREEPER);
+
+    @Override
+    public void die(DamageSource damagesource) {
+        super.die(damagesource);
+        raid.raidMobs.remove(this);
+        raid.updateBossbar();
     }
 
-    @SuppressWarnings("unused")
-    public RaidCreeper(Player target, Location spawnLocation) {
-        super(target, spawnLocation, EntityType.CREEPER);
+    public boolean hurt(DamageSource damagesource, float f) {
+        raid.updateBossbar();
+        return super.hurt(damagesource, f);
     }
-
-    public void setParams(LivingEntity e){
-        Creeper c = (Creeper)e;
-        c.setCustomName("§4Raid Creeper");
-        c.setTarget(target);
-        c.setMaxHealth(20);
-        c.setHealth(20);
-    }
-
 }

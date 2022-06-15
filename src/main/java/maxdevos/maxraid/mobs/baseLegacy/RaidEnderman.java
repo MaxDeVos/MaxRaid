@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.baseLegacy;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Enderman;

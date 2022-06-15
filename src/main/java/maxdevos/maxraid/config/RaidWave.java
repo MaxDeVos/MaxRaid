@@ -1,6 +1,6 @@
 package maxdevos.maxraid.config;
 
-import maxdevos.maxraid.mobs.base.*;
+import maxdevos.maxraid.mobs.baseLegacy.*;
 import maxdevos.maxraid.player.RaidPlayer;
 import maxdevos.maxraid.util.PlayerUtils;
 import org.bukkit.ChatColor;

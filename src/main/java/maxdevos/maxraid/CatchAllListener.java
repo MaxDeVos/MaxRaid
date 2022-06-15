@@ -76,6 +76,6 @@ final class CatchAllListener implements Listener {
 
     @EventHandler
     private void raidTime(RaidTriggerEvent e){
-        new ConfigBasedRaid(e.getRaid());
+//        new ConfigBasedRaid(e.getRaid());
     }
 }

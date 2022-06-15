@@ -2,7 +2,7 @@ package maxdevos.maxraid.config;
 
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.RaidScoreboard;
-import maxdevos.maxraid.mobs.base.*;
+import maxdevos.maxraid.mobs.baseLegacy.*;
 import maxdevos.maxraid.player.RaidPlayer;
 import maxdevos.maxraid.events.KillWaveEvent;
 import maxdevos.maxraid.events.RaidMobKilledEvent;
@@ -52,26 +52,26 @@ public class ConfigBasedRaid implements Listener {
 
     }
 
-    @EventHandler
-    private void newWave(RaidSpawnWaveEvent e) {
-        wave++;
-        locationBuffer.clear();
-        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
-        RaidPlayer.addNewPlayers(raid.getHeroes(), players);
-
-        for (RaidPlayer p : players) {
-            p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "You have " + p.getKills() + " kills.");
-        }
-
-        if (wave != 1 && wave < 8) {
-            currentWave = raidConfig.getWave(wave);
-            currentWave.configWave(players, e);
-            currentWave.spawnWave();
-            currentWave.spawnAirdrops();
-        }
-
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, this::purgeUnnamed, 30L);
-    }
+//    @EventHandler
+//    private void newWave(RaidSpawnWaveEvent e) {
+//        wave++;
+//        locationBuffer.clear();
+//        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Wave # " + wave + " has spawned!");
+//        RaidPlayer.addNewPlayers(raid.getHeroes(), players);
+//
+//        for (RaidPlayer p : players) {
+//            p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "You have " + p.getKills() + " kills.");
+//        }
+//
+//        if (wave != 1 && wave < 8) {
+//            currentWave = raidConfig.getWave(wave);
+//            currentWave.configWave(players, e);
+//            currentWave.spawnWave();
+//            currentWave.spawnAirdrops();
+//        }
+//
+//        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, this::purgeUnnamed, 30L);
+//    }
 
     private void purgeUnnamed() {
         for(Entity e:w.getEntities()){

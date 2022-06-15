@@ -1,6 +1,6 @@
 name: MaxRaid
 version: 0.2
-main: maxdevos.maxraid.MaxRaid
+main: maxdevos.maxraid.RaidPlugin
 api-version: 1.18
 prefix: MaxRaid
 authors: [ DeVos, Max ]
