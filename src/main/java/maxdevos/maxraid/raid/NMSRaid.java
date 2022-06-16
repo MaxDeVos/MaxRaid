@@ -40,6 +40,17 @@ public class NMSRaid extends Raid implements Listener {
         this.bukkitWorld = world.getWorld();
         RaidPlugin.getInstance().getServer().getPluginManager().registerEvents(this, RaidPlugin.getInstance());
         generateNewRaidEvent();
+        devCooldownTicks();
+    }
+
+    private void devCooldownTicks(){
+        try {
+            // Set this.raidCooldownTicks to 5 to start raid immediately
+            Field cooldownTicksInt = this.getClass().getSuperclass().getDeclaredField("O");
+            cooldownTicksInt.setAccessible(true);
+            cooldownTicksInt.set(this, 5);
+
+        } catch (Exception e) { throw new RuntimeException(e); }
     }
 
     /** Inject new raidEvent to control raid bar */

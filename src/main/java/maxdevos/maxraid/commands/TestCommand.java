@@ -26,7 +26,14 @@ public class TestCommand implements CommandExecutor {
         CraftWorld w = ((CraftWorld)p.getWorld());
         ServerLevel sLevel = w.getHandle();
 
-        NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
+        if(args.length == 0){
+            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
+//            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
+        }
+        else{
+//            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
+        }
+
 
         return true;
     }

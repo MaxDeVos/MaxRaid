@@ -1,11 +1,8 @@
 package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.base.RaidCreeper;
 import maxdevos.maxraid.mobs.base.RaidSpider;
-import maxdevos.maxraid.mobs.experimental.NMSSpider;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.server.level.ServerLevel;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;

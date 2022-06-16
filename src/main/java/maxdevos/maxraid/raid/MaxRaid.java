@@ -11,6 +11,7 @@ import maxdevos.maxraid.events.event.StopRaidEvent;
 import maxdevos.maxraid.util.ChatFunctions;
 import maxdevos.maxraid.util.PlayerUtils;
 import org.bukkit.*;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -30,8 +31,8 @@ public class MaxRaid implements Listener {
     private final World world;
     private int wave = 0;
     private final ArrayList<RaidPlayer> players = new ArrayList<>();
-    private final RaidProgressionEventHandler progressionEventHandler;
-    private final MobEventHandler mobEventHandler;
+    private RaidProgressionEventHandler progressionEventHandler;
+    private MobEventHandler mobEventHandler;
     private final RaidConfig raidConfig;
     private final RaidWave currentWave;
     private final RaidScoreboard scoreboard;
@@ -59,13 +60,8 @@ public class MaxRaid implements Listener {
     }
 
 
-//    public void addMob(RaidMob<? extends CraftMonster> mob){
-//        this.nmsRaid.addMob(mob);
-//    }
-
-    @EventHandler
-    private void newWave(RaidSpawnWaveEvent e) {
-
+    public void addMob(CraftMonster mob){
+        this.nmsRaid.addMob(mob.getHandle());
     }
 
     @EventHandler

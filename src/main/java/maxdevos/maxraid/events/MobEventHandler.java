@@ -21,28 +21,6 @@ public class MobEventHandler implements Listener {
     }
 
     @EventHandler
-    private void friendlyFire(EntityTargetEvent e) {
-        if (!(e instanceof Player) && !(e.getTarget() instanceof Player)) {
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    private void friendlyFire(EntityDamageByEntityEvent e) {
-        if(!(e instanceof Player)){
-            if(e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)){
-                Projectile shot = (Projectile) e.getDamager();
-                if(!(shot.getShooter() instanceof Player)){
-                    e.setCancelled(true);
-                }
-            }
-            else if (!(e.getDamager() instanceof Player)) {
-                e.setCancelled(true);
-            }
-        }
-    }
-
-    @EventHandler
     private void antiExplosion(EntityDamageEvent e){
         if(!(e.getEntity() instanceof Player)) {
             if(e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)){
