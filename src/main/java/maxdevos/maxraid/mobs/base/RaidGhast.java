@@ -36,20 +36,13 @@ public class RaidGhast extends CraftGhast {
 
         @Override
         protected void registerGoals(){
-            goalSelector.removeAllGoals();
-            targetSelector.removeAllGoals();
+//            goalSelector.removeAllGoals();
+//            targetSelector.removeAllGoals();
         }
 
+        /** Randomly floats around and targets Villagers and Players. Much potential. */
         protected void registerRaidGoals() {
-            //TODO make this mob-specific
-            goalSelector.addGoal(1, new FloatGoal(this));
-//            goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
-//            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-//            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
-
-//            targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
-            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
+            targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }
     }
 

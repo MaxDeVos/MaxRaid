@@ -48,11 +48,11 @@ public class RaidBlaze extends CraftBlaze {
         }
 
         protected void registerRaidGoals() {
-            //TODO make this mob-specific
-            goalSelector.addGoal(1, new FloatGoal(this));
-            goalSelector.addGoal(2, new MaxRaidBlazeAttackGoal(this));
-            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
+
+            //TODO this shit doesn't work
+            goalSelector.addGoal(1, new MaxRaidBlazeAttackGoal(this));
+            goalSelector.addGoal(2, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 2.0));
+            goalSelector.addGoal(3, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
