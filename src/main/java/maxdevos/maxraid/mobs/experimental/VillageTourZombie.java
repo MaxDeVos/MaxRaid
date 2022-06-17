@@ -1,6 +1,6 @@
 package maxdevos.maxraid.mobs.experimental;
 
-import maxdevos.maxraid.mobs.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -44,7 +44,7 @@ public class VillageTourZombie extends CraftZombie {
             goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
             goalSelector.addGoal(3, new MoveThroughVillageGoal(this, 2.0, false, 4, this::canBreakDoors));
 
-            targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]));
+            targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
             targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }

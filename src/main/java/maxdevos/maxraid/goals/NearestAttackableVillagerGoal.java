@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.goals;
+package maxdevos.maxraid.goals;
 
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;

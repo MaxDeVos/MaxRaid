@@ -1,16 +1,12 @@
 package maxdevos.maxraid.mobs.base;
 
-import maxdevos.maxraid.mobs.goals.LookAtPointGoal;
-import maxdevos.maxraid.mobs.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.mobs.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.LookAtPointGoal;
+import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;

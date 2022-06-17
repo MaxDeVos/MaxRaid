@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.goals;
+package maxdevos.maxraid.goals;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
