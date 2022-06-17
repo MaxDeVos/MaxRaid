@@ -1,9 +1,19 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.mobs.goals.LookAtPointGoal;
+import maxdevos.maxraid.mobs.goals.MoveTowardsPointGoal;
+import maxdevos.maxraid.mobs.goals.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftCreeper;
 import org.bukkit.util.BlockVector;
@@ -20,8 +30,31 @@ public class RaidCreeper extends CraftCreeper {
     }
 
     private static class NMSCreeper extends Creeper {
+        MaxRaid raid;
         public NMSCreeper(MaxRaid raid) {
             super(EntityType.CREEPER, raid.getHandle().serverLevel);
+            this.raid = raid;
+            registerRaidGoals();
+        }
+
+        @Override
+        protected void registerGoals(){
+            goalSelector.removeAllGoals();
+            targetSelector.removeAllGoals();
+        }
+
+        protected void registerRaidGoals() {
+
+            goalSelector.addGoal(1, new FloatGoal(this));
+            goalSelector.addGoal(2, new SwellGoal(this));
+            goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, false));
+            goalSelector.addGoal(4, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
+            goalSelector.addGoal(5, new LookAtPointGoal(this, raid.getVillageCenter()));
+
+            targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true));
+            targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, AbstractVillager.class, true));
+            targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+
         }
     }
 
