@@ -4,17 +4,17 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.Spider;
 
-public class SpiderAttackGoal extends MeleeAttackGoal {
-    public SpiderAttackGoal(Spider entityspider) {
-        super(entityspider, 3.0, true);
+public class SpiderSpeedAttackGoal extends MeleeAttackGoal {
+    public SpiderSpeedAttackGoal(Spider entityspider, double speed) {
+        super(entityspider, speed, true);
     }
 
     public boolean canUse() {
-        return true;
+        return super.canUse();
     }
 
     public boolean canContinueToUse() {
-        return true;
+        return super.canContinueToUse();
     }
 
     protected double getAttackReachSqr(LivingEntity entityliving) {

@@ -10,6 +10,7 @@ import maxdevos.maxraid.events.event.RaidMobKilledEvent;
 import maxdevos.maxraid.events.event.StopRaidEvent;
 import maxdevos.maxraid.util.ChatFunctions;
 import maxdevos.maxraid.util.PlayerUtils;
+import net.minecraft.core.BlockPos;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
@@ -20,6 +21,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.raid.RaidFinishEvent;
 import org.bukkit.event.raid.RaidSpawnWaveEvent;
+import org.bukkit.util.BlockVector;
 
 import java.util.ArrayList;
 
@@ -62,6 +64,11 @@ public class MaxRaid implements Listener {
 
     public void addMob(CraftMonster mob){
         this.nmsRaid.addMob(mob.getHandle());
+    }
+
+    public BlockVector getVillageCenter(){
+        BlockPos center = nmsRaid.getCenter();
+        return new BlockVector(center.getX(), center.getY(), center.getZ());
     }
 
     @EventHandler
