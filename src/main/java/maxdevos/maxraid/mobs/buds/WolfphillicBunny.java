@@ -11,9 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
-public class WolfphillicRabbit extends Rabbit {
+public class WolfphillicBunny extends Rabbit {
 
-    public WolfphillicRabbit(Level world) {
+    public WolfphillicBunny(Level world) {
         super(EntityType.RABBIT, world);
         this.setPos(new Vec3(0, -59, 0));
         this.targetSelector.removeAllGoals();
