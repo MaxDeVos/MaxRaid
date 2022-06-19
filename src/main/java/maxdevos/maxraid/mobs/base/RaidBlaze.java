@@ -3,19 +3,13 @@ package maxdevos.maxraid.mobs.base;
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MaxRaidBlazeAttackGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.SwellGoal;
-import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +24,7 @@ public class RaidBlaze extends CraftBlaze {
         RaidBlaze.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Blaze");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     public static class NMSBlaze extends Blaze {

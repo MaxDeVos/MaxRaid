@@ -22,7 +22,7 @@ public class RaidCreeper extends CraftCreeper {
         RaidCreeper.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSCreeper extends Creeper {
@@ -49,7 +49,7 @@ public class RaidCreeper extends CraftCreeper {
 
             targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true));
             targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, AbstractVillager.class, true));
-            targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+            targetSelector.addGoal(3, new HurtByTargetGoal(this));
 
         }
     }

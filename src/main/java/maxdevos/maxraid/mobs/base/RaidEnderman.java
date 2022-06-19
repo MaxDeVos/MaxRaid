@@ -2,9 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -24,7 +22,7 @@ public class RaidEnderman extends CraftEnderman {
         RaidEnderman.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Enderman");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSEnderman extends EnderMan {

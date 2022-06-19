@@ -2,7 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.goals.SpiderSpeedAttackGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;

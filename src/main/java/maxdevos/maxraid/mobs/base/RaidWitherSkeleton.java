@@ -2,10 +2,11 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
@@ -22,7 +23,7 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton {
         RaidWitherSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID WitherSkeleton");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSWitherSkeleton extends WitherSkeleton {
@@ -42,7 +43,7 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton {
         protected void registerRaidGoals() {
             //TODO make this mob-specific
             goalSelector.addGoal(1, new FloatGoal(this));
-//            goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
+            goalSelector.addGoal(2, new MeleeAttackGoal(this, 2.0, true));
             goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
             goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
 

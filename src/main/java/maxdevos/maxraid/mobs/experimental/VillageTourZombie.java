@@ -1,6 +1,6 @@
 package maxdevos.maxraid.mobs.experimental;
 
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -22,7 +22,7 @@ public class VillageTourZombie extends CraftZombie {
         VillageTourZombie.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Village Touring Zombie");
         getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSZombie extends Zombie {

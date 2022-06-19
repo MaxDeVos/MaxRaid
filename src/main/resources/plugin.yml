@@ -6,19 +6,9 @@ prefix: MaxRaid
 authors: [ DeVos, Max ]
 description: MaxRaid
 commands:
-  maxhelp:
-    description: sends a thing to my phone telling
-    usage: /maxhelp <description of the problem>
   test:
     description: test
     usage: /test
-  nickname:
-    description: set your nickname as your name
-    usage: /nickname <your name>
-  maxv:
-    description: maxv, it's in the name
-    usage: /maxv
-    permission: maxcraft.max
   endraid:
     description: kills all mobs related to raid
     usage: /endraid

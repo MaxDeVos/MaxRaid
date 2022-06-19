@@ -2,7 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
@@ -22,7 +22,7 @@ public class RaidZombie extends CraftZombie {
         RaidZombie.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Zombie");
         getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSZombie extends Zombie {

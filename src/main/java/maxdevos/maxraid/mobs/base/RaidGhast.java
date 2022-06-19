@@ -1,16 +1,10 @@
 package maxdevos.maxraid.mobs.base;
 
-import maxdevos.maxraid.goals.LookAtPointGoal;
-import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftGhast;
 import org.bukkit.util.BlockVector;
@@ -40,7 +34,7 @@ public class RaidGhast extends CraftGhast {
 //            targetSelector.removeAllGoals();
         }
 
-        /** Randomly floats around and targets Villagers and Players. Much potential. */
+        /** Randomly floats around and targets Villagers and Players. Much potential, currently sucks. */
         protected void registerRaidGoals() {
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }
