@@ -4,6 +4,9 @@ import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.FullAutoRangedBowAttackGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.items.Equipper;
+import maxdevos.maxraid.items.RaidItemType;
+import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -27,10 +30,7 @@ public class FullAutoSkeleton extends CraftSkeleton {
         setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        ItemStack weapon = new ItemStack(Material.BOW, 1);
-        weapon.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
-        weapon.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-        this.getEquipment().setItemInMainHand(weapon);
+        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.DIAMOND));
 
         maxRaid.addMob(this);
     }

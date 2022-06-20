@@ -17,5 +17,4 @@ public class RaidBoots extends ItemStack {
             case NETHERITE -> setType(Material.NETHERITE_BOOTS);
         }
     }
-
 }

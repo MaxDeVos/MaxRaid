@@ -33,7 +33,6 @@ public class BaseArrow extends CraftArrow {
     public void shootWhereLooking(float velocity, float spread){
         Vec3 eyePos = archer.getHandle().getEyePosition();
         Vec3 lookAng = archer.getHandle().getLookAngle();
-        Vector archerVelocity = archer.getVelocity();
 
         getHandle().projectileSource = (ProjectileSource) archer;
         getHandle().moveTo(eyePos.x, eyePos.y, eyePos.z,
