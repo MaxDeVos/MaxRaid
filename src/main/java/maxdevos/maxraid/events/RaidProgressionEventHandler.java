@@ -2,7 +2,6 @@ package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.mobs.base.*;
-import maxdevos.maxraid.mobs.experimental.BomberPhantom;
 import maxdevos.maxraid.mobs.experimental.FullAutoSkeleton;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
@@ -25,8 +24,8 @@ public class RaidProgressionEventHandler implements Listener {
 
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
-//        new BomberPhantom(raid, new BlockVector(25, 50, 25));
-        new RaidZombie(raid, new BlockVector(25, 3, 25));
+        new RaidPhantom(raid, new BlockVector(9, 5, 9));
+//        new RaidZombie(raid, new BlockVector(25, 3, 25));
 //        new RaidSpider(raid, new BlockVector(25, -55, 25));
 //        new RaidMagmaCube(raid, new BlockVector(6,-55,6));
 //        new RaidSkeleton(raid, new BlockVector(-25, -55, -25));
