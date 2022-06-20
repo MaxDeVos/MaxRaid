@@ -46,7 +46,6 @@ public class RaidBlaze extends CraftBlaze {
             //TODO this shit doesn't work
             goalSelector.addGoal(1, new MaxRaidBlazeAttackGoal(this));
             goalSelector.addGoal(2, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 2.0));
-            goalSelector.addGoal(3, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));

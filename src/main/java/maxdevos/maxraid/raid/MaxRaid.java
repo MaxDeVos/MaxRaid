@@ -68,7 +68,7 @@ public class MaxRaid implements Listener {
 
     public BlockVector getVillageCenter(){
         BlockPos center = nmsRaid.getCenter();
-        return new BlockVector(center.getX(), center.getY(), center.getZ());
+        return new BlockVector(center.getX(), 15, center.getZ());
     }
 
     @EventHandler

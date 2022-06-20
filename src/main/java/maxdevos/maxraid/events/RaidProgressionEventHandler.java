@@ -26,7 +26,7 @@ public class RaidProgressionEventHandler implements Listener {
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
 //        new BomberPhantom(raid, new BlockVector(25, 50, 25));
-        new FullAutoSkeleton(raid, new BlockVector(25, 3, 25));
+        new RaidZombie(raid, new BlockVector(25, 3, 25));
 //        new RaidSpider(raid, new BlockVector(25, -55, 25));
 //        new RaidMagmaCube(raid, new BlockVector(6,-55,6));
 //        new RaidSkeleton(raid, new BlockVector(-25, -55, -25));

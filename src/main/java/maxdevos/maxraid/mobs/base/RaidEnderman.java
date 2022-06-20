@@ -46,7 +46,6 @@ public class RaidEnderman extends CraftEnderman {
             goalSelector.addGoal(1, new FloatGoal(this));
             goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, false));
             goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));

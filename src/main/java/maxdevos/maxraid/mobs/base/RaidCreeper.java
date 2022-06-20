@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -45,7 +46,6 @@ public class RaidCreeper extends CraftCreeper {
             goalSelector.addGoal(2, new SwellGoal(this));
             goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, false));
             goalSelector.addGoal(4, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(5, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true));
             targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, AbstractVillager.class, true));

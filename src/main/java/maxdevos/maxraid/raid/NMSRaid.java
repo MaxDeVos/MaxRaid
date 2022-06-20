@@ -7,6 +7,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.raid.Raid;
@@ -65,8 +66,8 @@ public class NMSRaid extends Raid implements Listener {
 
     @Override
     public void joinRaid(int i, Raider entityraider, @Nullable BlockPos blockposition, boolean flag) {
-        super.joinRaid(i, entityraider, blockposition, flag);
-        addMob(entityraider);
+        // Discard vanilla raiders
+        entityraider.remove(Entity.RemovalReason.DISCARDED);
     }
 
     public void addMob(Raider raidMonster){

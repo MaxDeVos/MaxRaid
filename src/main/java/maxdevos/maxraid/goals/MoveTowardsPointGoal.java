@@ -1,10 +1,13 @@
 package maxdevos.maxraid.goals;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.util.BlockVector;
 
@@ -13,9 +16,6 @@ import java.util.EnumSet;
 public class MoveTowardsPointGoal extends Goal {
     private final PathfinderMob mob;
     private final Vec3 goalPos;
-    private double wantedX;
-    private double wantedY;
-    private double wantedZ;
     private final double speedModifier;
 
 
@@ -31,9 +31,6 @@ public class MoveTowardsPointGoal extends Goal {
         if (var0 == null) {
             return false;
         } else {
-            this.wantedX = var0.x;
-            this.wantedY = var0.y;
-            this.wantedZ = var0.z;
             return true;
         }
     }
@@ -43,7 +40,8 @@ public class MoveTowardsPointGoal extends Goal {
     }
 
     public void start() {
-        this.mob.getNavigation().moveTo(this.wantedX, this.wantedY, this.wantedZ, this.speedModifier);
+        Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
+        mob.getNavigation().moveTo(p, this.speedModifier);
     }
 
 }

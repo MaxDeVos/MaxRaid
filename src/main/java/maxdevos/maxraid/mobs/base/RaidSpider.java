@@ -48,7 +48,6 @@ public class RaidSpider extends CraftSpider {
             goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.4F));
             goalSelector.addGoal(3, new SpiderSpeedAttackGoal(this, 2.0));
             goalSelector.addGoal(4, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(5, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class));
