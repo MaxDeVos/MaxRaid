@@ -1,8 +1,9 @@
 package maxdevos.maxraid.commands;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.raid.NMSRaid;
-import maxdevos.maxraid.raid.RaidFactory;
+import maxdevos.maxraid.items.weapons.projecticles.BaseArrow;
+import maxdevos.maxraid.items.weapons.projecticles.SniperArrow;
+import maxdevos.maxraid.items.weapons.projecticles.TrampolineArrow;
 import net.minecraft.server.level.ServerLevel;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,8 +28,13 @@ public class TestCommand implements CommandExecutor {
         ServerLevel sLevel = w.getHandle();
 
         if(args.length == 0){
-            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
+//            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
 //            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
+        }
+        else if (args.length == 2){
+//            new BaseArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
+//            new SniperArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
+            new TrampolineArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
         }
         else{
 //            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
