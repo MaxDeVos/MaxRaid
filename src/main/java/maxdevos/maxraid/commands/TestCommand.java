@@ -34,7 +34,7 @@ public class TestCommand implements CommandExecutor {
         else if (args.length == 2){
 //            new BaseArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
 //            new SniperArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
-            new TrampolineArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
+            new TrampolineArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity()).shootWhereLooking(1f, 0.0001f);
         }
         else{
 //            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));

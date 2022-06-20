@@ -21,13 +21,16 @@ public class BaseArrow extends CraftArrow {
         super(archer.getHandle().getLevel().getCraftServer(), customEntity);
         this.archer = archer;
         configureArrow();
-        shootWhereLooking();
     }
 
     /** Override this to modify arrow */
     public void configureArrow(){}
 
     public void shootWhereLooking(){
+        shootWhereLooking(this.velocity, this.spread);
+    }
+
+    public void shootWhereLooking(float velocity, float spread){
         Vec3 eyePos = archer.getHandle().getEyePosition();
         Vec3 lookAng = archer.getHandle().getLookAngle();
 

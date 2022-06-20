@@ -18,11 +18,7 @@ public class TrampolineArrow extends BaseArrow {
         @Override
         protected void doPostHurtEffects(LivingEntity entityliving) {
             super.doPostHurtEffects(entityliving);
-            entityliving.setDeltaMovement(new Vec3(0, 1, 0));
-            entityliving.getBukkitEntity().getServer().broadcastMessage("YO THIS SHIT WORKS");
+            entityliving.setDeltaMovement(new Vec3(0, 5, 0));
         }
-
-
     }
-
 }
