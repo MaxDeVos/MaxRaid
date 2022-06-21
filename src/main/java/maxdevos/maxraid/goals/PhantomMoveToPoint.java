@@ -18,6 +18,6 @@ public class PhantomMoveToPoint extends Goal {
 
     @Override
     public void start(){
-        mob.getMoveControl().setWantedPosition(100, 25, 100, 1);
+        mob.getMoveControl().setWantedPosition(mob.getMoveControl().getWantedX(), mob.getMoveControl().getWantedY(), mob.getMoveControl().getWantedZ(), 1);
     }
 }

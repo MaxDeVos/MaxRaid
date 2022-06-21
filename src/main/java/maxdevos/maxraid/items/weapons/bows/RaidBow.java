@@ -8,10 +8,9 @@ public class RaidBow extends ItemStack {
 
     protected ItemMeta meta;
     public RaidBow(){
-        meta = getItemMeta();
         setAmount(1);
         setType(Material.BOW);
+        meta = getItemMeta();
         meta.setDisplayName("Raid Bow");
     }
-
 }

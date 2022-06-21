@@ -1,31 +1,22 @@
 package maxdevos.maxraid.mobs.base;
 
-import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.PhantomMoveToPoint;
 import maxdevos.maxraid.raid.MaxRaid;
-import maxdevos.maxraid.util.MaxReflectionUtils;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Phantom;
-import net.minecraft.world.entity.npc.AbstractVillager;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPhantom;
 import org.bukkit.util.BlockVector;
 
-import java.lang.reflect.Field;
-
 public class RaidPhantom extends CraftPhantom {
 
     static MaxRaid maxRaid;
     public RaidPhantom(MaxRaid maxRaid, BlockVector loc) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPhantom(maxRaid, Vec3.ZERO));
+        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPhantom(maxRaid));
         RaidPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
@@ -34,7 +25,7 @@ public class RaidPhantom extends CraftPhantom {
 
     private static class NMSPhantom extends Phantom {
         MaxRaid raid;
-        public NMSPhantom(MaxRaid raid, Vec3 wantedPosition) {
+        public NMSPhantom(MaxRaid raid) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
             setPhantomSize(5);
             this.raid = raid;
@@ -51,7 +42,6 @@ public class RaidPhantom extends CraftPhantom {
         }
 
         protected void registerRaidGoals() {
-            //TODO hard
             goalSelector.addGoal(1, new PhantomMoveToPoint(this));
 //            goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
 //            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));

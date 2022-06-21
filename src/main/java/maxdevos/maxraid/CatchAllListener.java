@@ -52,15 +52,6 @@ final class CatchAllListener implements Listener {
     }
 
     @EventHandler
-    public void handleExtremeCreeper(EntityExplodeEvent e){
-        System.out.println("EVENT");
-        if(e.getEntityType().equals(EntityType.CREEPER)){
-            e.setYield(1f);
-            e.getEntity().getWorld().createExplosion(e.getLocation(), 10);
-        }
-    }
-
-    @EventHandler
     private void antiGolem(EntityTargetLivingEntityEvent e){
         if(e.getEntityType().equals(EntityType.IRON_GOLEM)) {
             try{

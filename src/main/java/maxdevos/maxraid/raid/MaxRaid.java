@@ -31,6 +31,7 @@ public class MaxRaid implements Listener {
     private final NMSRaid nmsRaid;
     private final Raid bukkitRaid;
     private final World world;
+    public final RaidBase raidBase;
     private int wave = 0;
     private final ArrayList<RaidPlayer> players = new ArrayList<>();
     private RaidProgressionEventHandler progressionEventHandler;
@@ -41,8 +42,9 @@ public class MaxRaid implements Listener {
 
     public MaxRaid(NMSRaid nmsRaid, Raid bukkitRaid){
         this.nmsRaid = nmsRaid;
-        this.world = nmsRaid.bukkitWorld;
         this.bukkitRaid = bukkitRaid;
+        world = nmsRaid.bukkitWorld;
+        raidBase = new RaidBase(new BlockVector(-518, 105, 557), new BlockVector(-433, 80, 611));
 
         scoreboard = new RaidScoreboard();
         raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
@@ -67,8 +69,7 @@ public class MaxRaid implements Listener {
     }
 
     public BlockVector getVillageCenter(){
-        BlockPos center = nmsRaid.getCenter();
-        return new BlockVector(center.getX(), 15, center.getZ());
+        return raidBase.center;
     }
 
     @EventHandler
