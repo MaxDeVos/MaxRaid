@@ -25,10 +25,10 @@ public class RaidProgressionEventHandler implements Listener {
 
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
-        BlockVector spawnPoint = new BlockVector(raid.raidBase.zeroCorner.getX() - 60, 120, 593);
-        BlockVector goalPoint = new BlockVector(raid.raidBase.zeroCorner.getX() + raid.raidBase.dimensions.getX() + 60, 120, 593);
-        new ParatrooperDroppingPhantom(raid, spawnPoint, goalPoint);
-//        new SniperSkeleton(raid, new BlockVector(-520, 110, 675));
+//        BlockVector spawnPoint = new BlockVector(raid.raidBase.zeroCorner.getX() - 60, 120, 593);
+//        BlockVector goalPoint = new BlockVector(raid.raidBase.zeroCorner.getX() + raid.raidBase.dimensions.getX() + 60, 120, 593);
+//        new ParatrooperDroppingPhantom(raid, spawnPoint, goalPoint);
+        new SniperSkeleton(raid, new BlockVector(-470, 100, 590));
 //        new RaidCreeper(raid, new BlockVector(-440, 80, 542));
 //        new BomberFleet(raid, 5.0);
 //        new WallSeekingCreeper(raid, new BlockVector(-440, 80, 542));

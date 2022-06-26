@@ -4,9 +4,13 @@ import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.items.weapons.projecticles.BaseArrow;
 import maxdevos.maxraid.items.weapons.projecticles.SniperArrow;
 import maxdevos.maxraid.items.weapons.projecticles.TrampolineArrow;
+import maxdevos.maxraid.mobs.experimental.SniperSkeleton;
 import maxdevos.maxraid.raid.NMSRaid;
 import maxdevos.maxraid.raid.RaidFactory;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import org.bukkit.Color;
+import org.bukkit.Particle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,8 +34,9 @@ public class TestCommand implements CommandExecutor {
         ServerLevel sLevel = w.getHandle();
 
         if(args.length == 0){
+
             NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
-//            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
+//            new SniperSkeleton(raid, ((Player) sender).getEyeLocation().blo);
         }
         else if (args.length == 2){
 //            new BaseArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());

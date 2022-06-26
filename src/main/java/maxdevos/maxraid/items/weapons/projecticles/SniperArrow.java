@@ -6,7 +6,7 @@ public class SniperArrow extends BaseArrow {
 
     public SniperArrow(CraftEntity archer) {
         super(archer);
-
+        shootTracer = true;
         velocity = 10f;
         spread = 0.001f;
         getHandle().setNoGravity(true);

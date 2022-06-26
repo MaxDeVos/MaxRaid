@@ -11,6 +11,8 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Particle;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
 import org.bukkit.util.BlockVector;
 
