@@ -14,7 +14,7 @@ import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftBlaze;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftBlaze;
 import org.bukkit.util.BlockVector;
 
 public class RaidBlaze extends CraftBlaze {

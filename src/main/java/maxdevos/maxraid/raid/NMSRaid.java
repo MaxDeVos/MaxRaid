@@ -3,7 +3,7 @@ package maxdevos.maxraid.raid;
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.util.MaxReflectionUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.BossEvent;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.entity.raid.Raider;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -56,7 +56,7 @@ public class NMSRaid extends Raid implements Listener {
 
     /** Inject new raidEvent to control raid bar */
     private void generateNewRaidEvent(){
-        bossEvent = new ServerBossEvent(new TranslatableComponent("event.minecraft.raid"),
+        bossEvent = new ServerBossEvent(Component.translatable("event.minecraft.raid"),
                 BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_20);
         try {
             Field raidEventField = MaxReflectionUtils.findByType(this.getClass().getSuperclass(), ServerBossEvent.class);

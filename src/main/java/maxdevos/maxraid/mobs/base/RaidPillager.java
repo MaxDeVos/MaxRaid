@@ -4,7 +4,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Pillager;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPillager;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPillager;
 import org.bukkit.util.BlockVector;
 
 public class RaidPillager extends CraftPillager {

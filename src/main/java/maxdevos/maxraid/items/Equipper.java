@@ -1,7 +1,7 @@
 package maxdevos.maxraid.items;
 
 import maxdevos.maxraid.items.armor.RaidArmor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.inventory.ItemStack;
 
 public class Equipper {

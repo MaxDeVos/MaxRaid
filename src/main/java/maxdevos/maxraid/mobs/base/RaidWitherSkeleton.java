@@ -12,7 +12,7 @@ import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftWitherSkeleton;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftWitherSkeleton;
 import org.bukkit.util.BlockVector;
 
 public class RaidWitherSkeleton extends CraftWitherSkeleton {

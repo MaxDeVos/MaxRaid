@@ -4,7 +4,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Evoker;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEvoker;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEvoker;
 import org.bukkit.util.BlockVector;
 
 public class RaidEvoker extends CraftEvoker {

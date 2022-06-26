@@ -21,8 +21,6 @@ public class BunnyphillicWolf extends Wolf {
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-        //TODO fix this shit
-//        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Player.class, 10, true, false, this::isAngryAt));
 
         Predicate<LivingEntity> PREY_SELECTOR = (entityliving) -> {
             EntityType<?> entitytypes = entityliving.getType();

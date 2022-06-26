@@ -11,7 +11,7 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.level.block.TntBlock;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.util.Vector;
 
@@ -38,7 +38,7 @@ public class PhantomDropBombs extends Goal {
 
     @Override
     public void tick() {
-        if(cooldown > 10){
+        if(cooldown > 6){
             cooldown = 0;
             mob.getLevel().addFreshEntity(new TNTBomb((CraftMob) mob.getBukkitEntity(), mob.getBukkitEntity().getLocation()).getHandle());
         }

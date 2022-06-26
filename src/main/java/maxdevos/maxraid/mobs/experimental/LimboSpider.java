@@ -13,14 +13,14 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftSpider;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSpider;
 import org.bukkit.util.BlockVector;
 
 /** Limbo Spider can pass through single-block openings */
 //TODO limbo spider
 @Deprecated
 public class LimboSpider extends CraftSpider {
-
+    
     static MaxRaid maxRaid;
     public LimboSpider(MaxRaid maxRaid, BlockVector loc) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSpider(maxRaid));

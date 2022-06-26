@@ -4,7 +4,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.MagmaCube;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMagmaCube;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMagmaCube;
 import org.bukkit.util.BlockVector;
 
 /** Doesn't work. This shit is borked*/

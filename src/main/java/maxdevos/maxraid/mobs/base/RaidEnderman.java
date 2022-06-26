@@ -11,7 +11,7 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEnderman;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEnderman;
 import org.bukkit.util.BlockVector;
 
 public class RaidEnderman extends CraftEnderman {

@@ -7,6 +7,7 @@ import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
@@ -14,8 +15,8 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R2.event.CraftEventFactory;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.event.CraftEventFactory;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -38,7 +39,9 @@ public class RaidFactory {
                 return null;
             } else {
                 BlockPos blockposition = entityplayer.blockPosition();
-                List<PoiRecord> list = level.getPoiManager().getInRange(PoiType.ALL, blockposition, 64, PoiManager.Occupancy.IS_OCCUPIED).toList();
+                List<PoiRecord> list = level.getPoiManager().getInRange((holder) -> {
+                    return holder.is(PoiTypeTags.VILLAGE);
+                }, blockposition, 64, PoiManager.Occupancy.IS_OCCUPIED).toList();
                 int i = 0;
                 Vec3 vec3d = Vec3.ZERO;
 

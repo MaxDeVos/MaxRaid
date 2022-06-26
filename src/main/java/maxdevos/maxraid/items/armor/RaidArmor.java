@@ -5,7 +5,7 @@ import maxdevos.maxraid.items.armor.boots.RaidBoots;
 import maxdevos.maxraid.items.armor.chestplates.RaidChestplate;
 import maxdevos.maxraid.items.armor.helmets.RaidHelmet;
 import maxdevos.maxraid.items.armor.leggings.RaidLeggings;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 
 public class RaidArmor {
 

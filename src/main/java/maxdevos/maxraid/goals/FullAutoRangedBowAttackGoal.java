@@ -64,20 +64,20 @@ public class FullAutoRangedBowAttackGoal<T extends Monster & RangedAttackMob> ex
     public void tick() {
         LivingEntity var0 = this.mob.getTarget();
         if (var0 != null) {
-            double var1 = this.mob.distanceToSqr(var0.getX(), var0.getY(), var0.getZ());
-            boolean var3 = this.mob.getSensing().hasLineOfSight(var0);
-            boolean var4 = this.seeTime > 0;
-            if (var3 != var4) {
+            double distanceToTarget = this.mob.distanceToSqr(var0.getX(), var0.getY(), var0.getZ());
+            boolean lineOfSight = this.mob.getSensing().hasLineOfSight(var0);
+            boolean seeTimeGreaterThanZero = this.seeTime > 0;
+            if (lineOfSight != seeTimeGreaterThanZero) {
                 this.seeTime = 0;
             }
 
-            if (var3) {
+            if (lineOfSight) {
                 ++this.seeTime;
             } else {
                 --this.seeTime;
             }
 
-            if (!(var1 > (double)this.attackRadiusSqr) && this.seeTime >= 20) {
+            if (!(distanceToTarget > (double)this.attackRadiusSqr) && this.seeTime >= 20) {
                 this.mob.getNavigation().stop();
                 ++this.strafingTime;
             } else {
@@ -98,9 +98,9 @@ public class FullAutoRangedBowAttackGoal<T extends Monster & RangedAttackMob> ex
             }
 
             if (this.strafingTime > -1) {
-                if (var1 > (double)(this.attackRadiusSqr * 0.75F)) {
+                if (distanceToTarget > (double)(this.attackRadiusSqr * 0.75F)) {
                     this.strafingBackwards = false;
-                } else if (var1 < (double)(this.attackRadiusSqr * 0.25F)) {
+                } else if (distanceToTarget < (double)(this.attackRadiusSqr * 0.25F)) {
                     this.strafingBackwards = true;
                 }
 
@@ -111,9 +111,9 @@ public class FullAutoRangedBowAttackGoal<T extends Monster & RangedAttackMob> ex
             }
 
             if (this.mob.isUsingItem()) {
-                if (!var3 && this.seeTime < -60) {
+                if (!lineOfSight && this.seeTime < -60) {
                     this.mob.stopUsingItem();
-                } else if (var3) {
+                } else if (lineOfSight) {
                     int var5 = this.mob.getTicksUsingItem();
                     if (var5 >= 20) {
                         this.mob.stopUsingItem();

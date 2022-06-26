@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPhantom;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPhantom;
 import org.bukkit.util.BlockVector;
 
 public class RaidPhantom extends CraftPhantom {

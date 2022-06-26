@@ -1,9 +1,6 @@
 package maxdevos.maxraid.mobs.experimental;
 
-import maxdevos.maxraid.goals.LookAtPointGoal;
-import maxdevos.maxraid.goals.FullAutoRangedBowAttackGoal;
-import maxdevos.maxraid.goals.MoveTowardsPointGoal;
-import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.goals.SniperSearchAndAim;
 import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.RaidItemType;
 import maxdevos.maxraid.items.armor.RaidArmor;
@@ -11,23 +8,18 @@ import maxdevos.maxraid.items.weapons.bows.RaidBow;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
-public class FullAutoSkeleton extends CraftSkeleton {
+public class SniperSkeleton extends CraftSkeleton {
 
     static MaxRaid maxRaid;
-    public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public SniperSkeleton(MaxRaid maxRaid, BlockVector loc) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
-        FullAutoSkeleton.maxRaid = maxRaid;
+        SniperSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
 
@@ -54,14 +46,13 @@ public class FullAutoSkeleton extends CraftSkeleton {
         protected void registerRaidGoals() {
 
             goalSelector.addGoal(1, new FloatGoal(this));
-            //TODO better aiming attack (rapid-fire full power shots)
-            goalSelector.addGoal(2, new FullAutoRangedBowAttackGoal<>(this, 2.0, 1, 25.0F));
-//            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
+            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 40, Player.class));
 
-            targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
-            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
+//            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
+//            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
+//
+//            targetSelector.addGoal(1, new HurtByTargetGoal(this));
+//            targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, 200));
         }
 
         /** Make immune from sunburn */

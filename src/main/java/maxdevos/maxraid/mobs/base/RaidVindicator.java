@@ -4,7 +4,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Vindicator;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftVindicator;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftVindicator;
 import org.bukkit.util.BlockVector;
 
 public class RaidVindicator extends CraftVindicator {

@@ -4,9 +4,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Level;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMob;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftTNTPrimed;
+import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftTNTPrimed;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 

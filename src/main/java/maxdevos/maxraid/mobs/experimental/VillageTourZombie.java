@@ -11,7 +11,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftZombie;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
 import org.bukkit.util.BlockVector;
 
 public class VillageTourZombie extends CraftZombie {

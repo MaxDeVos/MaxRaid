@@ -11,8 +11,9 @@ import maxdevos.maxraid.events.event.StopRaidEvent;
 import maxdevos.maxraid.util.ChatFunctions;
 import maxdevos.maxraid.util.PlayerUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftMonster;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -44,7 +45,7 @@ public class MaxRaid implements Listener {
         this.nmsRaid = nmsRaid;
         this.bukkitRaid = bukkitRaid;
         world = nmsRaid.bukkitWorld;
-        raidBase = new RaidBase(new BlockVector(-518, 105, 557), new BlockVector(-433, 80, 611));
+        raidBase = new RaidBase(nmsRaid.serverLevel, new BlockVector(-518, 105, 557), new BlockVector(-433, 80, 611));
 
         scoreboard = new RaidScoreboard();
         raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));

@@ -40,6 +40,14 @@ public class NearestAttackableMaxRaidTargetGoal<T extends LivingEntity> extends 
         this.targetConditions = TargetingConditions.forCombat().range(50).ignoreLineOfSight().selector(predicate);
     }
 
+    public NearestAttackableMaxRaidTargetGoal(Mob entityinsentient, Class<T> oclass, int dist) {
+        super(entityinsentient, true, false);
+        this.targetType = oclass;
+        this.randomInterval = reducedTickDelay(10);
+        this.setFlags(EnumSet.of(Flag.TARGET));
+        this.targetConditions = TargetingConditions.forCombat().range(dist).ignoreLineOfSight().selector(null);
+    }
+
     public boolean canUse() {
         if (this.randomInterval > 0 && this.mob.getRandom().nextInt(this.randomInterval) != 0) {
             return false;
