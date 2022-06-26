@@ -52,7 +52,6 @@ public class WallSeekingCreeper extends CraftCreeper implements Spawnable {
 
         protected void registerRaidGoals() {
 
-            goalSelector.addGoal(1, new FloatGoal(this));
             goalSelector.addGoal(2, new CreeperExplodeAgainstWallGoal((CraftCreeper) this.getBukkitEntity()));
             goalSelector.addGoal(3, new CreeperPathfindToRaidWall(this, this.raid));
             //            goalSelector.addGoal(4, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 2.0));

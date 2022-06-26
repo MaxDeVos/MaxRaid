@@ -12,8 +12,10 @@ public class BomberFleet {
     public int bombTickInterval = 20;
     LinkedList<BomberPhantom> phantoms;
 
-    public BomberFleet(MaxRaid raid, double spacing){
+    public BomberFleet(MaxRaid raid, double spacing, double bombsPerSecond){
         phantoms = new LinkedList<>();
+
+        double[] phantomZPos = {568, 579, 588, 593, 598, 609};
 
         double phantomX = raid.raidBase.zeroCorner.getX() - 60;
         double phantomGoalX = raid.raidBase.zeroCorner.getX() + raid.raidBase.dimensions.getX() + 60;
@@ -21,11 +23,11 @@ public class BomberFleet {
         int numPhantoms = (int) Math.floor(raid.raidBase.dimensions.getZ() - 6.0 / spacing);
         double phantomZBase = raid.raidBase.zeroCorner.getZ() + 3;
 
-        for(int i = 0; i < numPhantoms; i++){
+        for(int i = 0; i < phantomZPos.length; i++){
             double phantomZ = phantomZBase + i * spacing;
-            BlockVector spawnPoint = new BlockVector(phantomX, phantomY, phantomZ);
-            BlockVector goalPoint = new BlockVector(phantomGoalX, phantomY, phantomZ);
-            new BomberPhantom(raid, spawnPoint, goalPoint);
+            BlockVector spawnPoint = new BlockVector(phantomX, phantomY, phantomZPos[i]);
+            BlockVector goalPoint = new BlockVector(phantomGoalX, phantomY, phantomZPos[i]);
+            new BomberPhantom(raid, spawnPoint, goalPoint, bombsPerSecond);
         }
     }
 }

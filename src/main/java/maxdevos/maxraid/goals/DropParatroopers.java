@@ -39,7 +39,7 @@ public class DropParatroopers extends Goal {
     @Override
     public void tick() {
 
-        if(mob.position().distanceTo(VecTools.blockVectorToVec3(currentFleet.dropLocation)) <= 1.0 && !goingToTerminalPoint){
+        if(mob.position().distanceTo(VecTools.blockVectorToVec3(currentFleet.dropLocation)) <= 3.0 && !goingToTerminalPoint){
             currentFleet.dropAll();
             if(fleets.peek() != null){
                 currentFleet = fleets.remove();
@@ -51,7 +51,7 @@ public class DropParatroopers extends Goal {
             }
         }
 
-        if(goingToTerminalPoint && mob.position().distanceTo(VecTools.blockVectorToVec3(phantomMob.terminalLocation)) <= 1.0){
+        if(goingToTerminalPoint && mob.position().distanceTo(VecTools.blockVectorToVec3(phantomMob.terminalLocation)) <= 3.0){
             mob.remove(Entity.RemovalReason.DISCARDED);
         }
 

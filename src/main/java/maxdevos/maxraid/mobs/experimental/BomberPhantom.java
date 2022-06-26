@@ -19,21 +19,23 @@ public class BomberPhantom extends CraftPhantom {
     public static MaxRaid maxRaid;
     private BlockVector loc;
 
-    public BomberPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBomberPhantom(maxRaid));
+    public BomberPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, double bombsPerSecond) {
+        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBomberPhantom(maxRaid, bombsPerSecond));
         BomberPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Bomber Phantom");
         this.loc = loc;
         this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 0.5f);
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.getHandle().addMob(this.getHandle(), false);
     }
 
     private static class NMSBomberPhantom extends Phantom {
         MaxRaid raid;
-        public NMSBomberPhantom(MaxRaid raid) {
+        double bombsPerSecond;
+        public NMSBomberPhantom(MaxRaid raid, double bombsPerSecond) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
             setPhantomSize(5);
+            this.bombsPerSecond = bombsPerSecond;
             this.raid = raid;
             registerRaidGoals();
             this.moveControl = new PhantomMoveControl(this);
@@ -46,7 +48,7 @@ public class BomberPhantom extends CraftPhantom {
         }
 
         protected void registerRaidGoals() {
-            goalSelector.addGoal(1, new PhantomDropBombs(this));
+            goalSelector.addGoal(1, new PhantomDropBombs(this, bombsPerSecond));
             goalSelector.addGoal(2, new PhantomMoveToPoint(this));
         }
 

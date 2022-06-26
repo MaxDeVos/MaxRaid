@@ -133,7 +133,8 @@ public class NMSRaid extends Raid implements Listener {
     @Override
     public void updateBossbar() {
         this.bossEvent.setProgress(calculateProgressFloat());
-//        RaidPlugin.getInstance().getServer().broadcastMessage(this.getHealthOfLivingRaiders() + " / " + this.maxHealth + "     " + this.bossEvent.getProgress());
+        RaidPlugin.getInstance().getServer().broadcastMessage(this.getTotalRaidersAlive() + " / " + this.raidMobs.size() + "     " + this.bossEvent.getProgress());
+        RaidPlugin.getInstance().getServer().broadcastMessage(this.getHealthOfLivingRaiders() + " / " + this.maxHealth + "     " + this.bossEvent.getProgress());
     }
 
     public boolean isUUIDRaider(UUID mobUUID){

@@ -27,24 +27,29 @@ public class RaidProgressionEventHandler implements Listener {
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
 
+
+        new BomberFleet(raid, 5.0, 0.8);
+
+
         ParatrooperDroppingPhantom paraDropper = new ParatrooperDroppingPhantom(raid,
                 new BlockVector(raid.raidBase.zeroCorner.getX() - 60, 120, 593));
 
         ParatrooperFleet fleet = new ParatrooperFleet(new BlockVector(-472, 120, 594));
         fleet.addMobToFleet(new SniperSkeleton(raid));
-        fleet.addMobToFleet(new RaidCreeper(raid));
+        fleet.addMobToFleet(new FuselessCreeper(raid));
         fleet.addMobToFleet(new WallSeekingCreeper(raid));
         paraDropper.addFleet(fleet);
 
         ParatrooperFleet fleet2 = new ParatrooperFleet(new BlockVector(-450, 120, 594));
         fleet2.addMobToFleet(new SniperSkeleton(raid));
-        fleet2.addMobToFleet(new RaidCreeper(raid));
+        fleet2.addMobToFleet(new FuselessCreeper(raid));
         fleet2.addMobToFleet(new WallSeekingCreeper(raid));
         paraDropper.addFleet(fleet2);
 
-        paraDropper.spawn();
+        // Start paradropper after bombers start
+        RaidPlugin.getServerInstance().getScheduler().scheduleSyncDelayedTask(RaidPlugin.getInstance(), () -> paraDropper.spawn(), 5 * 20L);
 
-
+        new FullAutoSkeleton(raid, new BlockVector(-450, 100, 550));
 
 //        new FullAutoSkeleton(raid, new BlockVector(9, 5, 9));
 //        new RaidZombie(raid, new BlockVector(25, 3, 25));
