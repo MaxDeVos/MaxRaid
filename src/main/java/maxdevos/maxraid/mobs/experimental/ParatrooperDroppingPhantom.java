@@ -1,8 +1,9 @@
 package maxdevos.maxraid.mobs.experimental;
 
-import maxdevos.maxraid.goals.PhantomDropBombs;
+import maxdevos.maxraid.goals.DropParatroopers;
 import maxdevos.maxraid.goals.PhantomMoveToPoint;
 import maxdevos.maxraid.mobs.Spawnable;
+import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
@@ -14,23 +15,36 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPhantom;
 import org.bukkit.util.BlockVector;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnable {
 
     public static MaxRaid maxRaid;
+    public Queue<ParatrooperFleet> fleets;
+    public BlockVector terminalLocation;
 
-    public ParatrooperDroppingPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, boolean spawn) {
+    public ParatrooperDroppingPhantom(MaxRaid maxRaid, BlockVector loc) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBomberPhantom(maxRaid));
         ParatrooperDroppingPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Paratrooper Shuttle");
         this.setSize(64);
-        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 0.5f);
-        if(spawn){
-            spawn(loc);
-        }
+        this.setInvulnerable(true);
+        terminalLocation = loc;
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
+        fleets = new LinkedList<>();
+        getHandle().goalSelector.addGoal(1, new DropParatroopers(this, fleets));
+    }
+
+    public void addFleet(ParatrooperFleet fleet){
+        fleets.add(fleet);
+    }
+
+    public void spawn(){
+        maxRaid.getHandle().addMob(this.getHandle(), false);
     }
 
     public void spawn(BlockVector loc){
-        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
@@ -50,8 +64,6 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
         }
 
         protected void registerRaidGoals() {
-//            goalSelector.addGoal(1, new PhantomDropBombs(this));
-            goalSelector.addGoal(2, new PhantomMoveToPoint(this));
         }
 
         /** Make immune from sunburn */

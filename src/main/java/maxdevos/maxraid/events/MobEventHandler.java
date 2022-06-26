@@ -3,6 +3,7 @@ package maxdevos.maxraid.events;
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -18,6 +19,22 @@ public class MobEventHandler implements Listener {
         this.raid = raid;
         Server server = RaidPlugin.getServerInstance();
         server.getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    private void antiRaidMobFallDamage(EntityDamageEvent e){
+        if(!((e.getEntity()) instanceof Player) && e.getCause().equals(EntityDamageEvent.DamageCause.FALL)){
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    private void antiRaidMobFriendlyFire(EntityDamageByEntityEvent e){
+        if(!((e.getEntity()) instanceof Player)){
+            if(e.getDamager() instanceof CraftMob){
+                e.setCancelled(true);
+            }
+        }
     }
 
     @EventHandler

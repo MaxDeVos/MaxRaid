@@ -4,6 +4,7 @@ import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.mobs.base.*;
 import maxdevos.maxraid.mobs.experimental.*;
 import maxdevos.maxraid.mobs.fleets.BomberFleet;
+import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
@@ -25,18 +26,26 @@ public class RaidProgressionEventHandler implements Listener {
 
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
-//        BlockVector spawnPoint = new BlockVector(raid.raidBase.zeroCorner.getX() - 60, 120, 593);
-//        BlockVector goalPoint = new BlockVector(raid.raidBase.zeroCorner.getX() + raid.raidBase.dimensions.getX() + 60, 120, 593);
-//        new ParatrooperDroppingPhantom(raid, spawnPoint, goalPoint);
-        new SniperSkeleton(raid, new BlockVector(-470, 100, 590));
-//        new RaidCreeper(raid, new BlockVector(-440, 80, 542));
-//        new BomberFleet(raid, 5.0);
-//        new WallSeekingCreeper(raid, new BlockVector(-440, 80, 542));
-//        new WallSeekingCreeper(raid, new BlockVector(-450, 80, 542));
-//        new WallSeekingCreeper(raid, new BlockVector(-470, 84, 542));
-//        new WallSeekingCreeper(raid, new BlockVector(-482, 86, 542));
-//        new WallSeekingCreeper(raid, new BlockVector(-492, 86, 542));
-//        new WallSeekingCreeper(raid, new BlockVector(-500, 86, 542));
+
+        ParatrooperDroppingPhantom paraDropper = new ParatrooperDroppingPhantom(raid,
+                new BlockVector(raid.raidBase.zeroCorner.getX() - 60, 120, 593));
+
+        ParatrooperFleet fleet = new ParatrooperFleet(new BlockVector(-472, 120, 594));
+        fleet.addMobToFleet(new SniperSkeleton(raid));
+        fleet.addMobToFleet(new RaidCreeper(raid));
+        fleet.addMobToFleet(new WallSeekingCreeper(raid));
+        paraDropper.addFleet(fleet);
+
+        ParatrooperFleet fleet2 = new ParatrooperFleet(new BlockVector(-450, 120, 594));
+        fleet2.addMobToFleet(new SniperSkeleton(raid));
+        fleet2.addMobToFleet(new RaidCreeper(raid));
+        fleet2.addMobToFleet(new WallSeekingCreeper(raid));
+        paraDropper.addFleet(fleet2);
+
+        paraDropper.spawn();
+
+
+
 //        new FullAutoSkeleton(raid, new BlockVector(9, 5, 9));
 //        new RaidZombie(raid, new BlockVector(25, 3, 25));
 //        new RaidSpider(raid, new BlockVector(25, -55, 25));

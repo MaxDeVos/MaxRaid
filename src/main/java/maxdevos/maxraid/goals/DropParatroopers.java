@@ -2,46 +2,59 @@ package maxdevos.maxraid.goals;
 
 import maxdevos.maxraid.items.weapons.projecticles.TNTBomb;
 import maxdevos.maxraid.mobs.experimental.BomberPhantom;
+import maxdevos.maxraid.mobs.experimental.ParatrooperDroppingPhantom;
 import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
 import maxdevos.maxraid.raid.RaidBase;
 import maxdevos.maxraid.util.VecTools;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 
+import java.util.List;
+import java.util.Queue;
+
 public class DropParatroopers extends Goal {
 
+    ParatrooperDroppingPhantom phantomMob;
     Phantom mob;
-    int cooldown = 0;
-    ParatrooperFleet fleet;
+    Queue<ParatrooperFleet> fleets;
+    ParatrooperFleet currentFleet;
+    boolean goingToTerminalPoint;
 
-    public DropParatroopers(Phantom mob, ParatrooperFleet fleet){
-        this.mob = mob;
-        this.fleet = fleet;
+    public DropParatroopers(ParatrooperDroppingPhantom mob, Queue<ParatrooperFleet> fleets){
+        this.phantomMob = mob;
+        this.mob = mob.getHandle();
+        this.fleets = fleets;
     }
 
 
     @Override
     public boolean canUse() {
-        return RaidBase.isLocationInBaseXZ(mob.getBukkitEntity().getLocation(), BomberPhantom.maxRaid.raidBase);
+        return true;
     }
-
-//    @Override
-//    public boolean canContinueToUse(){
-//        super.canContinueToUse();
-//    }
 
 
     @Override
     public void tick() {
-        if(cooldown > 10){
-            fleet.mobs.get(0).spawn(VecTools.vec3ToBlockVector(mob.position().add(new Vec3(Math.random() * 10, 0, Math.random() * 10))));
-            fleet.mobs.remove(0);
+
+        if(mob.position().distanceTo(VecTools.blockVectorToVec3(currentFleet.dropLocation)) <= 1.0 && !goingToTerminalPoint){
+            currentFleet.dropAll();
+            if(fleets.peek() != null){
+                currentFleet = fleets.remove();
+                mob.getMoveControl().setWantedPosition(currentFleet.dropLocation.getX(), currentFleet.dropLocation.getY() + 2, currentFleet.dropLocation.getZ(), 1f);
+            }
+            else{
+                goingToTerminalPoint = true;
+                mob.getMoveControl().setWantedPosition(phantomMob.terminalLocation.getX(), phantomMob.terminalLocation.getY(), phantomMob.terminalLocation.getZ(), 1f);
+            }
         }
-        else{
-            cooldown++;
+
+        if(goingToTerminalPoint && mob.position().distanceTo(VecTools.blockVectorToVec3(phantomMob.terminalLocation)) <= 1.0){
+            mob.remove(Entity.RemovalReason.DISCARDED);
         }
+
     }
 
     public boolean requiresUpdateEveryTick() {
@@ -49,10 +62,11 @@ public class DropParatroopers extends Goal {
     }
 
     public void start(){
-        cooldown = 0;
+        currentFleet = fleets.remove();
+        mob.getMoveControl().setWantedPosition(currentFleet.dropLocation.getX(), currentFleet.dropLocation.getY(), currentFleet.dropLocation.getZ(), 1f);
     }
     public void stop(){
-        cooldown = 0;
+        currentFleet = null;
     }
 
 }

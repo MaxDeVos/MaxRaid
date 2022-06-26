@@ -18,7 +18,7 @@ public class BaseArrow extends CraftArrow {
     protected CraftEntity archer;
 
     public float velocity = 1.5f;
-    public float spread = 12f;
+    public float spread = 6f;
 
     boolean shootTracer = false;
 

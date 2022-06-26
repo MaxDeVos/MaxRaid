@@ -8,7 +8,7 @@ public class SniperArrow extends BaseArrow {
         super(archer);
         shootTracer = true;
         velocity = 10f;
-        spread = 0.001f;
+        spread = .5f;
         getHandle().setNoGravity(true);
     }
 }

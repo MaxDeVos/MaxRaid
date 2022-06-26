@@ -10,11 +10,22 @@ import java.util.Set;
 
 public class ParatrooperFleet {
 
-    public LinkedList<? extends Spawnable> mobs;
+    public LinkedList<Spawnable> mobs;
+    public BlockVector dropLocation;
 
-    public void dropAll(BlockVector loc){
+    public ParatrooperFleet(BlockVector location){
+        this.dropLocation = location;
+        mobs = new LinkedList<>();
+    }
+
+    public void addMobToFleet(Spawnable mob){
+        mobs.add(mob);
+    }
+
+    public void dropAll(){
+        System.out.println("DROPPING FLEET");
         for(Spawnable mob:mobs){
-            mob.spawn(loc);
+            mob.spawn(dropLocation);
         }
     }
 

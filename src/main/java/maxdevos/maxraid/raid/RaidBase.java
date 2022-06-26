@@ -77,7 +77,6 @@ public class RaidBase {
                     }
 
                     if(isolated){
-                        System.out.println("CREATED ATTACK POINT: " + point);
                         wallAttackPoints.add(point);
                     }
                 }

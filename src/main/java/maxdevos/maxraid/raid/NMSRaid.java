@@ -77,10 +77,16 @@ public class NMSRaid extends Raid implements Listener {
     }
 
     public void addMob(LivingEntity raidMonster){
+        addMob(raidMonster, true);
+    }
+
+    public void addMob(LivingEntity raidMonster, boolean addToRaidCounter){
         serverLevel.addFreshEntity(raidMonster, CreatureSpawnEvent.SpawnReason.RAID);
-        this.raidMobs.add(raidMonster);
-        this.maxHealth += raidMonster.getMaxHealth();
-        recalculateMaxHealth();
+        if(addToRaidCounter){
+            this.raidMobs.add(raidMonster);
+            this.maxHealth += raidMonster.getMaxHealth();
+            recalculateMaxHealth();
+        }
     }
 
     @Override
