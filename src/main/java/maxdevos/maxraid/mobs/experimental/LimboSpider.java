@@ -4,6 +4,7 @@ import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.goals.SpiderSpeedAttackGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -19,7 +20,7 @@ import org.bukkit.util.BlockVector;
 /** Limbo Spider can pass through single-block openings */
 //TODO limbo spider
 @Deprecated
-public class LimboSpider extends CraftSpider {
+public class LimboSpider extends CraftSpider implements Spawnable {
     
     static MaxRaid maxRaid;
     public LimboSpider(MaxRaid maxRaid) {

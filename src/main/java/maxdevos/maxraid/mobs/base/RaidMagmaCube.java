@@ -1,5 +1,6 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.MagmaCube;
@@ -9,7 +10,7 @@ import org.bukkit.util.BlockVector;
 
 /** Doesn't work. This shit is borked*/
 @Deprecated
-public class RaidMagmaCube extends CraftMagmaCube {
+public class RaidMagmaCube extends CraftMagmaCube implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidMagmaCube(MaxRaid maxRaid) {

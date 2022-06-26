@@ -2,6 +2,7 @@ package maxdevos.maxraid.mobs.experimental;
 
 import maxdevos.maxraid.goals.PhantomDropBombs;
 import maxdevos.maxraid.goals.PhantomMoveToPoint;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;

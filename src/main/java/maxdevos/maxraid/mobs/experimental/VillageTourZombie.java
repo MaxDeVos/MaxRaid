@@ -1,6 +1,7 @@
 package maxdevos.maxraid.mobs.experimental;
 
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -14,7 +15,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
 import org.bukkit.util.BlockVector;
 
-public class VillageTourZombie extends CraftZombie {
+public class VillageTourZombie extends CraftZombie implements Spawnable {
 
     static MaxRaid maxRaid;
     public VillageTourZombie(MaxRaid maxRaid) {

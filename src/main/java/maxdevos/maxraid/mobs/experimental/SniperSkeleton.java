@@ -5,6 +5,7 @@ import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.RaidItemType;
 import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.items.weapons.bows.RaidBow;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -16,7 +17,7 @@ import org.bukkit.Particle;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
 import org.bukkit.util.BlockVector;
 
-public class SniperSkeleton extends CraftSkeleton {
+public class SniperSkeleton extends CraftSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
     public SniperSkeleton(MaxRaid maxRaid) {

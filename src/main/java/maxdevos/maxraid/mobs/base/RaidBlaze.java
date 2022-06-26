@@ -4,6 +4,7 @@ import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MaxRaidBlazeAttackGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -17,7 +18,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftBlaze;
 import org.bukkit.util.BlockVector;
 
-public class RaidBlaze extends CraftBlaze {
+public class RaidBlaze extends CraftBlaze implements Spawnable {
     static MaxRaid maxRaid;
 
     public RaidBlaze(MaxRaid maxRaid) {

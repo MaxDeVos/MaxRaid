@@ -2,6 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
@@ -15,7 +16,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftCreeper;
 import org.bukkit.util.BlockVector;
 
-public class RaidCreeper extends CraftCreeper {
+public class RaidCreeper extends CraftCreeper implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidCreeper(MaxRaid maxRaid) {

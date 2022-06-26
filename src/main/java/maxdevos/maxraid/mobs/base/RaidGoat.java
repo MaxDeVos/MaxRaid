@@ -2,6 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -18,7 +19,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftGoat;
 import org.bukkit.util.BlockVector;
 
-public class RaidGoat extends CraftGoat {
+public class RaidGoat extends CraftGoat implements Spawnable {
     static MaxRaid maxRaid;
     public RaidGoat(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSGoat(maxRaid));

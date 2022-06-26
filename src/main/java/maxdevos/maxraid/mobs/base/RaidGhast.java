@@ -1,6 +1,7 @@
 package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Ghast;
@@ -9,7 +10,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftGhast;
 import org.bukkit.util.BlockVector;
 
-public class RaidGhast extends CraftGhast {
+public class RaidGhast extends CraftGhast implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidGhast(MaxRaid raid) {

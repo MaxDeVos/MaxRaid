@@ -8,6 +8,7 @@ import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.RaidItemType;
 import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.items.weapons.bows.RaidBow;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -22,7 +23,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
-public class FullAutoSkeleton extends CraftSkeleton {
+public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
     public FullAutoSkeleton(MaxRaid maxRaid) {

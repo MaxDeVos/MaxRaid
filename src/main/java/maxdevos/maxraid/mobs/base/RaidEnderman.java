@@ -2,6 +2,7 @@ package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
@@ -14,7 +15,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEnderman;
 import org.bukkit.util.BlockVector;
 
-public class RaidEnderman extends CraftEnderman {
+public class RaidEnderman extends CraftEnderman implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidEnderman(MaxRaid maxRaid) {

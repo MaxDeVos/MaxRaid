@@ -3,6 +3,7 @@ package maxdevos.maxraid.mobs.base;
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -18,7 +19,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
-public class RaidSkeleton extends CraftSkeleton {
+public class RaidSkeleton extends CraftSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidSkeleton(MaxRaid maxRaid) {

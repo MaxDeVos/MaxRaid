@@ -1,6 +1,7 @@
 package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.PhantomMoveToPoint;
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +13,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPhantom;
 import org.bukkit.util.BlockVector;
 
-public class RaidPhantom extends CraftPhantom {
+public class RaidPhantom extends CraftPhantom implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidPhantom(MaxRaid maxRaid) {

@@ -1,5 +1,6 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Evoker;
@@ -7,7 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEvoker;
 import org.bukkit.util.BlockVector;
 
-public class RaidEvoker extends CraftEvoker {
+public class RaidEvoker extends CraftEvoker implements Spawnable {
 
     static MaxRaid maxRaid;
     public RaidEvoker(MaxRaid raid) {
