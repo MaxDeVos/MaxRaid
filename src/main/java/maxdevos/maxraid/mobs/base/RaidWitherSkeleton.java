@@ -18,10 +18,18 @@ import org.bukkit.util.BlockVector;
 public class RaidWitherSkeleton extends CraftWitherSkeleton {
 
     static MaxRaid maxRaid;
-    public RaidWitherSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public RaidWitherSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSWitherSkeleton(maxRaid));
         RaidWitherSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID WitherSkeleton");
+    }
+
+    public RaidWitherSkeleton(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

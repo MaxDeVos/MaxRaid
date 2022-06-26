@@ -18,15 +18,22 @@ import org.bukkit.util.BlockVector;
 public class RaidSpider extends CraftSpider {
     MaxRaid maxRaid;
 
-    public RaidSpider(MaxRaid maxRaid, BlockVector loc) {
+    public RaidSpider(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSpider(maxRaid));
         this.maxRaid = maxRaid;
-        this.setMaxHealth(this.getMaxHealth() * 1.5);
-
         setCustomName(ChatColor.DARK_RED + "RAID Spider");
-        getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
 
-        this.maxRaid.addMob(this);
+        this.setMaxHealth(this.getMaxHealth() * 1.5);
+    }
+
+    public RaidSpider(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
+        maxRaid.addMob(this);
     }
 
     private static class NMSSpider extends Spider {

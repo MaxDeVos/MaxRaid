@@ -21,17 +21,24 @@ import org.bukkit.util.BlockVector;
 public class RaidSkeleton extends CraftSkeleton {
 
     static MaxRaid maxRaid;
-    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public RaidSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
         RaidSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Skeleton");
-        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
 
         ItemStack weapon = new ItemStack(Material.BOW, 1);
         weapon.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
         weapon.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
         this.getEquipment().setItemInMainHand(weapon);
+    }
 
+    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 

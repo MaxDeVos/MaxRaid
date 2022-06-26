@@ -12,14 +12,21 @@ import org.bukkit.util.BlockVector;
 public class RaidMagmaCube extends CraftMagmaCube {
 
     static MaxRaid maxRaid;
-    public RaidMagmaCube(MaxRaid maxRaid, BlockVector loc) {
+    public RaidMagmaCube(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSMagmaCube(maxRaid));
         RaidMagmaCube.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID MagmaCube");
+    }
+
+    public RaidMagmaCube(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }
-
     private static class NMSMagmaCube extends MagmaCube {
         MaxRaid raid;
         public NMSMagmaCube(MaxRaid raid) {

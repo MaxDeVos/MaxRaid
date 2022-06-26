@@ -16,15 +16,19 @@ import org.bukkit.util.BlockVector;
 public class ParatrooperDroppingPhantom extends CraftPhantom {
 
     public static MaxRaid maxRaid;
-    private BlockVector loc;
 
-    public ParatrooperDroppingPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
+    public ParatrooperDroppingPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, boolean spawn) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBomberPhantom(maxRaid));
         ParatrooperDroppingPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Paratrooper Shuttle");
-        this.loc = loc;
         this.setSize(64);
         this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 0.5f);
+        if(spawn){
+            spawn(loc);
+        }
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }

@@ -10,10 +10,18 @@ import org.bukkit.util.BlockVector;
 public class RaidRavager extends CraftRavager {
 
     static MaxRaid maxRaid;
-    public RaidRavager(MaxRaid maxRaid, BlockVector loc) {
+    public RaidRavager(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSRavager(maxRaid));
         RaidRavager.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Ravager");
+    }
+
+    public RaidRavager(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

@@ -12,14 +12,21 @@ import org.bukkit.util.BlockVector;
 public class RaidGhast extends CraftGhast {
 
     static MaxRaid maxRaid;
-    public RaidGhast(MaxRaid raid, BlockVector loc) {
+    public RaidGhast(MaxRaid raid) {
         super(raid.getHandle().getLevel().getCraftServer(), new NMSGhast(raid));
         RaidGhast.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Ghast");
-        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        raid.getHandle().addMob(this.getHandle());
     }
 
+    public RaidGhast(MaxRaid raid, BlockVector loc) {
+        this(raid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
+        maxRaid.getHandle().addMob(this.getHandle());
+    }
     private static class NMSGhast extends Ghast {
         MaxRaid raid;
         public NMSGhast(MaxRaid raid) {

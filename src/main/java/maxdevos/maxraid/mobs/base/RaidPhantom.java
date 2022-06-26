@@ -15,10 +15,18 @@ import org.bukkit.util.BlockVector;
 public class RaidPhantom extends CraftPhantom {
 
     static MaxRaid maxRaid;
-    public RaidPhantom(MaxRaid maxRaid, BlockVector loc) {
+    public RaidPhantom(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPhantom(maxRaid));
         RaidPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
+    }
+
+    public RaidPhantom(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }

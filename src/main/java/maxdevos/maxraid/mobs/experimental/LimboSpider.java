@@ -22,10 +22,18 @@ import org.bukkit.util.BlockVector;
 public class LimboSpider extends CraftSpider {
     
     static MaxRaid maxRaid;
-    public LimboSpider(MaxRaid maxRaid, BlockVector loc) {
+    public LimboSpider(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSpider(maxRaid));
         LimboSpider.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Limbo Spider");
+    }
+
+    public LimboSpider(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

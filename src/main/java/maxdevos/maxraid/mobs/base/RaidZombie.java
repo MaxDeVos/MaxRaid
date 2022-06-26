@@ -1,6 +1,5 @@
 package maxdevos.maxraid.mobs.base;
 
-import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.raid.MaxRaid;
@@ -17,16 +16,24 @@ import org.bukkit.util.BlockVector;
 public class RaidZombie extends CraftZombie {
 
     static MaxRaid maxRaid;
-    public RaidZombie(MaxRaid maxRaid, BlockVector loc) {
+
+    public RaidZombie(MaxRaid maxRaid){
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
         RaidZombie.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Zombie");
-        getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.addMob(this);
     }
 
+    public RaidZombie(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
+        maxRaid.addMob(this);
+    }
     private static class NMSZombie extends Zombie {
-        private MaxRaid raid;
+        private final MaxRaid raid;
         public NMSZombie(MaxRaid raid) {
             super(EntityType.ZOMBIE, raid.getHandle().serverLevel);
             this.raid = raid;

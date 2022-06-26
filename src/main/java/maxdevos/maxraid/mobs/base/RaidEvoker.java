@@ -10,12 +10,20 @@ import org.bukkit.util.BlockVector;
 public class RaidEvoker extends CraftEvoker {
 
     static MaxRaid maxRaid;
-    public RaidEvoker(MaxRaid raid, BlockVector loc) {
+    public RaidEvoker(MaxRaid raid) {
         super(raid.getHandle().getLevel().getCraftServer(), new NMSEvoker(raid));
         RaidEvoker.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Evoker");
+    }
+
+    public RaidEvoker(MaxRaid raid, BlockVector loc) {
+        this(raid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        raid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSEvoker extends Evoker {

@@ -17,10 +17,18 @@ import org.bukkit.util.BlockVector;
 public class RaidEnderman extends CraftEnderman {
 
     static MaxRaid maxRaid;
-    public RaidEnderman(MaxRaid maxRaid, BlockVector loc) {
+    public RaidEnderman(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSEnderman(maxRaid));
         RaidEnderman.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Enderman");
+    }
+
+    public RaidEnderman(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

@@ -17,15 +17,22 @@ import org.bukkit.util.BlockVector;
 public class SniperSkeleton extends CraftSkeleton {
 
     static MaxRaid maxRaid;
-    public SniperSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public SniperSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
         SniperSkeleton.maxRaid = maxRaid;
-        setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
-        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
+        setCustomName(ChatColor.DARK_RED + "Sniper Skeleton");
 
         Equipper.setMobWeapon(this, new RaidBow());
         Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.DIAMOND));
+    }
 
+    public SniperSkeleton(MaxRaid raid, BlockVector loc){
+        this(raid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 

@@ -10,12 +10,20 @@ import org.bukkit.util.BlockVector;
 public class RaidIllusioner extends CraftIllusioner {
 
     static MaxRaid maxRaid;
-    public RaidIllusioner(MaxRaid raid, BlockVector loc) {
+    public RaidIllusioner(MaxRaid raid) {
         super(raid.getHandle().getLevel().getCraftServer(), new NMSIllusioner(raid));
         RaidIllusioner.maxRaid = raid;
         setCustomName(ChatColor.DARK_RED + "RAID Illusioner");
+    }
+
+    public RaidIllusioner(MaxRaid raid, BlockVector loc) {
+        this(raid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        raid.getHandle().addMob(this.getHandle());
+        maxRaid.addMob(this);
     }
 
     private static class NMSIllusioner extends Illusioner {

@@ -10,10 +10,19 @@ import org.bukkit.util.BlockVector;
 public class RaidPillager extends CraftPillager {
 
     static MaxRaid maxRaid;
-    public RaidPillager(MaxRaid maxRaid, BlockVector loc) {
+
+    public RaidPillager(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPillager(maxRaid));
         RaidPillager.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Pillager");
+    }
+
+    public RaidPillager(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

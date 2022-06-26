@@ -18,10 +18,18 @@ import org.bukkit.util.BlockVector;
 public class RaidCreeper extends CraftCreeper {
 
     static MaxRaid maxRaid;
-    public RaidCreeper(MaxRaid maxRaid, BlockVector loc) {
+    public RaidCreeper(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSCreeper(maxRaid));
         RaidCreeper.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
+    }
+
+    public RaidCreeper(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

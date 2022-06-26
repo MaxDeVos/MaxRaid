@@ -17,10 +17,18 @@ import org.bukkit.util.BlockVector;
 public class VillageTourZombie extends CraftZombie {
 
     static MaxRaid maxRaid;
-    public VillageTourZombie(MaxRaid maxRaid, BlockVector loc) {
+    public VillageTourZombie(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
         VillageTourZombie.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Village Touring Zombie");
+    }
+
+    public VillageTourZombie(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }

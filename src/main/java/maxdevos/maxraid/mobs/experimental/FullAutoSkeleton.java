@@ -25,15 +25,22 @@ import org.bukkit.util.BlockVector;
 public class FullAutoSkeleton extends CraftSkeleton {
 
     static MaxRaid maxRaid;
-    public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public FullAutoSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
         FullAutoSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
-        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
 
         Equipper.setMobWeapon(this, new RaidBow());
         Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.DIAMOND));
+    }
 
+    public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
+        this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 

@@ -20,10 +20,18 @@ import org.bukkit.util.BlockVector;
 
 public class RaidGoat extends CraftGoat {
     static MaxRaid maxRaid;
-    public RaidGoat(MaxRaid maxRaid, BlockVector loc) {
+    public RaidGoat(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSGoat(maxRaid));
         RaidGoat.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "RAID Goat");
+    }
+
+    public RaidGoat(MaxRaid maxRaid, BlockVector loc) {
+        this(maxRaid);
+        spawn(loc);
+    }
+
+    public void spawn(BlockVector loc){
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }
