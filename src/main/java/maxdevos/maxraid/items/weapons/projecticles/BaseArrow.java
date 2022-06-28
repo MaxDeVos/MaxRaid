@@ -7,6 +7,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.Color;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftArrow;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.projectiles.ProjectileSource;
@@ -17,7 +18,7 @@ public class BaseArrow extends CraftArrow {
 
     protected CraftEntity archer;
 
-    public float velocity = 1.5f;
+    public float velocity = 3f;
     public float spread = 6f;
 
     boolean shootTracer = false;
@@ -53,6 +54,8 @@ public class BaseArrow extends CraftArrow {
         if(shootTracer){
             shootTracer();
         }
+
+        archer.getWorld().playSound(archer.getLocation(), Sound.ENTITY_ARMOR_STAND_HIT, 1, 2);
 
     }
 

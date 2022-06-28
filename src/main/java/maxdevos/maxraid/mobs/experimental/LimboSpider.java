@@ -6,19 +6,31 @@ import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.goals.SpiderSpeedAttackGoal;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
+import maxdevos.maxraid.util.MaxReflectionUtils;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSpider;
 import org.bukkit.util.BlockVector;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /** Limbo Spider can pass through single-block openings */
-//TODO limbo spider
+//TODO limbo spider (pathfinding hard)
 @Deprecated
 public class LimboSpider extends CraftSpider implements Spawnable {
     
@@ -45,6 +57,26 @@ public class LimboSpider extends CraftSpider implements Spawnable {
             super(EntityType.SPIDER, raid.getHandle().serverLevel);
             this.raid = raid;
             registerRaidGoals();
+//            this.maxUpStep = 256;
+
+            EntityDimensions localDimensions = new EntityDimensions(0.9f, .9f, false);
+
+            try {
+                Field dimensionsField = MaxReflectionUtils.findByType(this.getClass().getSuperclass().getSuperclass().
+                        getSuperclass().getSuperclass().getSuperclass().getSuperclass(), EntityDimensions.class);
+                dimensionsField.setAccessible(true);
+                dimensionsField.set(this, localDimensions);
+                System.out.println(dimensionsField.getType());
+                System.out.println(dimensionsField.get(this));
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public boolean canChangeDimensions() {
+            return false;
         }
 
         @Override
@@ -58,12 +90,17 @@ public class LimboSpider extends CraftSpider implements Spawnable {
             goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.4F));
             goalSelector.addGoal(3, new SpiderSpeedAttackGoal(this, 2.0));
             goalSelector.addGoal(4, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
-            goalSelector.addGoal(5, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class));
-            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
+            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, true));
         }
+
+        @Override
+        public EntityDimensions getDimensions(Pose entitypose) {
+            return new EntityDimensions(1f, 1f, false);
+        }
+
     }
 
 }

@@ -18,6 +18,8 @@ public class MoveTowardsPointGoal extends Goal {
     private final Vec3 goalPos;
     private final double speedModifier;
 
+    private int repathTicker;
+
 
     public MoveTowardsPointGoal(PathfinderMob var0, BlockVector pos, double speedModifier) {
         this.mob = var0;
@@ -39,9 +41,19 @@ public class MoveTowardsPointGoal extends Goal {
         return !this.mob.getNavigation().isDone();
     }
 
-    public void start() {
-        Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
-        mob.getNavigation().moveTo(p, this.speedModifier);
+    @Override
+    public void tick(){
+        super.tick();
+        if(!mob.isPathFinding() || repathTicker > 20){
+            repathTicker = 0;
+            Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 0, 0);
+            mob.getNavigation().moveTo(p, this.speedModifier);
+        }
+        repathTicker++;
+    }
+
+    public void start(){
+        repathTicker = 0;
     }
 
 }

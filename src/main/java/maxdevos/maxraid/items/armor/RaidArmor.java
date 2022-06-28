@@ -5,7 +5,9 @@ import maxdevos.maxraid.items.armor.boots.RaidBoots;
 import maxdevos.maxraid.items.armor.chestplates.RaidChestplate;
 import maxdevos.maxraid.items.armor.helmets.RaidHelmet;
 import maxdevos.maxraid.items.armor.leggings.RaidLeggings;
+import org.bukkit.Color;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class RaidArmor {
 
@@ -20,4 +22,12 @@ public class RaidArmor {
         leggings = new RaidLeggings(material);
         boots = new RaidBoots(material);
     }
+
+    public RaidArmor(Color color){
+        helmet = new RaidHelmet(color);
+        chestplate = new RaidChestplate(color);
+        leggings = new RaidLeggings(color);
+        boots = new RaidBoots(color);
+    }
+
 }

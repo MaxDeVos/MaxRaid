@@ -17,6 +17,7 @@ import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
 import org.bukkit.enchantments.Enchantment;
@@ -32,7 +33,7 @@ public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
         setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
 
         Equipper.setMobWeapon(this, new RaidBow());
-        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.DIAMOND));
+        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.IRON));
     }
 
     public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
@@ -63,13 +64,13 @@ public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
 
             goalSelector.addGoal(1, new FloatGoal(this));
             //TODO better aiming attack (rapid-fire full power shots)
-            goalSelector.addGoal(2, new FullAutoRangedBowAttackGoal<>(this, 2.0, 1, 25.0F));
+            goalSelector.addGoal(2, new FullAutoRangedBowAttackGoal<>(this, 1.0, 1, 25.0F));
 //            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
             goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
-            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
+            targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, true));
         }
 
         /** Make immune from sunburn */

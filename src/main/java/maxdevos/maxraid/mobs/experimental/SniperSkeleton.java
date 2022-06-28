@@ -10,6 +10,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -26,7 +27,7 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
         setCustomName(ChatColor.DARK_RED + "Sniper Skeleton");
 
         Equipper.setMobWeapon(this, new RaidBow());
-        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.DIAMOND));
+        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.CHAINMAIL));
     }
 
     public SniperSkeleton(MaxRaid raid, BlockVector loc){
@@ -56,6 +57,7 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
         protected void registerRaidGoals() {
 
             goalSelector.addGoal(1, new FloatGoal(this));
+            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 40, AbstractVillager.class));
             goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 40, Player.class));
 
 //            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
