@@ -29,7 +29,7 @@ public class RaidProgressionEventHandler implements Listener {
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
 
-        new LimboSpider(raid, new BlockVector(-453, 81, 590));
+//        new LimboSpider(raid, new BlockVector(-453, 81, 590));
 
 //        new BomberFleet(raid, 5.0, 1.3);
 //
@@ -65,7 +65,7 @@ public class RaidProgressionEventHandler implements Listener {
 //        new WallSeekingCreeper(raid, new BlockVector(-460, 81, 550));
 //        new WallSeekingCreeper(raid, new BlockVector(-465, 81, 550));
 //        new SniperSkeleton(raid, new BlockVector(-480, 81, 585));
-//        new FullAutoSkeleton(raid, new BlockVector(-453, 81, 595));
+        new FullAutoSkeleton(raid, new BlockVector(50, 81, 50));
 
 //        new RaidZombie(raid, new BlockVector(25, 3, 25));
 //        new RaidSpider(raid, new BlockVector(25, -55, 25));

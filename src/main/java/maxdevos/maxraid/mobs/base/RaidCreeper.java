@@ -58,7 +58,7 @@ public class RaidCreeper extends CraftCreeper implements Spawnable {
 
             goalSelector.addGoal(1, new FloatGoal(this));
             goalSelector.addGoal(2, new SwellGoal(this));
-            goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0, false));
+            goalSelector.addGoal(3, new MeleeAttackGoal(this, 2f, false));
             goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.5f));
 
             targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true));

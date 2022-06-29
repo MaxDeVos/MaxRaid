@@ -18,6 +18,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.raid.RaidSpawnWaveEvent;
 import org.bukkit.event.raid.RaidTriggerEvent;
 
 import javax.annotation.Nullable;
@@ -120,6 +121,7 @@ public class NMSRaid extends Raid implements Listener {
         for(LivingEntity mob:raidMobs){
             maxHealth += mob.getMaxHealth();
         }
+        updateBossbar();
     }
 
     public float calculateProgressFloat(){
@@ -133,8 +135,8 @@ public class NMSRaid extends Raid implements Listener {
     @Override
     public void updateBossbar() {
         this.bossEvent.setProgress(calculateProgressFloat());
-        RaidPlugin.getInstance().getServer().broadcastMessage(this.getTotalRaidersAlive() + " / " + this.raidMobs.size() + "     " + this.bossEvent.getProgress());
-        RaidPlugin.getInstance().getServer().broadcastMessage(this.getHealthOfLivingRaiders() + " / " + this.maxHealth + "     " + this.bossEvent.getProgress());
+//        RaidPlugin.getInstance().getServer().broadcastMessage(this.getTotalRaidersAlive() + " / " + this.raidMobs.size() + "     " + this.bossEvent.getProgress());
+//        RaidPlugin.getInstance().getServer().broadcastMessage(this.getHealthOfLivingRaiders() + " / " + this.maxHealth + "     " + this.bossEvent.getProgress());
     }
 
     public boolean isUUIDRaider(UUID mobUUID){
@@ -149,6 +151,12 @@ public class NMSRaid extends Raid implements Listener {
     @EventHandler
     private void triggerRaid(RaidTriggerEvent e){
         maxRaid = new MaxRaid(this, e.getRaid());
+    }
+
+    @EventHandler
+    private void resetWave(RaidSpawnWaveEvent e){
+        this.raidMobs.clear();
+        recalculateMaxHealth();
     }
 
     public void unregister(){
