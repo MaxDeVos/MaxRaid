@@ -29,12 +29,15 @@ import org.bukkit.util.BlockVector;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/** Limbo Spider can pass through single-block openings */
+/**
+ * Limbo Spider can pass through single-block openings
+ */
 //TODO limbo spider (pathfinding hard)
 @Deprecated
 public class LimboSpider extends CraftSpider implements Spawnable {
-    
+
     static MaxRaid maxRaid;
+
     public LimboSpider(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSpider(maxRaid));
         LimboSpider.maxRaid = maxRaid;
@@ -46,13 +49,14 @@ public class LimboSpider extends CraftSpider implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSSpider extends Spider {
         MaxRaid raid;
+
         public NMSSpider(MaxRaid raid) {
             super(EntityType.SPIDER, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -80,7 +84,7 @@ public class LimboSpider extends CraftSpider implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }

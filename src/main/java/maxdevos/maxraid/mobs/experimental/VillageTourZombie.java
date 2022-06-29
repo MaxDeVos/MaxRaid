@@ -18,6 +18,7 @@ import org.bukkit.util.BlockVector;
 public class VillageTourZombie extends CraftZombie implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public VillageTourZombie(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
         VillageTourZombie.maxRaid = maxRaid;
@@ -29,13 +30,14 @@ public class VillageTourZombie extends CraftZombie implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSZombie extends Zombie {
-        private MaxRaid raid;
+        private final MaxRaid raid;
+
         public NMSZombie(MaxRaid raid) {
             super(EntityType.ZOMBIE, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -43,7 +45,7 @@ public class VillageTourZombie extends CraftZombie implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -58,7 +60,9 @@ public class VillageTourZombie extends CraftZombie implements Spawnable {
             targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunSensitive() {
             return false;

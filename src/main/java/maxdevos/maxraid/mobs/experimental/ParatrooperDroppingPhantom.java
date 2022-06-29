@@ -36,20 +36,21 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
         getHandle().goalSelector.addGoal(1, new DropParatroopers(this, fleets));
     }
 
-    public void addFleet(ParatrooperFleet fleet){
+    public void addFleet(ParatrooperFleet fleet) {
         fleets.add(fleet);
     }
 
-    public void spawn(){
+    public void spawn() {
         maxRaid.getHandle().addMob(this.getHandle(), false);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
     private static class NMSBomberPhantom extends Phantom {
         MaxRaid raid;
+
         public NMSBomberPhantom(MaxRaid raid) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -58,7 +59,7 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -66,7 +67,9 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
         protected void registerRaidGoals() {
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunBurnTick() {
             return false;
@@ -105,7 +108,7 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
                         this.speedModifier = Mth.approach((float) this.getSpeedModifier(), 0.2F, 0.025F);
                     }
 
-                    float f4 = (float)(-(Mth.atan2(-d1, d3) * 57.2957763671875));
+                    float f4 = (float) (-(Mth.atan2(-d1, d3) * 57.2957763671875));
                     ParatrooperDroppingPhantom.NMSBomberPhantom.this.setXRot(f4);
                     float f5 = ParatrooperDroppingPhantom.NMSBomberPhantom.this.getYRot() + 90.0F;
                     double d6 = (this.speedModifier * Mth.cos(f5 * 0.017453292F)) * Math.abs(d0 / d5);
@@ -117,7 +120,7 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
 
             }
         }
-        
+
     }
 
 }

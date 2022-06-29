@@ -19,9 +19,12 @@ import org.bukkit.util.BlockVector;
 public class RaidCreeper extends CraftCreeper implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidCreeper(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSCreeper(maxRaid));
+        this.setPersistent(true);
         RaidCreeper.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
     }
 
@@ -30,13 +33,14 @@ public class RaidCreeper extends CraftCreeper implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSCreeper extends Creeper {
         MaxRaid raid;
+
         public NMSCreeper(MaxRaid raid) {
             super(EntityType.CREEPER, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -49,7 +53,7 @@ public class RaidCreeper extends CraftCreeper implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }

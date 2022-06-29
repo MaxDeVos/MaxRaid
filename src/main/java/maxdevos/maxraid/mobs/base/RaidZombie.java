@@ -18,9 +18,10 @@ public class RaidZombie extends CraftZombie implements Spawnable {
 
     static MaxRaid maxRaid;
 
-    public RaidZombie(MaxRaid maxRaid){
+    public RaidZombie(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
         RaidZombie.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Zombie");
     }
 
@@ -29,12 +30,14 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
+
     private static class NMSZombie extends Zombie {
         private final MaxRaid raid;
+
         public NMSZombie(MaxRaid raid) {
             super(EntityType.ZOMBIE, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -42,7 +45,7 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -57,7 +60,9 @@ public class RaidZombie extends CraftZombie implements Spawnable {
             targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunSensitive() {
             return false;

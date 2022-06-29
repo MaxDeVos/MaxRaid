@@ -11,9 +11,11 @@ import org.bukkit.util.BlockVector;
 public class RaidWitch extends CraftWitch implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidWitch(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSWitch(maxRaid));
         RaidWitch.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Witch");
     }
 
@@ -22,12 +24,14 @@ public class RaidWitch extends CraftWitch implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
+
     private static class NMSWitch extends Witch {
         MaxRaid raid;
+
         public NMSWitch(MaxRaid raid) {
             super(EntityType.WITCH, raid.getHandle().serverLevel);
             this.raid = raid;

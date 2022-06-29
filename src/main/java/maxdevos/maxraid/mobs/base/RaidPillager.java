@@ -15,6 +15,7 @@ public class RaidPillager extends CraftPillager implements Spawnable {
     public RaidPillager(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPillager(maxRaid));
         RaidPillager.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Pillager");
     }
 
@@ -23,13 +24,14 @@ public class RaidPillager extends CraftPillager implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSPillager extends Pillager {
         MaxRaid raid;
+
         public NMSPillager(MaxRaid raid) {
             super(EntityType.PILLAGER, raid.getHandle().serverLevel);
             this.raid = raid;

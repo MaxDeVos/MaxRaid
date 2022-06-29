@@ -18,9 +18,11 @@ import org.bukkit.util.BlockVector;
 public class RaidEnderman extends CraftEnderman implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidEnderman(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSEnderman(maxRaid));
         RaidEnderman.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Enderman");
     }
 
@@ -29,13 +31,14 @@ public class RaidEnderman extends CraftEnderman implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSEnderman extends EnderMan {
         MaxRaid raid;
+
         public NMSEnderman(MaxRaid raid) {
             super(EntityType.ENDERMAN, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -43,13 +46,15 @@ public class RaidEnderman extends CraftEnderman implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
 
-        /** Currently mostly random, will attack villagers and randomly meander around.
-         *  Pretty ineffective in battle at the moment, to be honest. Has much potential. */
+        /**
+         * Currently mostly random, will attack villagers and randomly meander around.
+         * Pretty ineffective in battle at the moment, to be honest. Has much potential.
+         */
         protected void registerRaidGoals() {
 
             goalSelector.addGoal(1, new FloatGoal(this));

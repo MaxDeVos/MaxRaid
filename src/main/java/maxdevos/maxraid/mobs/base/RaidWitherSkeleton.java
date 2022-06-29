@@ -19,9 +19,11 @@ import org.bukkit.util.BlockVector;
 public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidWitherSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSWitherSkeleton(maxRaid));
         RaidWitherSkeleton.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID WitherSkeleton");
     }
 
@@ -30,13 +32,14 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSWitherSkeleton extends WitherSkeleton {
         MaxRaid raid;
+
         public NMSWitherSkeleton(MaxRaid raid) {
             super(EntityType.WITHER_SKELETON, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -44,7 +47,7 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }

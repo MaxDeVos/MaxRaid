@@ -22,9 +22,11 @@ import org.bukkit.util.BlockVector;
 public class RaidSkeleton extends CraftSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidSkeleton(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
         RaidSkeleton.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Skeleton");
 
         ItemStack weapon = new ItemStack(Material.BOW, 1);
@@ -38,13 +40,14 @@ public class RaidSkeleton extends CraftSkeleton implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSSkeleton extends Skeleton {
         MaxRaid raid;
+
         public NMSSkeleton(MaxRaid raid) {
             super(EntityType.SKELETON, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -52,7 +55,7 @@ public class RaidSkeleton extends CraftSkeleton implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -69,7 +72,9 @@ public class RaidSkeleton extends CraftSkeleton implements Spawnable {
             targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunBurnTick() {
             return false;

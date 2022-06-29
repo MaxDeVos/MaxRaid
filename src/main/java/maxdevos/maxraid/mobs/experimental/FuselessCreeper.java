@@ -8,6 +8,7 @@ import org.bukkit.util.BlockVector;
 public class FuselessCreeper extends RaidCreeper implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public FuselessCreeper(MaxRaid maxRaid) {
         super(maxRaid);
         this.getHandle().maxSwell = 2;

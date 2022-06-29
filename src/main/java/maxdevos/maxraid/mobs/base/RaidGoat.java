@@ -21,9 +21,11 @@ import org.bukkit.util.BlockVector;
 
 public class RaidGoat extends CraftGoat implements Spawnable {
     static MaxRaid maxRaid;
+
     public RaidGoat(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSGoat(maxRaid));
         RaidGoat.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Goat");
     }
 
@@ -32,13 +34,14 @@ public class RaidGoat extends CraftGoat implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
     public static class NMSGoat extends Goat {
         MaxRaid raid;
+
         public NMSGoat(MaxRaid raid) {
             super(EntityType.GOAT, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -51,7 +54,7 @@ public class RaidGoat extends CraftGoat implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }

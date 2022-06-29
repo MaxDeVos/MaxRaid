@@ -17,7 +17,7 @@ import org.bukkit.util.BlockVector;
 public class BomberPhantom extends CraftPhantom {
 
     public static MaxRaid maxRaid;
-    private BlockVector loc;
+    private final BlockVector loc;
 
     public BomberPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, double bombsPerSecond) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBomberPhantom(maxRaid, bombsPerSecond));
@@ -32,6 +32,7 @@ public class BomberPhantom extends CraftPhantom {
     private static class NMSBomberPhantom extends Phantom {
         MaxRaid raid;
         double bombsPerSecond;
+
         public NMSBomberPhantom(MaxRaid raid, double bombsPerSecond) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
             setPhantomSize(5);
@@ -42,7 +43,7 @@ public class BomberPhantom extends CraftPhantom {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -52,7 +53,9 @@ public class BomberPhantom extends CraftPhantom {
             goalSelector.addGoal(2, new PhantomMoveToPoint(this));
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunBurnTick() {
             return false;
@@ -91,7 +94,7 @@ public class BomberPhantom extends CraftPhantom {
                         this.speedModifier = Mth.approach((float) this.getSpeedModifier(), 0.2F, 0.025F);
                     }
 
-                    float f4 = (float)(-(Mth.atan2(-d1, d3) * 57.2957763671875));
+                    float f4 = (float) (-(Mth.atan2(-d1, d3) * 57.2957763671875));
                     NMSBomberPhantom.this.setXRot(f4);
                     float f5 = NMSBomberPhantom.this.getYRot() + 90.0F;
                     double d6 = (this.speedModifier * Mth.cos(f5 * 0.017453292F)) * Math.abs(d0 / d5);
@@ -103,7 +106,7 @@ public class BomberPhantom extends CraftPhantom {
 
             }
         }
-        
+
     }
 
 }

@@ -22,6 +22,7 @@ public class RaidSpider extends CraftSpider implements Spawnable {
     public RaidSpider(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSpider(maxRaid));
         this.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Spider");
 
         this.setMaxHealth(this.getMaxHealth() * 1.5);
@@ -32,13 +33,14 @@ public class RaidSpider extends CraftSpider implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     private static class NMSSpider extends Spider {
-        private MaxRaid raid;
+        private final MaxRaid raid;
+
         public NMSSpider(MaxRaid raid) {
             super(EntityType.SPIDER, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -46,7 +48,7 @@ public class RaidSpider extends CraftSpider implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }

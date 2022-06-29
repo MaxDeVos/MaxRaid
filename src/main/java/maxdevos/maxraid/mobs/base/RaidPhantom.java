@@ -16,9 +16,11 @@ import org.bukkit.util.BlockVector;
 public class RaidPhantom extends CraftPhantom implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidPhantom(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPhantom(maxRaid));
         RaidPhantom.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
     }
 
@@ -27,13 +29,14 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
     private static class NMSPhantom extends Phantom {
         MaxRaid raid;
+
         public NMSPhantom(MaxRaid raid) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
             setPhantomSize(5);
@@ -45,7 +48,7 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -61,7 +64,9 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 //            targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         }
 
-        /** Make immune from sunburn */
+        /**
+         * Make immune from sunburn
+         */
         @Override
         protected boolean isSunBurnTick() {
             return false;
@@ -100,7 +105,7 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
                         this.speedModifier = Mth.approach((float) this.getSpeedModifier(), 0.2F, 0.025F);
                     }
 
-                    float f4 = (float)(-(Mth.atan2(-d1, d3) * 57.2957763671875));
+                    float f4 = (float) (-(Mth.atan2(-d1, d3) * 57.2957763671875));
                     NMSPhantom.this.setXRot(f4);
                     float f5 = NMSPhantom.this.getYRot() + 90.0F;
                     double d6 = (this.speedModifier * Mth.cos(f5 * 0.017453292F)) * Math.abs(d0 / d5);
@@ -112,7 +117,7 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 
             }
         }
-        
+
     }
 
 }

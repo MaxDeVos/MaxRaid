@@ -11,9 +11,11 @@ import org.bukkit.util.BlockVector;
 public class RaidVindicator extends CraftVindicator implements Spawnable {
 
     static MaxRaid maxRaid;
+
     public RaidVindicator(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSVindicator(maxRaid));
         RaidVindicator.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Vindicator");
     }
 
@@ -22,12 +24,14 @@ public class RaidVindicator extends CraftVindicator implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
+
     private static class NMSVindicator extends Vindicator {
         MaxRaid raid;
+
         public NMSVindicator(MaxRaid raid) {
             super(EntityType.VINDICATOR, raid.getHandle().serverLevel);
             this.raid = raid;

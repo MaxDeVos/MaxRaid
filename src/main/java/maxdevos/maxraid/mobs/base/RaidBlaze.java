@@ -23,7 +23,9 @@ public class RaidBlaze extends CraftBlaze implements Spawnable {
 
     public RaidBlaze(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSBlaze(maxRaid));
+        this.setPersistent(true);
         RaidBlaze.maxRaid = maxRaid;
+        setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Blaze");
     }
 
@@ -32,13 +34,14 @@ public class RaidBlaze extends CraftBlaze implements Spawnable {
         spawn(loc);
     }
 
-    public void spawn(BlockVector loc){
+    public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.addMob(this);
     }
 
     public static class NMSBlaze extends Blaze {
         MaxRaid raid;
+
         public NMSBlaze(MaxRaid raid) {
             super(EntityType.BLAZE, raid.getHandle().serverLevel);
             this.raid = raid;
@@ -46,7 +49,7 @@ public class RaidBlaze extends CraftBlaze implements Spawnable {
         }
 
         @Override
-        protected void registerGoals(){
+        protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
         }
@@ -63,11 +66,11 @@ public class RaidBlaze extends CraftBlaze implements Spawnable {
 
         }
 
-        public void setCharged(boolean var0){
+        public void setCharged(boolean var0) {
             EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Blaze.class, EntityDataSerializers.BYTE);
             byte var1 = this.entityData.get(DATA_FLAGS_ID);
             if (var0) {
-                var1 = (byte)(var1 | 1);
+                var1 = (byte) (var1 | 1);
             } else {
                 var1 &= -2;
             }
