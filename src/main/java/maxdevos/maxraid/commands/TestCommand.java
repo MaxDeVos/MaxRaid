@@ -6,6 +6,7 @@ import maxdevos.maxraid.items.armor.helmets.RaidHelmet;
 import maxdevos.maxraid.items.weapons.projecticles.BaseArrow;
 import maxdevos.maxraid.items.weapons.projecticles.SniperArrow;
 import maxdevos.maxraid.items.weapons.projecticles.TrampolineArrow;
+import maxdevos.maxraid.mobs.experimental.BunkerBuster;
 import maxdevos.maxraid.mobs.experimental.SniperSkeleton;
 import maxdevos.maxraid.raid.NMSRaid;
 import maxdevos.maxraid.raid.RaidFactory;
@@ -41,12 +42,13 @@ public class TestCommand implements CommandExecutor {
         CraftWorld w = ((CraftWorld)p.getWorld());
         ServerLevel sLevel = w.getHandle();
 
-        if(args.length == 0){
+        if(args.length == 1){
 //           ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
 //           helmet.setAmount(1);
 //           helmet.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("GENERIC_ARMOR", 100, AttributeModifier.Operation.ADD_NUMBER));
 //           p.getEquipment().setHelmet(helmet);
-            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
+            new BunkerBuster(p.getWorld(), p.getTargetBlockExact(5).getLocation().toVector().toBlockVector(), 20, Integer.parseInt(args[0])).initiate();
+//            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
 //            new SniperSkeleton(raid, ((Player) sender).getEyeLocation().blo);
         }
         else if (args.length == 2){

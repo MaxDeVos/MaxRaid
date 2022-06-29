@@ -1,14 +1,9 @@
 package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.base.*;
-import maxdevos.maxraid.mobs.experimental.*;
-import maxdevos.maxraid.mobs.fleets.BomberFleet;
-import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
+import maxdevos.maxraid.mobs.experimental.FullAutoSkeleton;
 import maxdevos.maxraid.raid.MaxRaid;
-import org.bukkit.Location;
 import org.bukkit.Server;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -18,11 +13,11 @@ import org.bukkit.util.BlockVector;
 public class RaidProgressionEventHandler implements Listener {
 
     MaxRaid raid;
-    private final RaidPlugin plugin = RaidPlugin.getInstance();
 
     public RaidProgressionEventHandler(MaxRaid raid){
         this.raid = raid;
         Server server = RaidPlugin.getServerInstance();
+        RaidPlugin plugin = RaidPlugin.getInstance();
         server.getPluginManager().registerEvents(this, plugin);
     }
 
