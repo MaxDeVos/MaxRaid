@@ -18,6 +18,7 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -46,6 +47,8 @@ public class LimboSpider extends CraftSpider implements Spawnable {
 
     public LimboSpider(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+                int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

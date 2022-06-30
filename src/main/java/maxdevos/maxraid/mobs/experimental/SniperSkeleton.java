@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -33,6 +34,8 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
 
     public SniperSkeleton(MaxRaid raid, BlockVector loc) {
         this(raid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

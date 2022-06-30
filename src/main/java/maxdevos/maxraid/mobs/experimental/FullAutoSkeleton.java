@@ -16,6 +16,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -34,12 +35,19 @@ public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
         setCustomName(ChatColor.DARK_RED + "Full Auto Skeleton");
 
         Equipper.setMobWeapon(this, new RaidBow());
-        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.IRON));
+        Equipper.setMobArmor(this, new RaidArmor(Color.GREEN));
     }
 
     public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
+    }
+
+    public FullAutoSkeleton(MaxRaid raid, BlockVector loc, double health){
+        this(maxRaid, loc);
+        setMaxHealth(health);
     }
 
     public void spawn(BlockVector loc) {

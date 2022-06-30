@@ -1,9 +1,11 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Ravager;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftRavager;
 import org.bukkit.util.BlockVector;
@@ -21,6 +23,8 @@ public class RaidRavager extends CraftRavager implements Spawnable {
 
     public RaidRavager(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+                int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 
@@ -36,6 +40,8 @@ public class RaidRavager extends CraftRavager implements Spawnable {
             super(EntityType.RAVAGER, raid.getHandle().serverLevel);
             this.raid = raid;
             registerRaidGoals();
+
+
         }
 
 //        @Override

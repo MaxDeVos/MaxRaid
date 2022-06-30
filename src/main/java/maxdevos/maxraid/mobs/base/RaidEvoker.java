@@ -4,6 +4,7 @@ import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEvoker;
 import org.bukkit.util.BlockVector;
@@ -21,6 +22,8 @@ public class RaidEvoker extends CraftEvoker implements Spawnable {
 
     public RaidEvoker(MaxRaid raid, BlockVector loc) {
         this(raid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPhantom;
@@ -26,13 +27,11 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 
     public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
         this(maxRaid, new NMSPhantom(maxRaid));
-        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 1f);
         spawn(loc);
     }
 
     public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, NMSPhantom instance) {
         this(maxRaid, instance);
-        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 1f);
         spawn(loc);
     }
 

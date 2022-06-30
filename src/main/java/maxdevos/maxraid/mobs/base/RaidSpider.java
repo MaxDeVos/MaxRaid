@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSpider;
 import org.bukkit.util.BlockVector;
@@ -30,6 +31,8 @@ public class RaidSpider extends CraftSpider implements Spawnable {
 
     public RaidSpider(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

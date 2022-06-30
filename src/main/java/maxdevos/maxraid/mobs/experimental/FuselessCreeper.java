@@ -14,4 +14,9 @@ public class FuselessCreeper extends RaidCreeper implements Spawnable {
         this.getHandle().maxSwell = 2;
     }
 
+    public FuselessCreeper(MaxRaid maxRaid, BlockVector pos) {
+        super(maxRaid, pos);
+        this.getHandle().maxSwell = 2;
+    }
+
 }

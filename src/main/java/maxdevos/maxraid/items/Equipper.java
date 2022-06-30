@@ -7,6 +7,12 @@ import org.bukkit.inventory.ItemStack;
 public class Equipper {
 
     public static void setMobArmor(CraftMonster monster, RaidArmor armor){
+
+        if(armor == null){
+            monster.getEquipment().clear();
+            return;
+        }
+
         if(monster.getEquipment() != null){
             if(armor.helmet != null){
                 monster.getEquipment().setHelmet(armor.helmet);

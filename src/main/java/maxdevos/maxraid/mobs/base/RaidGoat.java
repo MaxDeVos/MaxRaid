@@ -15,6 +15,7 @@ import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftGoat;
 import org.bukkit.util.BlockVector;
@@ -31,6 +32,8 @@ public class RaidGoat extends CraftGoat implements Spawnable {
 
     public RaidGoat(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

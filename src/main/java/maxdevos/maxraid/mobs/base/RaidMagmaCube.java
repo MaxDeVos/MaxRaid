@@ -4,6 +4,7 @@ import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMagmaCube;
 import org.bukkit.util.BlockVector;
@@ -25,6 +26,8 @@ public class RaidMagmaCube extends CraftMagmaCube implements Spawnable {
 
     public RaidMagmaCube(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

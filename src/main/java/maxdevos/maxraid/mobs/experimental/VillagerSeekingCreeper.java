@@ -7,6 +7,7 @@ import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftCreeper;
 import org.bukkit.util.BlockVector;
@@ -23,6 +24,8 @@ public class VillagerSeekingCreeper extends CraftCreeper implements Spawnable {
 
     public VillagerSeekingCreeper(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 

@@ -14,7 +14,6 @@ public class AWP {
         i = new ItemStack(Material.BOW);
         i.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,32);
         i.addUnsafeEnchantment(Enchantment.ARROW_FIRE,32);
-        i.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,32);
         i.addUnsafeEnchantment(Enchantment.ARROW_INFINITE,1);
         i.setAmount(1);
         i.setDurability((short)	(384-allowedKills));

@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftWitherSkeleton;
 import org.bukkit.util.BlockVector;
@@ -29,7 +30,14 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable
 
     public RaidWitherSkeleton(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
+    }
+
+    public RaidWitherSkeleton(MaxRaid raid, double health, BlockVector loc){
+        this(raid, loc);
+        setMaxHealth(health);
     }
 
     public void spawn(BlockVector loc) {
@@ -56,7 +64,7 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable
             //TODO make this mob-specific
             goalSelector.addGoal(1, new FloatGoal(this));
             goalSelector.addGoal(2, new MeleeAttackGoal(this, 2.0, true));
-            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
+            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.5));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
             targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
