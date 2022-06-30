@@ -59,8 +59,8 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
         protected void registerRaidGoals() {
 
             goalSelector.addGoal(1, new FloatGoal(this));
-            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 40, AbstractVillager.class));
-            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 40, Player.class));
+            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 30, Player.class));
+            goalSelector.addGoal(2, new SniperSearchAndAim<>(this, raid, 30, AbstractVillager.class));
 
 //            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
 //            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));

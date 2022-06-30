@@ -2,19 +2,14 @@ package maxdevos.maxraid.goals;
 
 import maxdevos.maxraid.items.weapons.projecticles.SniperArrow;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import org.bukkit.event.entity.EntityTargetEvent;
 
-import javax.annotation.Nullable;
 import java.util.List;
-import java.util.UUID;
 
 
 public class SniperSearchAndAim<T extends LivingEntity> extends Goal {
@@ -27,7 +22,7 @@ public class SniperSearchAndAim<T extends LivingEntity> extends Goal {
     int cooldown;
     protected final Class<T> targetType;
     protected MaxRaid raid;
-    protected boolean warningShot = true;
+    protected boolean criticalShot = true;
 
     public SniperSearchAndAim(Mob sniper, MaxRaid raid, int cooldown, Class<T> oclass) {
         this.targetType = oclass;
@@ -74,11 +69,11 @@ public class SniperSearchAndAim<T extends LivingEntity> extends Goal {
 
         if(targetPos != null && sniper.getLookControl().isLookingAtTarget() && cooldown >= tickThreshold){
 
-            if(warningShot){
-//                targetPos.add(new Vec3(Math.random() * 3, Math.random() * 3, Math.random() * 3));
+            if(!criticalShot){
+                targetPos.add(new Vec3(Math.random() * 2, Math.random() * 2, Math.random() * 2));
             }
             new SniperArrow(sniper.getBukkitEntity()).shootAtPoint(targetPos);
-            warningShot = !warningShot;
+            criticalShot = Math.random() > 0.25;
             cooldown = 0;
 
         }

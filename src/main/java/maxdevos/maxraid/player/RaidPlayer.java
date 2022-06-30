@@ -4,6 +4,8 @@ import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.ordinances.AWP;
 import maxdevos.maxraid.ordinances.Excalibur;
 import maxdevos.maxraid.ordinances.RaidOrdinance;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -134,9 +136,7 @@ public class RaidPlayer implements Comparable<RaidPlayer> {
     }
 
     private void setInfoText(String message){
-//        IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a(("{\"text\": \"" + message + "\"}"));
-//        PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, ChatMessageType.GAME_INFO, getPlayerID());
-//        ((CraftPlayer)getPlayer()).getHandle().playerConnection.sendPacket(ppoc);
+        getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
     }
 
     public void processScore(Scoreboard board){
