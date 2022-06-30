@@ -15,7 +15,6 @@ public class PhantomChaseTarget extends Goal {
 
     @Override
     public boolean canUse() {
-        System.out.println(mob.getTarget());
         return mob.getTarget() != null;
     }
 

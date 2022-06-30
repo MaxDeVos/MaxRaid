@@ -48,7 +48,6 @@ public class NearestEntityOfClassGoal<T extends LivingEntity> extends Goal {
     }
 
     public void start(){
-        System.out.println("SETTING TARGET FOR PHANTOM");
         this.mob.setTarget(target);
     }
 

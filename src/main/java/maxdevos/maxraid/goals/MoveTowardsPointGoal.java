@@ -42,11 +42,16 @@ public class MoveTowardsPointGoal extends Goal {
     }
 
     @Override
+    public boolean requiresUpdateEveryTick() {
+        return true;
+    }
+
+    @Override
     public void tick(){
         super.tick();
         if(!mob.isPathFinding() || repathTicker > 20){
             repathTicker = 0;
-            Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 0, 0);
+            Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
             mob.getNavigation().moveTo(p, this.speedModifier);
         }
         repathTicker++;

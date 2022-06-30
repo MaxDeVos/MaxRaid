@@ -1,8 +1,13 @@
 package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
+import maxdevos.maxraid.mobs.base.RaidSkeleton;
+import maxdevos.maxraid.mobs.base.RaidSpider;
+import maxdevos.maxraid.mobs.base.RaidZombie;
 import maxdevos.maxraid.mobs.experimental.FullAutoSkeleton;
 import maxdevos.maxraid.mobs.experimental.ExplodingPhantom;
+import maxdevos.maxraid.mobs.experimental.SniperSkeleton;
+import maxdevos.maxraid.mobs.experimental.WallSeekingCreeper;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
@@ -24,6 +29,7 @@ public class RaidProgressionEventHandler implements Listener {
 
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent){
+
 
 //        new LimboSpider(raid, new BlockVector(-453, 81, 590));
 
@@ -58,16 +64,16 @@ public class RaidProgressionEventHandler implements Listener {
 
         new ExplodingPhantom(raid, new BlockVector(-535, 91, 588), new BlockVector(-504, 91, 588));
 
-//        new WallSeekingCreeper(raid, new BlockVector(-454, 81, 550));
-//        new WallSeekingCreeper(raid, new BlockVector(-460, 81, 550));
-//        new WallSeekingCreeper(raid, new BlockVector(-465, 81, 550));
-//        new SniperSkeleton(raid, new BlockVector(-480, 81, 585));
+        new WallSeekingCreeper(raid, new BlockVector(-454, 81, 550));
+        new WallSeekingCreeper(raid, new BlockVector(-460, 81, 550));
+        new WallSeekingCreeper(raid, new BlockVector(-465, 81, 550));
+        new SniperSkeleton(raid, new BlockVector(-480, 81, 585));
         new FullAutoSkeleton(raid, new BlockVector(50, 81, 50));
 
-//        new RaidZombie(raid, new BlockVector(25, 3, 25));
-//        new RaidSpider(raid, new BlockVector(25, -55, 25));
+        new RaidZombie(raid, new BlockVector(-465, 81, 550));
+        new RaidSpider(raid, new BlockVector(-465, 81, 550));
 //        new RaidMagmaCube(raid, new BlockVector(6,-55,6));
-//        new RaidSkeleton(raid, new BlockVector(-25, -55, -25));
+        new RaidSkeleton(raid, new BlockVector(-465, 81, 550));
     }
 
     public void unregister(){

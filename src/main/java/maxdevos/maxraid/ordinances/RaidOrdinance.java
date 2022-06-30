@@ -20,7 +20,7 @@ public class RaidOrdinance {
 
     public RaidOrdinance(RaidPlayer p) {
         this.l = WorldUtils.findReasonableLocation(p.getPlayer().getLocation(), 2);
-        p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "Your Ordiance Has Spawned!");
+        p.getPlayer().sendMessage(ChatFunctions.raidPrefix + "Your Ordinance Has Spawned!");
         l.getBlock().setType(Material.CHEST);
         Chest s = (Chest) l.getBlock().getState();
         s.getBlockInventory().addItem(new Excalibur(10).getItem(), new AWP(10).getItem());

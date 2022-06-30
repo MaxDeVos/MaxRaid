@@ -5,12 +5,13 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.monster.Spider;
 
 public class SpiderSpeedAttackGoal extends MeleeAttackGoal {
+
     public SpiderSpeedAttackGoal(Spider entityspider, double speed) {
         super(entityspider, speed, true);
     }
 
     public boolean canUse() {
-        return super.canUse();
+        return super.canUse() && !this.mob.isVehicle();
     }
 
     public boolean canContinueToUse() {
