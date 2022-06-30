@@ -2,6 +2,7 @@ package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.mobs.experimental.FullAutoSkeleton;
+import maxdevos.maxraid.mobs.experimental.ExplodingPhantom;
 import maxdevos.maxraid.raid.MaxRaid;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
@@ -55,6 +56,7 @@ public class RaidProgressionEventHandler implements Listener {
 //         Start paradropper after bombers start
 //        RaidPlugin.getServerInstance().getScheduler().scheduleSyncDelayedTask(RaidPlugin.getInstance(), () -> paraDropper.spawn(), 5 * 20L);
 
+        new ExplodingPhantom(raid, new BlockVector(-535, 91, 588), new BlockVector(-504, 91, 588));
 
 //        new WallSeekingCreeper(raid, new BlockVector(-454, 81, 550));
 //        new WallSeekingCreeper(raid, new BlockVector(-460, 81, 550));

@@ -17,15 +17,22 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 
     static MaxRaid maxRaid;
 
-    public RaidPhantom(MaxRaid maxRaid) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPhantom(maxRaid));
+    public RaidPhantom(MaxRaid maxRaid, NMSPhantom instance) {
+        super(maxRaid.getHandle().getLevel().getCraftServer(), instance);
         RaidPhantom.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
     }
 
-    public RaidPhantom(MaxRaid maxRaid, BlockVector loc) {
-        this(maxRaid);
+    public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
+        this(maxRaid, new NMSPhantom(maxRaid));
+        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 1f);
+        spawn(loc);
+    }
+
+    public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, NMSPhantom instance) {
+        this(maxRaid, instance);
+        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 1f);
         spawn(loc);
     }
 
@@ -34,8 +41,8 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
         maxRaid.getHandle().addMob(this.getHandle());
     }
 
-    private static class NMSPhantom extends Phantom {
-        MaxRaid raid;
+    public static class NMSPhantom extends Phantom {
+        public MaxRaid raid;
 
         public NMSPhantom(MaxRaid raid) {
             super(EntityType.PHANTOM, raid.getHandle().serverLevel);
@@ -43,14 +50,16 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
             this.raid = raid;
             registerRaidGoals();
             this.moveControl = new PhantomMoveControl(this);
-
-
         }
 
         @Override
         protected void registerGoals() {
             goalSelector.removeAllGoals();
             targetSelector.removeAllGoals();
+        }
+
+        public void handleCollision(boolean horizontal){
+            setYRot(NMSPhantom.this.getYRot() + 180.0F);
         }
 
         protected void registerRaidGoals() {
@@ -80,7 +89,11 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 
             public void tick() {
                 if (NMSPhantom.this.horizontalCollision) {
-                    NMSPhantom.this.setYRot(NMSPhantom.this.getYRot() + 180.0F);
+                    handleCollision(true);
+                }
+                if (NMSPhantom.this.verticalCollision ||
+                        NMSPhantom.this.verticalCollisionBelow){
+                    handleCollision(false);
                 }
 
                 double d0 = this.getWantedX() - NMSPhantom.this.getX();

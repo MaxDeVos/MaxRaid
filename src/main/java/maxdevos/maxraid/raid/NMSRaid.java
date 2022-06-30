@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -63,6 +64,11 @@ public class NMSRaid extends Raid implements Listener {
             Field raidEventField = MaxReflectionUtils.findByType(this.getClass().getSuperclass(), ServerBossEvent.class);
             raidEventField.set(this, bossEvent);
         } catch (Exception e) { throw new RuntimeException(e); }
+    }
+
+    @Override
+    public int getNumGroups(Difficulty enumdifficulty) {
+        return 7;
     }
 
     @Override
