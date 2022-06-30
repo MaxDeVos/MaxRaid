@@ -34,6 +34,7 @@ public class RaidHelmet extends ItemStack {
         setType(Material.LEATHER_HELMET);
         LeatherArmorMeta meta = (LeatherArmorMeta) getItemMeta();
         meta.setColor(color);
+        setItemMeta(meta);
     }
 
 }

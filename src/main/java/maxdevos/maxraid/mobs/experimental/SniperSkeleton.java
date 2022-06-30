@@ -28,7 +28,7 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
         setCustomName(ChatColor.DARK_RED + "Sniper Skeleton");
 
         Equipper.setMobWeapon(this, new RaidBow());
-        Equipper.setMobArmor(this, new RaidArmor(RaidItemType.ArmorMaterial.CHAINMAIL));
+        Equipper.setMobArmor(this, new RaidArmor(Color.AQUA));
     }
 
     public SniperSkeleton(MaxRaid raid, BlockVector loc) {

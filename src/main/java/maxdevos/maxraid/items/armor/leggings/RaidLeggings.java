@@ -25,5 +25,6 @@ public class RaidLeggings extends ItemStack {
         setType(Material.LEATHER_LEGGINGS);
         LeatherArmorMeta meta = (LeatherArmorMeta) getItemMeta();
         meta.setColor(color);
+        setItemMeta(meta);
     }
 }

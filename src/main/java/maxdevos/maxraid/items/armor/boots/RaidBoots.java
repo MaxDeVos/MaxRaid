@@ -25,5 +25,6 @@ public class RaidBoots extends ItemStack {
         setType(Material.LEATHER_BOOTS);
         LeatherArmorMeta meta = (LeatherArmorMeta) getItemMeta();
         meta.setColor(color);
+        setItemMeta(meta);
     }
 }
