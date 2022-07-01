@@ -11,6 +11,8 @@ import maxdevos.maxraid.events.event.StopRaidEvent;
 import maxdevos.maxraid.util.ChatFunctions;
 import maxdevos.maxraid.util.PlayerUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
@@ -114,6 +116,13 @@ public class MaxRaid implements Listener {
         }
         scoreboard.updateScoreboard(players);
         nmsRaid.updateBossbar();
+
+        if(nmsRaid.raidMobs.size() < 3){
+            for(LivingEntity mob: nmsRaid.raidMobs){
+                mob.setGlowingTag(true);
+            }
+        }
+
     }
 
     @EventHandler

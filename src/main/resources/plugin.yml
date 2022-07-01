@@ -20,3 +20,11 @@ commands:
     description: kills all mobs related to raid
     usage: /setraid
     permission: maxcraft.max
+  reset:
+    description: reset working area
+    usage: /reset
+    permission: maxcraft.max
+  r:
+    description: reset working area
+    usage: /r
+    permission: maxcraft.max
