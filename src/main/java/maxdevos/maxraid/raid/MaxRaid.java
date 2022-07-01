@@ -117,7 +117,7 @@ public class MaxRaid implements Listener {
         scoreboard.updateScoreboard(players);
         nmsRaid.updateBossbar();
 
-        if(nmsRaid.raidMobs.size() < 3){
+        if(nmsRaid.getTotalRaidersAlive() < 5){
             for(LivingEntity mob: nmsRaid.raidMobs){
                 mob.setGlowingTag(true);
             }

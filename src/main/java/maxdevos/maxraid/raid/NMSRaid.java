@@ -43,7 +43,7 @@ public class NMSRaid extends Raid implements Listener {
         this.bukkitWorld = world.getWorld();
         RaidPlugin.getInstance().getServer().getPluginManager().registerEvents(this, RaidPlugin.getInstance());
         generateNewRaidEvent();
-//        devCooldownTicks();
+        devCooldownTicks();
     }
 
     private void devCooldownTicks(){
