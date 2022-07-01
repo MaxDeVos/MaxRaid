@@ -1,6 +1,7 @@
 package maxdevos.maxraid.items;
 
 import maxdevos.maxraid.items.armor.RaidArmor;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,6 +31,7 @@ public class Equipper {
     }
 
     public static void setMobWeapon(CraftMonster monster, ItemStack weapon){
+
         if(monster.getEquipment() != null){
             monster.getEquipment().setItemInMainHand(weapon);
         }

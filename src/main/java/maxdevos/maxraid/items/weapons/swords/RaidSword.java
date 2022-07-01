@@ -21,7 +21,6 @@ public class RaidSword extends ItemStack {
             case DIAMOND -> setType(Material.DIAMOND_SWORD);
             case NETHERITE -> setType(Material.NETHERITE_SWORD);
         }
-        meta.setDisplayName("Raid Sword");
     }
 
 }

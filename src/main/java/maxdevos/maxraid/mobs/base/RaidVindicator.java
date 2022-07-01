@@ -17,6 +17,7 @@ public class RaidVindicator extends CraftVindicator implements Spawnable {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSVindicator(maxRaid));
         RaidVindicator.maxRaid = maxRaid;
         setPersistent(true);
+        setMaxHealth(30);
         setCustomName(ChatColor.DARK_RED + "RAID Vindicator");
     }
 

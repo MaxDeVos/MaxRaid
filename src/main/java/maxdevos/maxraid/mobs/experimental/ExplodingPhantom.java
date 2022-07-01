@@ -10,8 +10,8 @@ import org.bukkit.util.BlockVector;
 
 public class ExplodingPhantom extends RaidPhantom {
 
-    public ExplodingPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
-        super(maxRaid, loc, target, new NMSSuicidePhantom(maxRaid));
+    public ExplodingPhantom(MaxRaid maxRaid, BlockVector loc) {
+        super(maxRaid, loc, new NMSSuicidePhantom(maxRaid));
         setCustomName(ChatColor.DARK_RED + "SUICIDE PHANTOM");
     }
 

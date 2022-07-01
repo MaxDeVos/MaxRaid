@@ -26,6 +26,8 @@ public final class RaidPlugin extends JavaPlugin implements Listener {
         plugin = this;
         createCustomConfig();
         new CatchAllListener();
+        Objects.requireNonNull(getCommand("r")).setExecutor(new ResetCommand());
+        Objects.requireNonNull(getCommand("reset")).setExecutor(new ResetCommand());
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand());
         Objects.requireNonNull(getCommand("endraid")).setExecutor(new EndRaidCommand());
         Objects.requireNonNull(getCommand("endwave")).setExecutor(new EndWaveCommand());

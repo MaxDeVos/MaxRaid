@@ -52,8 +52,8 @@ public class MobEventHandler implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     private void antiEarthExplosion(EntityExplodeEvent e){
         for(Block b:e.blockList()){
-            if(b.getType().equals(Material.DIRT) || b.getType().equals(Material.GRASS_BLOCK) || b.getType().equals(Material.GLOWSTONE) || b.getType().equals(Material.STONE)){
-//                System.out.println("REMOVED BLOCK");
+            if(b.getType().equals(Material.DIRT) || b.getType().equals(Material.GRASS_BLOCK) ||
+                    b.getType().equals(Material.PODZOL) || b.getType().equals(Material.STONE)){
                 e.blockList().remove(b);
             }
         }
@@ -62,7 +62,8 @@ public class MobEventHandler implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     private void antiEarthExplosion(BlockExplodeEvent e){
         for(Block b:e.blockList()){
-            if(b.getType().equals(Material.DIRT) || b.getType().equals(Material.GRASS_BLOCK) || b.getType().equals(Material.GLOWSTONE) || b.getType().equals(Material.STONE)){
+            if(b.getType().equals(Material.DIRT) || b.getType().equals(Material.GRASS_BLOCK) ||
+                    b.getType().equals(Material.PODZOL) || b.getType().equals(Material.STONE)){
                 e.blockList().remove(b);
             }
         }

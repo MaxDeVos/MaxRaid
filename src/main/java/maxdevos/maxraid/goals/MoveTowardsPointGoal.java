@@ -29,16 +29,7 @@ public class MoveTowardsPointGoal extends Goal {
     }
 
     public boolean canUse() {
-        Vec3 var0 = DefaultRandomPos.getPosTowards(this.mob, 16, 7, this.goalPos, Math.PI * 0.5);
-        if (var0 == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public boolean canContinueToUse() {
-        return !this.mob.getNavigation().isDone();
+        return true;
     }
 
     @Override
@@ -51,8 +42,17 @@ public class MoveTowardsPointGoal extends Goal {
         super.tick();
         if(!mob.isPathFinding() || repathTicker > 20){
             repathTicker = 0;
-            Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
-            mob.getNavigation().moveTo(p, this.speedModifier);
+            if(mob.getTarget() == null){
+                Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
+                mob.getNavigation().moveTo(p, this.speedModifier);
+            }
+            else if(mob.getLevel().getNearestPlayer(mob, 120).distanceTo(mob) < 15){
+                mob.setTarget(mob.getLevel().getNearestPlayer(mob, 120));
+            }
+            else{
+                Path p = mob.getNavigation().createPath(new BlockPos(mob.getTarget().position()), 1, 1);
+                mob.getNavigation().moveTo(p, this.speedModifier);
+            }
         }
         repathTicker++;
     }

@@ -25,12 +25,12 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
         setCustomName(ChatColor.DARK_RED + "RAID Phantom");
     }
 
-    public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target) {
+    public RaidPhantom(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid, new NMSPhantom(maxRaid));
         spawn(loc);
     }
 
-    public RaidPhantom(MaxRaid maxRaid, BlockVector loc, BlockVector target, NMSPhantom instance) {
+    public RaidPhantom(MaxRaid maxRaid, BlockVector loc, NMSPhantom instance) {
         this(maxRaid, instance);
         spawn(loc);
     }

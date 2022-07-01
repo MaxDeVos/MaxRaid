@@ -34,7 +34,6 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         fleets = new LinkedList<>();
         getHandle().goalSelector.addGoal(1, new DropParatroopers(this, fleets));
-        setHealth(150);
     }
 
     public void addFleet(ParatrooperFleet fleet) {

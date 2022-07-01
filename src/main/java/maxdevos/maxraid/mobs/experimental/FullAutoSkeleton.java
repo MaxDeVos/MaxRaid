@@ -38,17 +38,23 @@ public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
         Equipper.setMobArmor(this, new RaidArmor(Color.GREEN));
     }
 
-    public FullAutoSkeleton(MaxRaid maxRaid, BlockVector loc) {
-        this(maxRaid);
-        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+    public FullAutoSkeleton(MaxRaid raid, BlockVector loc) {
+        this(raid);
+        int y = raid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
         loc = new BlockVector(loc.getX(), y, loc.getZ());
         spawn(loc);
     }
 
     public FullAutoSkeleton(MaxRaid raid, BlockVector loc, double health){
-        this(maxRaid, loc);
+        this(raid, loc);
         setMaxHealth(health);
     }
+
+    public FullAutoSkeleton(MaxRaid raid, double health){
+        this(raid);
+        setMaxHealth(health);
+    }
+
 
     public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());

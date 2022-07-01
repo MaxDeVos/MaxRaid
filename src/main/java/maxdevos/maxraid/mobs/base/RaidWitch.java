@@ -16,6 +16,7 @@ public class RaidWitch extends CraftWitch implements Spawnable {
     public RaidWitch(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSWitch(maxRaid));
         RaidWitch.maxRaid = maxRaid;
+        setMaxHealth(30);
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Witch");
     }

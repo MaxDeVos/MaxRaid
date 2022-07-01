@@ -3,6 +3,8 @@ package maxdevos.maxraid.mobs.base;
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.items.Equipper;
+import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
@@ -14,7 +16,9 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Raid;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -36,11 +40,22 @@ public class RaidSkeleton extends CraftSkeleton implements Spawnable {
         this.getEquipment().setItemInMainHand(weapon);
     }
 
-    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc) {
+    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc, double health) {
         this(maxRaid);
         int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
         loc = new BlockVector(loc.getX(), y, loc.getZ());
+        setMaxHealth(health);
         spawn(loc);
+    }
+
+    public RaidSkeleton(MaxRaid raid, BlockVector loc, double health, Color color, ItemStack weapon){
+        this(raid, loc, health);
+
+        if (color != null){
+            Equipper.setMobArmor(this, new RaidArmor(color));
+        }
+
+        Equipper.setMobWeapon(this, weapon);
     }
 
     public void spawn(BlockVector loc) {

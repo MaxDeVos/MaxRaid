@@ -19,6 +19,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
 public class RaidZombie extends CraftZombie implements Spawnable {
@@ -35,14 +36,15 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         Equipper.setMobArmor(this, new RaidArmor(Color.GRAY));
     }
 
-    public RaidZombie(MaxRaid maxRaid, float health, RaidSword sword, float speed) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
-        RaidZombie.maxRaid = maxRaid;
-        setPersistent(true);
-        setCustomName(ChatColor.DARK_RED + "RAID Zombie");
+    public RaidZombie(MaxRaid maxRaid, BlockVector loc, float health, Color color, ItemStack weapon) {
+        this(maxRaid, loc);
+        setMaxHealth(health);
 
-        Equipper.setMobWeapon(this, new RaidSword(RaidItemType.WeaponMaterial.DIAMOND));
-        Equipper.setMobArmor(this, new RaidArmor(Color.GRAY));
+        if(color != null){
+            Equipper.setMobArmor(this, new RaidArmor(color));
+        }
+
+        Equipper.setMobWeapon(this, weapon);
     }
 
     public RaidZombie(MaxRaid maxRaid, BlockVector loc) {
