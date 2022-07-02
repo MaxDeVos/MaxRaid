@@ -1,5 +1,9 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.items.RaidItemType;
+import maxdevos.maxraid.items.weapons.axes.Level2Axe;
+import maxdevos.maxraid.items.weapons.axes.RaidAxe;
+import maxdevos.maxraid.items.weapons.swords.RaidSword;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
@@ -18,6 +22,7 @@ public class RaidPillager extends CraftPillager implements Spawnable {
         RaidPillager.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Pillager");
+        getEquipment().setItemInMainHand(new Level2Axe());
     }
 
     public RaidPillager(MaxRaid maxRaid, BlockVector loc) {

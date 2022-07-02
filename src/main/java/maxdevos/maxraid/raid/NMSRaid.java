@@ -131,7 +131,7 @@ public class NMSRaid extends Raid implements Listener {
     }
 
     public float calculateProgressFloat(){
-        float calc = this.getHealthOfLivingRaiders() / this.maxHealth;
+        float calc = (float) (this.getTotalRaidersAlive() / (this.raidMobs.size() + 0.0));
         if(calc >= 0){
             return calc;
         }

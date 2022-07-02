@@ -45,7 +45,7 @@ public class ParatrooperDroppingPhantom extends CraftPhantom implements Spawnabl
     }
 
     public void spawn(BlockVector loc) {
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.getHandle().addMob(this.getHandle(), false);
     }
 
     private static class NMSBomberPhantom extends Phantom {

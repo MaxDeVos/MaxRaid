@@ -45,6 +45,7 @@ public class WallSeekingCreeper extends CraftCreeper implements Spawnable {
 
     private static class NMSCreeper extends Creeper {
         MaxRaid raid;
+        int timer = 0;
 
         public NMSCreeper(MaxRaid raid) {
             super(EntityType.CREEPER, raid.getHandle().serverLevel);
@@ -69,8 +70,17 @@ public class WallSeekingCreeper extends CraftCreeper implements Spawnable {
 //            targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true));
 //            targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, AbstractVillager.class, true));
 //            targetSelector.addGoal(3, new HurtByTargetGoal(this));
-
         }
+
+        @Override
+        public void tick(){
+            super.tick();
+            if(timer > 20 * 15){
+                explodeCreeper();
+            }
+            timer++;
+        }
+
     }
 
 }

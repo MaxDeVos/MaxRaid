@@ -37,7 +37,7 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
 
     public void spawn(BlockVector loc) {
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
-        maxRaid.getHandle().addMob(this.getHandle());
+        maxRaid.getHandle().addMob(this.getHandle(), false);
     }
 
     public static class NMSPhantom extends Phantom {

@@ -7,7 +7,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftRavager;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
 public class RaidRavager extends CraftRavager implements Spawnable {
@@ -19,6 +21,7 @@ public class RaidRavager extends CraftRavager implements Spawnable {
         RaidRavager.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Ravager");
+        getEquipment().setItemInMainHand(new ItemStack(Material.CROSSBOW));
     }
 
     public RaidRavager(MaxRaid maxRaid, BlockVector loc) {

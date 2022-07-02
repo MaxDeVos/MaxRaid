@@ -35,6 +35,7 @@ public class BaseArrow extends CraftArrow {
         super(archer.getHandle().getLevel().getCraftServer(), customEntity);
         this.archer = archer;
         this.shootTracer = shootTracer;
+        this.setKnockbackStrength(3);
     }
 
     public void shootWhereLooking(){

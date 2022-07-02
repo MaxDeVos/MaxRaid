@@ -1,5 +1,6 @@
 package maxdevos.maxraid.mobs.base;
 
+import maxdevos.maxraid.items.weapons.swords.Level2Sword;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +23,7 @@ public class RaidVindicator extends CraftVindicator implements Spawnable {
         getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
         getHandle().setHealth(30f);
         setCustomName(ChatColor.DARK_RED + "RAID Vindicator");
+        getEquipment().setItemInMainHand(new Level2Sword());
     }
 
     public RaidVindicator(MaxRaid maxRaid, BlockVector loc) {

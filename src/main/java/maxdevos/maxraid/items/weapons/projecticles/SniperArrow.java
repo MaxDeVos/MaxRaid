@@ -10,5 +10,6 @@ public class SniperArrow extends BaseArrow {
         velocity = 10f;
         spread = 0.001f;
         getHandle().setNoGravity(true);
+        getHandle().setBaseDamage(50);
     }
 }
