@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.factories;
+package maxdevos.maxraid.mobs;
 
 import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.armor.RaidArmor;
@@ -17,8 +17,12 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class MonsterFactory {
+    public static CraftMonster createCraftMonster(MaxRaid raid, Class<? extends Monster> type) {
+        return createCraftMonster(raid, type, false, null, 0.0f, null, null, 0.0f, null);
+    }
 
-    protected static Monster createNMSMonster(MaxRaid raid, Class<? extends Monster> type, BlockVector pos, float health, ItemStack weapon, RaidArmor armor,
+    /** If you ever need the raw instance of the NMS Mob, you're doing something wrong */
+    public static CraftMonster createCraftMonster(MaxRaid raid, Class<? extends Monster> type, boolean spawn, BlockVector pos, float health, ItemStack weapon, RaidArmor armor,
                                             float speed, String customNameTag) {
 
         if(Arrays.stream(type.getInterfaces()).noneMatch(Predicate.isEqual(RaidMob.class))){
@@ -54,7 +58,13 @@ public class MonsterFactory {
                 monster.setPos(VecTools.blockVectorToVec3(pos));
             }
 
-            return monster;
+            CraftMonster castedMonster = (CraftMonster) monster.getBukkitEntity();
+
+            if(spawn){
+                raid.addMob(castedMonster);
+            }
+
+            return castedMonster;
 
 
         } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
