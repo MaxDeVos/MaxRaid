@@ -8,6 +8,8 @@ import maxdevos.maxraid.items.weapons.bows.RaidBow;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
@@ -27,7 +29,8 @@ public class SniperSkeleton extends CraftSkeleton implements Spawnable {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
         SniperSkeleton.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Sniper Skeleton");
-
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(30f);
         Equipper.setMobWeapon(this, new RaidBow());
         Equipper.setMobArmor(this, new RaidArmor(Color.AQUA));
     }

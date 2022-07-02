@@ -5,6 +5,8 @@ import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -27,6 +29,9 @@ public class RaidCreeper extends CraftCreeper implements Spawnable {
         RaidCreeper.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");
+
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(30f);
     }
 
     public RaidCreeper(MaxRaid maxRaid, BlockVector loc) {

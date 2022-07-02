@@ -24,7 +24,7 @@ public class BomberPhantom extends CraftPhantom {
         BomberPhantom.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "Bomber Phantom");
         this.loc = loc;
-        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 0.5f);
+        this.getHandle().getMoveControl().setWantedPosition(target.getX(), target.getY(), target.getZ(), 0.25f);
         this.getHandle().setPos(loc.getX(), loc.getY(), loc.getZ());
         maxRaid.getHandle().addMob(this.getHandle(), false);
     }
@@ -39,7 +39,7 @@ public class BomberPhantom extends CraftPhantom {
             this.bombsPerSecond = bombsPerSecond;
             this.raid = raid;
             registerRaidGoals();
-            this.moveControl = new PhantomMoveControl(this);
+            this.moveControl = new PhantomMoveControl(this, 0.01f);
         }
 
         @Override
@@ -50,7 +50,7 @@ public class BomberPhantom extends CraftPhantom {
 
         protected void registerRaidGoals() {
             goalSelector.addGoal(1, new PhantomDropBombs(this, bombsPerSecond));
-            goalSelector.addGoal(2, new PhantomMoveToPoint(this));
+            goalSelector.addGoal(2, new PhantomMoveToPoint(this, 0.01f));
         }
 
         /**
@@ -63,8 +63,9 @@ public class BomberPhantom extends CraftPhantom {
 
         private class PhantomMoveControl extends MoveControl {
 
-            public PhantomMoveControl(Mob entityinsentient) {
+            public PhantomMoveControl(Mob entityinsentient, float speed) {
                 super(entityinsentient);
+                this.speedModifier = speed;
             }
 
             public void tick() {
@@ -101,7 +102,7 @@ public class BomberPhantom extends CraftPhantom {
                     double d7 = (this.speedModifier * Mth.sin(f5 * 0.017453292F)) * Math.abs(d2 / d5);
                     double d8 = (this.speedModifier * Mth.sin(f4 * 0.017453292F)) * Math.abs(d1 / d5);
                     Vec3 vec3d = NMSBomberPhantom.this.getDeltaMovement();
-                    NMSBomberPhantom.this.setDeltaMovement(vec3d.add((new Vec3(d6, d8, d7)).subtract(vec3d).scale(0.2)));
+                    NMSBomberPhantom.this.setDeltaMovement(vec3d.add((new Vec3(d6, d8, d7)).subtract(vec3d).scale(0.1)));
                 }
 
             }

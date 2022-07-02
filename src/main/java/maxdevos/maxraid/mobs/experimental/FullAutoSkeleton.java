@@ -11,6 +11,8 @@ import maxdevos.maxraid.items.weapons.bows.RaidBow;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Skeleton;
@@ -45,9 +47,10 @@ public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {
         spawn(loc);
     }
 
-    public FullAutoSkeleton(MaxRaid raid, BlockVector loc, double health){
+    public FullAutoSkeleton(MaxRaid raid, BlockVector loc, float health){
         this(raid, loc);
-        setMaxHealth(health);
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(health);
     }
 
     public FullAutoSkeleton(MaxRaid raid, double health){

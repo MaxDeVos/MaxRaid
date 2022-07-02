@@ -8,6 +8,8 @@ import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -40,9 +42,11 @@ public class RaidWitherSkeleton extends CraftWitherSkeleton implements Spawnable
         spawn(loc);
     }
 
-    public RaidWitherSkeleton(MaxRaid raid, BlockVector loc, double health, Color color, ItemStack weapon){
+    public RaidWitherSkeleton(MaxRaid raid, BlockVector loc, float health, Color color, ItemStack weapon){
         this(raid, loc);
-        setMaxHealth(health);
+
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(health);
 
         if(color != null){
             Equipper.setMobArmor(this, new RaidArmor(color));

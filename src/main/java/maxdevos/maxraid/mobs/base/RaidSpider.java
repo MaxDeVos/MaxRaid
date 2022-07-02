@@ -7,6 +7,8 @@ import maxdevos.maxraid.goals.SpiderSpeedAttackGoal;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Spider;
@@ -26,7 +28,8 @@ public class RaidSpider extends CraftSpider implements Spawnable {
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Spider");
 
-        this.setMaxHealth(this.getMaxHealth() * 1.5);
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(30f);
     }
 
     public RaidSpider(MaxRaid maxRaid, BlockVector loc) {

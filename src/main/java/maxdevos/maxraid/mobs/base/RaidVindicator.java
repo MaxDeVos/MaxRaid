@@ -3,6 +3,8 @@ package maxdevos.maxraid.mobs.base;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Vindicator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
@@ -17,7 +19,8 @@ public class RaidVindicator extends CraftVindicator implements Spawnable {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSVindicator(maxRaid));
         RaidVindicator.maxRaid = maxRaid;
         setPersistent(true);
-        setMaxHealth(30);
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(30f);
         setCustomName(ChatColor.DARK_RED + "RAID Vindicator");
     }
 

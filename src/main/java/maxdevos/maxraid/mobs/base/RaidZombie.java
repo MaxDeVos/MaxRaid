@@ -3,13 +3,16 @@ package maxdevos.maxraid.mobs.base;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.items.Equipper;
-import maxdevos.maxraid.items.RaidItemType;
 import maxdevos.maxraid.items.armor.RaidArmor;
-import maxdevos.maxraid.items.weapons.swords.RaidSword;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
+import net.minecraft.network.protocol.game.ServerboundEntityTagQuery;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.AbstractVillager;
@@ -17,7 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
@@ -31,20 +33,22 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         RaidZombie.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID Zombie");
-
-        Equipper.setMobWeapon(this, new RaidSword(RaidItemType.WeaponMaterial.DIAMOND));
-        Equipper.setMobArmor(this, new RaidArmor(Color.GRAY));
+//        Equipper.setMobWeapon(this, new RaidSword(RaidItemType.WeaponMaterial.DIAMOND));
+//        Equipper.setMobArmor(this, new RaidArmor(Color.GRAY));
     }
 
     public RaidZombie(MaxRaid maxRaid, BlockVector loc, float health, Color color, ItemStack weapon) {
-        this(maxRaid, loc);
-        setMaxHealth(health);
+        this(maxRaid);
+
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(health);
 
         if(color != null){
             Equipper.setMobArmor(this, new RaidArmor(color));
         }
 
         Equipper.setMobWeapon(this, weapon);
+        spawn(loc);
     }
 
     public RaidZombie(MaxRaid maxRaid, BlockVector loc) {

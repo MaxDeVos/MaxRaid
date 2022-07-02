@@ -4,6 +4,8 @@ import maxdevos.maxraid.goals.*;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.SwellGoal;
@@ -25,6 +27,8 @@ public class WallSeekingCreeper extends CraftCreeper implements Spawnable {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSCreeper(maxRaid));
         WallSeekingCreeper.maxRaid = maxRaid;
         setCustomName(ChatColor.DARK_RED + "SUICIDE CREEPER");
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(30f);
     }
 
     public WallSeekingCreeper(MaxRaid maxRaid, BlockVector loc) {

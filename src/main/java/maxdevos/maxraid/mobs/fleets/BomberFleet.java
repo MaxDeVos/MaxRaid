@@ -17,9 +17,9 @@ public class BomberFleet {
 
         double[] phantomZPos = {568, 579, 588, 593, 598, 609};
 
-        double phantomX = raid.raidBase.zeroCorner.getX() - 60;
+        double phantomX = raid.raidBase.zeroCorner.getX() - 100;
         double phantomGoalX = raid.raidBase.zeroCorner.getX() + raid.raidBase.dimensions.getX() + 60;
-        double phantomY = raid.raidBase.topHeight + 15;
+        double phantomY = raid.raidBase.topHeight + 5;
         int numPhantoms = (int) Math.floor(raid.raidBase.dimensions.getZ() - 6.0 / spacing);
         double phantomZBase = raid.raidBase.zeroCorner.getZ() + 3;
 

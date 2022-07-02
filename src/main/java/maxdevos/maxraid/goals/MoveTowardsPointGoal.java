@@ -46,8 +46,10 @@ public class MoveTowardsPointGoal extends Goal {
                 Path p = mob.getNavigation().createPath(new BlockPos(this.goalPos), 1, 1);
                 mob.getNavigation().moveTo(p, this.speedModifier);
             }
-            else if(mob.getLevel().getNearestPlayer(mob, 120).distanceTo(mob) < 15){
-                mob.setTarget(mob.getLevel().getNearestPlayer(mob, 120));
+            else if(mob.getLevel().getNearestPlayer(mob, 120) != null){
+                if(mob.getLevel().getNearestPlayer(mob, 120).distanceTo(mob) < 15){
+                    mob.setTarget(mob.getLevel().getNearestPlayer(mob, 120));
+                }
             }
             else{
                 Path p = mob.getNavigation().createPath(new BlockPos(mob.getTarget().position()), 1, 1);

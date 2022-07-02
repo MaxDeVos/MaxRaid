@@ -47,7 +47,7 @@ public class MaxRaid implements Listener {
         this.nmsRaid = nmsRaid;
         this.bukkitRaid = bukkitRaid;
         world = nmsRaid.bukkitWorld;
-        raidBase = new RaidBase(nmsRaid.serverLevel, new BlockVector(-518, 105, 557), new BlockVector(-433, 80, 611));
+        raidBase = new RaidBase(nmsRaid.serverLevel, new BlockVector(-518, 140, 557), new BlockVector(-433, 80, 611));
 
         scoreboard = new RaidScoreboard();
         raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
@@ -100,7 +100,11 @@ public class MaxRaid implements Listener {
 
     @EventHandler
     private void killWave(KillWaveEvent e){
-        currentWave.killAll();
+        for(LivingEntity entity:nmsRaid.raidMobs){
+            if(entity.isAlive()){
+                Bukkit.getScheduler().scheduleSyncDelayedTask(RaidPlugin.getInstance(), () -> entity.kill(), 1);
+            }
+        }
     }
 
     @EventHandler

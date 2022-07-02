@@ -8,6 +8,8 @@ import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -40,15 +42,16 @@ public class RaidSkeleton extends CraftSkeleton implements Spawnable {
         this.getEquipment().setItemInMainHand(weapon);
     }
 
-    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc, double health) {
+    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc, float health) {
         this(maxRaid);
         int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
         loc = new BlockVector(loc.getX(), y, loc.getZ());
-        setMaxHealth(health);
+        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
+        getHandle().setHealth(health);
         spawn(loc);
     }
 
-    public RaidSkeleton(MaxRaid raid, BlockVector loc, double health, Color color, ItemStack weapon){
+    public RaidSkeleton(MaxRaid raid, BlockVector loc, float health, Color color, ItemStack weapon){
         this(raid, loc, health);
 
         if (color != null){

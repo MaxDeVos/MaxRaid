@@ -15,13 +15,18 @@ public class ResetCommand implements CommandExecutor {
             return false;
         }
 
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "endraid");
+        Bukkit.dispatchCommand(commandSender, "endraid");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=!minecraft:villager,type=!minecraft:player]");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/world world");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/pos1 -536,72,547");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/pos2 -418,112,627");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/restore");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=!minecraft:villager,type=!minecraft:player]");
+
+        if(cmdName.equals("reset")){
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/world world");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/pos1 -545,40,460");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/pos2 -397,142,648");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "/restore");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"kill @e[type=!minecraft:villager,type=!minecraft:player]");
+        }
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"reload confirm");
 
         return true;
 
