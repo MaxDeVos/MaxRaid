@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
 import maxdevos.maxraid.items.weapons.swords.Level2Sword;
 import maxdevos.maxraid.mobs.Spawnable;

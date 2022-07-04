@@ -1,7 +1,6 @@
 package maxdevos.maxraid.mobs.nms;
 
 import maxdevos.maxraid.mobs.RaidMob;
-import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;

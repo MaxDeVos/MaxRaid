@@ -1,6 +1,5 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
-import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;

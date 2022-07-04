@@ -1,7 +1,5 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
-import maxdevos.maxraid.goals.LookAtPointGoal;
-import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
@@ -10,7 +8,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +22,6 @@ public class RaidCreeper extends CraftCreeper implements Spawnable {
 
     public RaidCreeper(MaxRaid maxRaid) {
         super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSCreeper(maxRaid));
-        this.setPersistent(true);
         RaidCreeper.maxRaid = maxRaid;
         setPersistent(true);
         setCustomName(ChatColor.DARK_RED + "RAID CREEPER");

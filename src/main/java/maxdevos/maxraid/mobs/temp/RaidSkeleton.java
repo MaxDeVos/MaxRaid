@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
@@ -6,56 +6,57 @@ import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
-import net.minecraft.network.protocol.game.ServerboundEntityTagQuery;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
+import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
-public class RaidZombie extends CraftZombie implements Spawnable {
+public class RaidSkeleton extends CraftSkeleton implements Spawnable {
 
     static MaxRaid maxRaid;
 
-    public RaidZombie(MaxRaid maxRaid) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSZombie(maxRaid));
-        RaidZombie.maxRaid = maxRaid;
+    public RaidSkeleton(MaxRaid maxRaid) {
+        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSSkeleton(maxRaid));
+        RaidSkeleton.maxRaid = maxRaid;
         setPersistent(true);
-        setCustomName(ChatColor.DARK_RED + "RAID Zombie");
-//        Equipper.setMobWeapon(this, new RaidSword(RaidItemType.WeaponMaterial.DIAMOND));
-//        Equipper.setMobArmor(this, new RaidArmor(Color.GRAY));
+        setCustomName(ChatColor.DARK_RED + "RAID Skeleton");
+
+        ItemStack weapon = new ItemStack(Material.BOW, 1);
+        weapon.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
+        weapon.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+        this.getEquipment().setItemInMainHand(weapon);
     }
 
-    public RaidZombie(MaxRaid maxRaid, BlockVector loc, float health, Color color, ItemStack weapon) {
+    public RaidSkeleton(MaxRaid maxRaid, BlockVector loc, float health) {
         this(maxRaid);
-
+        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
+        loc = new BlockVector(loc.getX(), y, loc.getZ());
         getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
         getHandle().setHealth(health);
+        spawn(loc);
+    }
 
-        if(color != null){
+    public RaidSkeleton(MaxRaid raid, BlockVector loc, float health, Color color, ItemStack weapon){
+        this(raid, loc, health);
+
+        if (color != null){
             Equipper.setMobArmor(this, new RaidArmor(color));
         }
 
         Equipper.setMobWeapon(this, weapon);
-        spawn(loc);
-    }
-
-    public RaidZombie(MaxRaid maxRaid, BlockVector loc) {
-        this(maxRaid);
-        int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
-        loc = new BlockVector(loc.getX(), y, loc.getZ());
-        spawn(loc);
     }
 
     public void spawn(BlockVector loc) {
@@ -63,11 +64,11 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         maxRaid.addMob(this);
     }
 
-    private static class NMSZombie extends Zombie {
-        private final MaxRaid raid;
+    private static class NMSSkeleton extends Skeleton {
+        MaxRaid raid;
 
-        public NMSZombie(MaxRaid raid) {
-            super(EntityType.ZOMBIE, raid.getHandle().serverLevel);
+        public NMSSkeleton(MaxRaid raid) {
+            super(EntityType.SKELETON, raid.getHandle().serverLevel);
             this.raid = raid;
             registerRaidGoals();
         }
@@ -79,8 +80,10 @@ public class RaidZombie extends CraftZombie implements Spawnable {
         }
 
         protected void registerRaidGoals() {
+
             goalSelector.addGoal(1, new FloatGoal(this));
-            goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
+            //TODO better aiming attack (rapid-fire full power shots)
+            goalSelector.addGoal(2, new RangedBowAttackGoal<>(this, 2.0, 1, 25.0F));
             goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
 
             targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -92,7 +95,7 @@ public class RaidZombie extends CraftZombie implements Spawnable {
          * Make immune from sunburn
          */
         @Override
-        protected boolean isSunSensitive() {
+        protected boolean isSunBurnTick() {
             return false;
         }
     }

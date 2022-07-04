@@ -1,6 +1,5 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
-import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.goals.SpiderSpeedAttackGoal;

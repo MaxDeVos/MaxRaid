@@ -2,7 +2,7 @@ package maxdevos.maxraid.mobs.experimental;
 
 import maxdevos.maxraid.goals.PhantomChaseTarget;
 import maxdevos.maxraid.goals.targets.NearestEntityOfClassGoal;
-import maxdevos.maxraid.mobs.base.RaidPhantom;
+import maxdevos.maxraid.mobs.temp.RaidPhantom;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.world.entity.player.Player;

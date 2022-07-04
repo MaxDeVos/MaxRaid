@@ -4,6 +4,7 @@ import org.bukkit.util.BlockVector;
 
 public interface Spawnable {
 
-    public void spawn(BlockVector loc);
+
+    void spawn(BlockVector loc);
 
 }

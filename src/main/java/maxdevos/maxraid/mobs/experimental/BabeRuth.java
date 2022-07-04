@@ -3,7 +3,7 @@ package maxdevos.maxraid.mobs.experimental;
 import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.armor.helmets.BaseballHelmet;
 import maxdevos.maxraid.items.weapons.swords.BaseballBat;
-import maxdevos.maxraid.mobs.base.RaidZombie;
+import maxdevos.maxraid.mobs.temp.RaidZombie;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;

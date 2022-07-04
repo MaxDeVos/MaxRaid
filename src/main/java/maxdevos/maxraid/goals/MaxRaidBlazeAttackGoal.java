@@ -1,6 +1,6 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.mobs.base.RaidBlaze;
+import maxdevos.maxraid.mobs.temp.RaidBlaze;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;

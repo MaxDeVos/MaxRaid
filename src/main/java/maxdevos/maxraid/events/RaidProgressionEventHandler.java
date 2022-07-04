@@ -1,8 +1,6 @@
 package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
-import maxdevos.maxraid.mobs.factories.MonsterFactory;
-import maxdevos.maxraid.mobs.nms.NMSCreeper;
 import maxdevos.maxraid.mobs.temp.*;
 import maxdevos.maxraid.mobs.experimental.*;
 import maxdevos.maxraid.mobs.fleets.BomberFleet;

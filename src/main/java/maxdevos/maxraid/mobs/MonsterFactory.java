@@ -2,7 +2,6 @@ package maxdevos.maxraid.mobs;
 
 import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.armor.RaidArmor;
-import maxdevos.maxraid.mobs.RaidMob;
 import maxdevos.maxraid.raid.MaxRaid;
 import maxdevos.maxraid.util.VecTools;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -14,16 +13,21 @@ import org.bukkit.util.BlockVector;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Predicate;
 
+/** Java doesn't support multiple inheritance, so here we are. */
 public class MonsterFactory {
     public static CraftMonster createCraftMonster(MaxRaid raid, Class<? extends Monster> type) {
-        return createCraftMonster(raid, type, false, null, 0.0f, null, null, 0.0f, null);
+        return createCraftMonster(raid, type, false, null, 0.0f, null,
+                null, 0.0f, null);
     }
 
-    /** If you ever need the raw instance of the NMS Mob, you're doing something wrong */
-    public static CraftMonster createCraftMonster(MaxRaid raid, Class<? extends Monster> type, boolean spawn, BlockVector pos, float health, ItemStack weapon, RaidArmor armor,
-                                            float speed, String customNameTag) {
+    /** If you ever need the raw instance of the NMS Mob, you're doing something wrong.
+     *  In the event that you find yourself needing to do this, call me so that I can yell at you myself: 9529234747 */
+    public static CraftMonster createCraftMonster(MaxRaid raid, Class<? extends Monster> type, boolean spawn,
+                                                  BlockVector pos, float health, ItemStack weapon, RaidArmor armor,
+                                                        float speed, String customNameTag) {
 
         if(Arrays.stream(type.getInterfaces()).noneMatch(Predicate.isEqual(RaidMob.class))){
             System.err.println("FAILED TO SPAWN " + type.getName() + "! Doesn't implement RaidMob");
@@ -43,8 +47,11 @@ public class MonsterFactory {
             type.getDeclaredMethod("registerRaidGoals").invoke(monster);
 
             if(health != 0.0f){
-                monster.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
-                monster.setHealth(health);
+                if(monster.getAttribute(Attributes.MAX_HEALTH) != null){
+                    Objects.requireNonNull(monster.getAttribute(Attributes.MAX_HEALTH)).addPermanentModifier(
+                            new AttributeModifier("raid bonus", health, AttributeModifier.Operation.ADDITION));
+                    monster.setHealth(health);
+                }
             }
 
             Equipper.setMobArmor((CraftMonster) monster.getBukkitEntity(), armor);
@@ -67,7 +74,8 @@ public class MonsterFactory {
             return castedMonster;
 
 
-        } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (InstantiationException | NoSuchMethodException | InvocationTargetException |
+                 IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }

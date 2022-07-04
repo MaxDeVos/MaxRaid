@@ -1,30 +1,28 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
+import maxdevos.maxraid.items.weapons.axes.Level2Axe;
 import maxdevos.maxraid.mobs.Spawnable;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftWitch;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPillager;
 import org.bukkit.util.BlockVector;
 
-public class RaidWitch extends CraftWitch implements Spawnable {
+public class RaidPillager extends CraftPillager implements Spawnable {
 
     static MaxRaid maxRaid;
 
-    public RaidWitch(MaxRaid maxRaid) {
-        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSWitch(maxRaid));
-        RaidWitch.maxRaid = maxRaid;
-        getHandle().getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("raid bonus", 30f, AttributeModifier.Operation.ADDITION));
-        getHandle().setHealth(30f);
+    public RaidPillager(MaxRaid maxRaid) {
+        super(maxRaid.getHandle().getLevel().getCraftServer(), new NMSPillager(maxRaid));
+        RaidPillager.maxRaid = maxRaid;
         setPersistent(true);
-        setCustomName(ChatColor.DARK_RED + "RAID Witch");
+        setCustomName(ChatColor.DARK_RED + "RAID Pillager");
+        getEquipment().setItemInMainHand(new Level2Axe());
     }
 
-    public RaidWitch(MaxRaid maxRaid, BlockVector loc) {
+    public RaidPillager(MaxRaid maxRaid, BlockVector loc) {
         this(maxRaid);
         int y = maxRaid.getHandle().getLevel().getHeight(Heightmap.Types.MOTION_BLOCKING, loc.getBlockX(), loc.getBlockZ());
         loc = new BlockVector(loc.getX(), y, loc.getZ());
@@ -36,11 +34,11 @@ public class RaidWitch extends CraftWitch implements Spawnable {
         maxRaid.addMob(this);
     }
 
-    private static class NMSWitch extends Witch {
+    private static class NMSPillager extends Pillager {
         MaxRaid raid;
 
-        public NMSWitch(MaxRaid raid) {
-            super(EntityType.WITCH, raid.getHandle().serverLevel);
+        public NMSPillager(MaxRaid raid) {
+            super(EntityType.PILLAGER, raid.getHandle().serverLevel);
             this.raid = raid;
             registerRaidGoals();
         }

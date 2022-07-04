@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.base;
+package maxdevos.maxraid.mobs.temp;
 
 import maxdevos.maxraid.goals.GrazeGoal;
 import maxdevos.maxraid.mobs.Spawnable;
