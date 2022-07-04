@@ -2,6 +2,7 @@ package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.mobs.MobFactory;
+import maxdevos.maxraid.mobs.base.NMSGoat;
 import maxdevos.maxraid.mobs.temp.*;
 import maxdevos.maxraid.mobs.experimental.*;
 import maxdevos.maxraid.mobs.fleets.BomberFleet;
@@ -55,7 +56,7 @@ public class RaidProgressionEventHandler implements Listener {
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent) {
 //        MonsterFactory.spawnMonster(raid, NMSCreeper.class);
-        MobFactory.createMob(raid, new BomberPhantom(raid, new BlockVector(0,0,0),2), true, new BlockVector(-500, 80, 500));
+        MobFactory.createMob(raid, new NMSGoat(raid), true, new BlockVector(-490, 78, 526));
     }
 
 //    @EventHandler

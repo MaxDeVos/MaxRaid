@@ -1,7 +1,6 @@
 package maxdevos.maxraid.items;
 
 import maxdevos.maxraid.items.armor.RaidArmor;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.inventory.ItemStack;
 

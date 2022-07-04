@@ -2,10 +2,8 @@ package maxdevos.maxraid.mobs.experimental;
 
 import maxdevos.maxraid.goals.LookAtPointGoal;
 import maxdevos.maxraid.goals.FullAutoRangedBowAttackGoal;
-import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.items.Equipper;
-import maxdevos.maxraid.items.RaidItemType;
 import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.items.weapons.bows.RaidBow;
 import maxdevos.maxraid.mobs.Spawnable;
@@ -21,10 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftSkeleton;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
 public class FullAutoSkeleton extends CraftSkeleton implements Spawnable {

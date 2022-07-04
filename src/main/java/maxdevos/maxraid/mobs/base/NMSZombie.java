@@ -38,14 +38,4 @@ public class NMSZombie extends Zombie implements RaidMob {
         return false;
     }
 
-    public MobStats getDefaults(){
-        MobStats stats = new MobStats();
-
-        stats.health = 20f;
-        stats.speed = 1.25f;
-        stats.displayName = ChatColor.DARK_RED + "Raid Zombie";
-
-        return stats;
-    }
-
 }
