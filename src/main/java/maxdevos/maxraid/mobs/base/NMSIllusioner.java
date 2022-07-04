@@ -1,9 +1,8 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.mobs.RaidMob;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Illusioner;
 import org.bukkit.ChatColor;
 

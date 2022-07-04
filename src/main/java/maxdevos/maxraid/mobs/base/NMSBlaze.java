@@ -1,6 +1,5 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
-import maxdevos.maxraid.goals.MaxRaidBlazeAttackGoal;
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
 import maxdevos.maxraid.mobs.RaidMob;

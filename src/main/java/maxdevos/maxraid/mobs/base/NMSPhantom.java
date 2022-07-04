@@ -1,24 +1,32 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.mobs.RaidMob;
-import maxdevos.maxraid.mobs.temp.RaidPhantom;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.ChatColor;
 
 public class NMSPhantom extends Phantom implements RaidMob {
-    MaxRaid raid;
+    public MaxRaid raid;
 
     public NMSPhantom(MaxRaid raid) {
+        this(raid, 1f, 5);
+    }
+
+    public NMSPhantom(MaxRaid raid, float speed, int size) {
         super(EntityType.PHANTOM, raid.getHandle().serverLevel);
         this.raid = raid;
+        setPhantomSize(size);
+        this.moveControl = new PhantomMoveControl(this, speed);
         this.getBukkitEntity().setCustomName(ChatColor.RED + "Raid Phantom");
+    }
+
+    public void setSpeedMultiplier(float speed){
+        ((PhantomMoveControl) this.moveControl).speedMultiplier = speed;
     }
 
     public void registerRaidGoals() {
@@ -32,9 +40,10 @@ public class NMSPhantom extends Phantom implements RaidMob {
         return false;
     }
 
-    private class PhantomMoveControl extends MoveControl {
+    protected class PhantomMoveControl extends MoveControl {
 
-        public PhantomMoveControl(Mob entityinsentient) {
+        public float speedMultiplier = 1;
+        public PhantomMoveControl(Mob entityinsentient, float speedMultiplier) {
             super(entityinsentient);
         }
 
@@ -76,7 +85,7 @@ public class NMSPhantom extends Phantom implements RaidMob {
                 double d7 = (this.speedModifier * Mth.sin(f5 * 0.017453292F)) * Math.abs(d2 / d5);
                 double d8 = (this.speedModifier * Mth.sin(f4 * 0.017453292F)) * Math.abs(d1 / d5);
                 Vec3 vec3d = getDeltaMovement();
-                setDeltaMovement(vec3d.add((new Vec3(d6, d8, d7)).subtract(vec3d).scale(0.2)));
+                setDeltaMovement(vec3d.add((new Vec3(d6, d8, d7)).subtract(vec3d).scale(0.2 * speedMultiplier)));
             }
 
         }

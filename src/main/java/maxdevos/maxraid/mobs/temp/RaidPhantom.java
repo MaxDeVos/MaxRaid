@@ -61,7 +61,7 @@ public class RaidPhantom extends CraftPhantom implements Spawnable {
         }
 
         protected void registerRaidGoals() {
-            goalSelector.addGoal(1, new PhantomMoveToPoint(this));
+//            goalSelector.addGoal(1, new PhantomMoveToPoint(this));
 //            goalSelector.addGoal(2, new ZombieAttackGoal(this, 2.0, true));
 //            goalSelector.addGoal(3, new MoveTowardsPointGoal(this, raid.getVillageCenter(), 1.0));
 //            goalSelector.addGoal(4, new LookAtPointGoal(this, raid.getVillageCenter()));

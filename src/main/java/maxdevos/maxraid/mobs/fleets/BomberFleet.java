@@ -27,7 +27,7 @@ public class BomberFleet {
             double phantomZ = phantomZBase + i * spacing;
             BlockVector spawnPoint = new BlockVector(phantomX, phantomY, phantomZPos[i]);
             BlockVector goalPoint = new BlockVector(phantomGoalX, phantomY, phantomZPos[i]);
-            new BomberPhantom(raid, spawnPoint, goalPoint, bombsPerSecond);
+//            new BomberPhantom(raid, spawnPoint, goalPoint, bombsPerSecond);
         }
     }
 }

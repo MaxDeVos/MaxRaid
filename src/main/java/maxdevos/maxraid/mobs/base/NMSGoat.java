@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.GrazeGoal;
 import maxdevos.maxraid.mobs.RaidMob;

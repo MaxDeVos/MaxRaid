@@ -15,6 +15,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import org.bukkit.*;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
@@ -67,7 +68,7 @@ public class MaxRaid implements Listener {
     }
 
 
-    public void addMob(CraftMonster mob){
+    public void addMob(CraftMob mob){
         this.nmsRaid.addMob(mob.getHandle());
     }
 

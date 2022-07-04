@@ -1,14 +1,14 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.goals.targets.NearestAttackableMaxRaidTargetGoal;
+import maxdevos.maxraid.mobs.MobStats;
 import maxdevos.maxraid.mobs.RaidMob;
 import maxdevos.maxraid.raid.MaxRaid;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +20,6 @@ public class NMSZombie extends Zombie implements RaidMob {
     public NMSZombie(MaxRaid raid) {
         super(EntityType.ZOMBIE, raid.getHandle().serverLevel);
         this.raid = raid;
-        this.getBukkitEntity().setCustomName(ChatColor.RED + "Raid Zombie");
     }
 
     public void registerRaidGoals() {
@@ -32,4 +31,21 @@ public class NMSZombie extends Zombie implements RaidMob {
         targetSelector.addGoal(2, new NearestAttackableMaxRaidTargetGoal<>(this, Player.class, false));
         targetSelector.addGoal(3, new NearestAttackableMaxRaidTargetGoal<>(this, AbstractVillager.class, false));
     }
+
+    /** Sunscreen */
+    @Override
+    protected boolean isSunBurnTick() {
+        return false;
+    }
+
+    public MobStats getDefaults(){
+        MobStats stats = new MobStats();
+
+        stats.health = 20f;
+        stats.speed = 1.25f;
+        stats.displayName = ChatColor.DARK_RED + "Raid Zombie";
+
+        return stats;
+    }
+
 }

@@ -3,10 +3,9 @@ package maxdevos.maxraid.goals;
 import java.util.EnumSet;
 import javax.annotation.Nullable;
 
-import maxdevos.maxraid.mobs.nms.NMSCreeper;
+import maxdevos.maxraid.mobs.base.NMSCreeper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.Creeper;
 
 public class SwellGoal extends Goal {
     private final NMSCreeper creeper;

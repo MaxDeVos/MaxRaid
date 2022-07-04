@@ -1,4 +1,4 @@
-package maxdevos.maxraid.mobs.nms;
+package maxdevos.maxraid.mobs.base;
 
 import maxdevos.maxraid.goals.MoveTowardsPointGoal;
 import maxdevos.maxraid.mobs.RaidMob;

@@ -6,4 +6,8 @@ public interface RaidMob {
 
     default void setSpeedMultiplier(float speed){}
 
+    default MobStats getDefaults(){
+        return new MobStats();
+    }
+
 }

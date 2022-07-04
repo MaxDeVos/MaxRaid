@@ -1,6 +1,7 @@
 package maxdevos.maxraid.goals;
 
 import maxdevos.maxraid.items.weapons.projecticles.TNTBomb;
+import maxdevos.maxraid.mobs.base.NMSPhantom;
 import maxdevos.maxraid.mobs.experimental.BomberPhantom;
 import maxdevos.maxraid.raid.RaidBase;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -13,10 +14,10 @@ import java.util.Random;
 
 public class PhantomDropBombs extends Goal {
 
-    Phantom mob;
+    NMSPhantom mob;
     double averageBombsPerSecond = 1;
 
-    public PhantomDropBombs(Phantom mob, double averageBombsPerSecond){
+    public PhantomDropBombs(NMSPhantom mob, double averageBombsPerSecond){
         this.mob = mob;
         this.averageBombsPerSecond = averageBombsPerSecond;
     }
@@ -24,7 +25,7 @@ public class PhantomDropBombs extends Goal {
 
     @Override
     public boolean canUse() {
-        return RaidBase.isLocationInBaseXZ(mob.getBukkitEntity().getLocation(), BomberPhantom.maxRaid.raidBase);
+        return RaidBase.isLocationInBaseXZ(mob.getBukkitEntity().getLocation(), mob.raid.raidBase);
     }
 
     @Override
