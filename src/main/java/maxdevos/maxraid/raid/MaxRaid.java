@@ -40,8 +40,6 @@ public class MaxRaid implements Listener {
     private final ArrayList<RaidPlayer> players = new ArrayList<>();
     private RaidProgressionEventHandler progressionEventHandler;
     private MobEventHandler mobEventHandler;
-    private final RaidConfig raidConfig;
-    private final RaidWave currentWave;
     private final RaidScoreboard scoreboard;
 
     public MaxRaid(NMSRaid nmsRaid, Raid bukkitRaid){
@@ -51,12 +49,9 @@ public class MaxRaid implements Listener {
         raidBase = new RaidBase(nmsRaid.serverLevel, new BlockVector(-518, 140, 557), new BlockVector(-433, 80, 611));
 
         scoreboard = new RaidScoreboard();
-        raidConfig = new RaidConfig(plugin.getCustomConfig().getString("current-raid"));
 
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "Running Raid: " + raidConfig.getRaidName());
         plugin.getServer().broadcastMessage(ChatFunctions.raidPrefix + "This Raid is sponsored by RAID Shadow Legends");
-        currentWave = new RaidWave();
         RaidPlayer.checkDevMode(players);
 
         progressionEventHandler = new RaidProgressionEventHandler(this);
@@ -93,7 +88,6 @@ public class MaxRaid implements Listener {
     @EventHandler
     private void endRaid(StopRaidEvent e){
         world.setGameRule(GameRule.DISABLE_RAIDS, true);
-        currentWave.killAll();
         Bukkit.getPluginManager().callEvent(new RaidFinishEvent(this.bukkitRaid, world, RaidPlayer.getPlayersFromRaidPlayers(players)));
         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () ->
                 world.setGameRule(GameRule.DISABLE_RAIDS, false), 2L);
