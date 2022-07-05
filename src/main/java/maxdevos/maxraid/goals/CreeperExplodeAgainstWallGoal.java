@@ -1,6 +1,6 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.raid.RaidBase;
+import maxdevos.maxraid.base.RaidBase;
 import net.minecraft.world.entity.ai.goal.Goal;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftCreeper;

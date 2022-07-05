@@ -1,10 +1,8 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.util.VecTools;
+import maxdevos.maxraid.util.VecUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.pathfinder.Path;
@@ -20,7 +18,7 @@ public class SpiderMoveTowardsPointGoal extends Goal {
     public SpiderMoveTowardsPointGoal(Spider entityspider, BlockVector pos, double speed) {
         spider = entityspider;
         this.speed = speed;
-        this.goalPos = VecTools.blockVectorToVec3(pos);
+        this.goalPos = VecUtil.bVecToVec3(pos);
     }
 
     public boolean canUse() {

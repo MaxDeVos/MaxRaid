@@ -1,18 +1,12 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.items.weapons.projecticles.TNTBomb;
-import maxdevos.maxraid.mobs.experimental.BomberPhantom;
 import maxdevos.maxraid.mobs.experimental.ParatrooperDroppingPhantom;
 import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
-import maxdevos.maxraid.raid.RaidBase;
-import maxdevos.maxraid.util.VecTools;
+import maxdevos.maxraid.util.VecUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Phantom;
-import net.minecraft.world.phys.Vec3;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 
-import java.util.List;
 import java.util.Queue;
 
 public class DropParatroopers extends Goal {
@@ -39,7 +33,7 @@ public class DropParatroopers extends Goal {
     @Override
     public void tick() {
 
-        if(mob.position().distanceTo(VecTools.blockVectorToVec3(currentFleet.dropLocation)) <= 3.0 && !goingToTerminalPoint){
+        if(mob.position().distanceTo(VecUtil.bVecToVec3(currentFleet.dropLocation)) <= 3.0 && !goingToTerminalPoint){
             currentFleet.dropAll();
             if(fleets.peek() != null){
                 currentFleet = fleets.remove();
@@ -51,7 +45,7 @@ public class DropParatroopers extends Goal {
             }
         }
 
-        if(goingToTerminalPoint && mob.position().distanceTo(VecTools.blockVectorToVec3(phantomMob.terminalLocation)) <= 3.0){
+        if(goingToTerminalPoint && mob.position().distanceTo(VecUtil.bVecToVec3(phantomMob.terminalLocation)) <= 3.0){
             mob.remove(Entity.RemovalReason.DISCARDED);
         }
 

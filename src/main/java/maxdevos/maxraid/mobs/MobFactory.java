@@ -3,7 +3,7 @@ package maxdevos.maxraid.mobs;
 import maxdevos.maxraid.items.Equipper;
 import maxdevos.maxraid.items.armor.RaidArmor;
 import maxdevos.maxraid.raid.MaxRaid;
-import maxdevos.maxraid.util.VecTools;
+import maxdevos.maxraid.util.VecUtil;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -13,9 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 /** Java doesn't support multiple inheritance, so here we are. */
 public class MobFactory {
@@ -80,7 +78,7 @@ public class MobFactory {
             }
 
             if(pos != null){
-                mob.setPos(VecTools.blockVectorToVec3(pos));
+                mob.setPos(VecUtil.bVecToVec3(pos));
             }
 
             CraftMob castedMob = (CraftMob) mob.getBukkitEntity();

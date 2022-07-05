@@ -2,13 +2,13 @@ package maxdevos.maxraid.events;
 
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.mobs.MobFactory;
-import maxdevos.maxraid.mobs.base.NMSGoat;
+import maxdevos.maxraid.mobs.base.NMSFox;
 import maxdevos.maxraid.mobs.temp.*;
 import maxdevos.maxraid.mobs.experimental.*;
 import maxdevos.maxraid.mobs.fleets.BomberFleet;
 import maxdevos.maxraid.mobs.fleets.ParatrooperFleet;
 import maxdevos.maxraid.raid.MaxRaid;
-import maxdevos.maxraid.raid.SpawnZone;
+import maxdevos.maxraid.base.SpawnZone;
 import org.bukkit.Color;
 import org.bukkit.Server;
 import org.bukkit.event.EventHandler;
@@ -56,7 +56,7 @@ public class RaidProgressionEventHandler implements Listener {
     @EventHandler
     public void newRaidWave(RaidSpawnWaveEvent waveEvent) {
 //        MonsterFactory.spawnMonster(raid, NMSCreeper.class);
-        MobFactory.createMob(raid, new NMSGoat(raid), true, new BlockVector(-490, 78, 526));
+        MobFactory.createMob(raid, new NMSFox(raid), true, new BlockVector(-490, 78, 526));
     }
 
 //    @EventHandler

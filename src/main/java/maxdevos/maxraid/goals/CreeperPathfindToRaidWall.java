@@ -1,15 +1,8 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.raid.AttackPoint;
 import maxdevos.maxraid.raid.MaxRaid;
-import maxdevos.maxraid.util.VecTools;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import maxdevos.maxraid.util.VecUtil;
 import net.minecraft.world.entity.monster.Creeper;
-import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.phys.Vec3;
 
 public class CreeperPathfindToRaidWall extends PathfindToRaidWall {
 
@@ -22,14 +15,14 @@ public class CreeperPathfindToRaidWall extends PathfindToRaidWall {
 
     public void tick(){
         super.tick();
-        if(creeper.position().distanceTo(VecTools.blockPosToVec3(goalPos)) < 1.0){
+        if(creeper.position().distanceTo(VecUtil.bPosToVec3(goalPos)) < 1.0){
             creeper.setPos(creeper.position().add(0,4,0));
             creeper.explodeCreeper();
         }
     }
 
     public void doStuck(){
-        if(creeper.position().distanceTo(VecTools.blockPosToVec3(goalPos)) < 3.0){
+        if(creeper.position().distanceTo(VecUtil.bPosToVec3(goalPos)) < 3.0){
             creeper.setPos(creeper.position().add(0,4,0));
             creeper.explodeCreeper();
         } else{

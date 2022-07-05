@@ -1,10 +1,9 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.raid.AttackPoint;
+import maxdevos.maxraid.base.AttackPoint;
 import maxdevos.maxraid.raid.MaxRaid;
-import maxdevos.maxraid.util.VecTools;
+import maxdevos.maxraid.util.VecUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
@@ -36,7 +35,7 @@ public class PathfindToRaidWall extends Goal {
 
     public void tick(){
         if(!mob.getNavigation().isInProgress()){
-            AttackPoint nearestPos = raid.raidBase.getNearestWallAttackPoint(VecTools.vec3ToBlockPos(mob.position()));
+            AttackPoint nearestPos = raid.raidBase.getNearestWallAttackPoint(VecUtil.vec3ToBPos(mob.position()));
 
 
 //            System.out.println("STARTING POS: " + mob.position() + "       NAVIGATING TO NEAREST ATTACK POINT: " + nearestPos);
@@ -53,7 +52,7 @@ public class PathfindToRaidWall extends Goal {
         }
 
         if(stuckTicks > 40){
-            AttackPoint nearestPos = raid.raidBase.getNearestWallAttackPoint(VecTools.vec3ToBlockPos(mob.position().add(new Vec3(Math.random()*25, 0, Math.random()*25))));
+            AttackPoint nearestPos = raid.raidBase.getNearestWallAttackPoint(VecUtil.vec3ToBPos(mob.position().add(new Vec3(Math.random()*25, 0, Math.random()*25))));
             goalPos = nearestPos.getBaseBlockPos();
             Path path = mob.getNavigation().createPath(goalPos, 1, 1);
             mob.getNavigation().moveTo(path, 2.0);

@@ -2,11 +2,8 @@ package maxdevos.maxraid.goals;
 
 import maxdevos.maxraid.items.weapons.projecticles.TNTBomb;
 import maxdevos.maxraid.mobs.base.NMSPhantom;
-import maxdevos.maxraid.mobs.experimental.BomberPhantom;
-import maxdevos.maxraid.raid.RaidBase;
+import maxdevos.maxraid.base.RaidBase;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.Phantom;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftMob;
 
