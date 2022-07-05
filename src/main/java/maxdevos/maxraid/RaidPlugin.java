@@ -78,4 +78,5 @@ public final class RaidPlugin extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
     }
+
 }
