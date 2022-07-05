@@ -1,94 +1,139 @@
 package maxdevos.maxraid.goals;
 
-import maxdevos.maxraid.util.VecTools;
-import net.minecraft.core.BlockPos;
+import maxdevos.maxraid.base.BlockCluster;
+import maxdevos.maxraid.util.VecUtil;
+import maxdevos.maxraid.util.WorldUtils;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.Path;
-import org.bukkit.Material;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_19_R1.block.impl.CraftSweetBerryBush;
+import org.bukkit.util.BlockVector;
 
 import java.util.*;
 
 public class GrazeGoal extends Goal {
 
     PathfinderMob mob;
-    Queue<Block> targets = new LinkedList<>();
+    LinkedList<Block> targets = new LinkedList<>();
     Block currentTarget;
+    BlockCluster<Block> currentCluster;
+    int cornerTimer = 0;
+    int range;
+    boolean killIfNoTargets;
 
-    public GrazeGoal(PathfinderMob mob){
+    public GrazeGoal(PathfinderMob mob, int range, boolean killIfNoTargets) {
         this.mob = mob;
+        this.range = range;
+        this.killIfNoTargets = killIfNoTargets;
     }
 
+    public GrazeGoal(PathfinderMob mob) {
+        this(mob, 100, true);
+    }
 
     @Override
     public boolean canUse() {
-        return true;
+        if(killIfNoTargets){
+            return true;
+        }
+        findTargets(range);
+        return !targets.isEmpty();
     }
 
-    private void getNextTarget(){
-        currentTarget = targets.poll();
-        if(currentTarget == null || !currentTarget.getType().equals(Material.SWEET_BERRY_BUSH)){
-            getNextTarget();
+    private void getNextTarget() {
+
+        Location newLoc = currentCluster.getNextCorner();
+        if (newLoc != null) {
+            currentTarget = newLoc.getBlock();
+            cornerTimer = 0;
+        } else if(!targets.isEmpty()){
+            currentTarget = null;
+            sortAndFilterTargets();
+            currentCluster = WorldUtils.clusterize(targets.getFirst(), targets);
+            if(!currentCluster.isEmpty()){
+                getNextTarget();
+            }
+        } else{
+            findTargets(range);
+            if(targets.isEmpty() && killIfNoTargets){
+                mob.kill();
+            }
         }
     }
 
     @Override
-    public void tick(){
+    public void tick() {
 
-        if(currentTarget != null && targets.size() > 0){
-            if(mob.getBukkitEntity().getLocation().distance(currentTarget.getLocation()) < 2.0){
-                currentTarget.breakNaturally();
+        // If no target and a valid block exists in targets, set that as target
+        if (currentTarget != null && currentCluster.size() > 0) {
+            if (mob.position().distanceTo(VecUtil.locToVec3(currentTarget.getLocation())) <= 1) {
                 getNextTarget();
-                Path p = mob.getNavigation().createPath(new BlockPos(VecTools.blockVectorToVec3(currentTarget.getLocation().toVector().toBlockVector())), 0, 0);
-//                mob.getNavigation().moveTo(p, 3f);
-//                mob.getNavigation().moveTo(currentTarget.getLocation().getX(), currentTarget.getLocation().getY(), currentTarget.getLocation().getZ(), 1.0);
             } else{
-//                System.out.println(mob.getNavigation().getTargetPos());
+                cornerTimer++;
             }
+            BlockVector wantedVec = currentTarget.getLocation().toVector().toBlockVector();
+            Path p = mob.getNavigation().createPath(wantedVec.getX(), wantedVec.getY(), wantedVec.getZ(), 0);
+            if(p == null || !p.canReach()){
+                abandonTarget();
+            }
+            mob.getNavigation().moveTo(p, 2f);
         }
-        else{
-            int xBase = (int) Math.floor(mob.position().x);
-            int zBase = (int) Math.floor(mob.position().z);
+        // Otherwise rescan for valid targets
+        else {
+            findTargets(range);
+            sortAndFilterTargets();
+            currentCluster = WorldUtils.clusterize(targets.getFirst(), targets);
+            getNextTarget();
+        }
 
-            ArrayList<Block> blocks = new ArrayList<>();
-
-            for(int x = xBase-50; x < xBase+50; x++){
-                for(int z = zBase-50; z < zBase+50; z++){
-                    Block b = mob.getLevel().getWorld().getBlockAt(x, mob.getLevel().getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z) - 1, z);
-                    if(b.getBlockData().getAsString().toLowerCase().split("\\[")[0].equals("minecraft:sweet_berry_bush")){
-                        blocks.add(b);
-                    }
-                }
-            }
-
-            Collections.sort(blocks, (o1, o2) -> {
-                double dist1 = o1.getLocation().distance(mob.getBukkitEntity().getLocation());
-                double dist2 = o2.getLocation().distance(mob.getBukkitEntity().getLocation());
-                if (dist1 > dist2) {
-                    return 1;
-                } else if (dist1 == dist2) {
-                    return 0;
-                }
-                return -1;
-            });
-
-            targets.addAll(blocks);
-            currentTarget = targets.poll();
-
-            System.out.println("FOUND " + targets.size() + " targets");
-            System.out.println("CURRENT TARGET IS " + currentTarget.getLocation());
-
-            Path p = mob.getNavigation().createPath(new BlockPos(VecTools.blockVectorToVec3(currentTarget.getLocation().toVector().toBlockVector())), 1, 1);
-//            mob.getNavigation().moveTo(p, 3f);
-//            mob.moveTo(VecTools.blockVectorToBlockPos(currentTarget.getLocation().toVector().toBlockVector()), 1.0f, 1.0f);
-//            mob.getNavigation().moveTo(currentTarget.getLocation().getX(), currentTarget.getLocation().getY(), currentTarget.getLocation().getZ(), 1.0);
-            System.out.println(p);
+        if(cornerTimer > 100){
+            abandonTarget();
         }
     }
 
+    private void abandonTarget(){
+        targets.remove(currentTarget);
+        currentCluster.remove(currentTarget);
+        getNextTarget();
+    }
+
+    private void findTargets(int range){
+        int xBase = (int) Math.floor(mob.position().x);
+        int zBase = (int) Math.floor(mob.position().z);
+
+        LinkedList<Block> blocks = new LinkedList<>();
+
+        for (int x = xBase - range; x < xBase + range; x++) {
+            for (int z = zBase - range; z < zBase + range; z++) {
+                Block b = mob.getLevel().getWorld().getBlockAt(x, mob.getLevel().getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z) - 1, z);
+                blocks.add(b);
+            }
+        }
+        targets.addAll(blocks);
+    }
+
+    private void sortAndFilterTargets() {
+
+        LinkedList<Block> updatedBlocks = new LinkedList<>();
+        for (Block b : targets) {
+            if (WorldUtils.isBlockType(b, "minecraft:sweet_berry_bush")) {
+                updatedBlocks.add(b);
+            }
+        }
+        targets = updatedBlocks;
+
+        targets.sort((o1, o2) -> {
+            double dist1 = o1.getLocation().distance(mob.getBukkitEntity().getLocation());
+            double dist2 = o2.getLocation().distance(mob.getBukkitEntity().getLocation());
+            if (dist1 > dist2) {
+                return 1;
+            } else if (dist1 == dist2) {
+                return 0;
+            }
+            return -1;
+        });
+    }
 
 }
