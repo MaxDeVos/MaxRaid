@@ -1,4 +1,4 @@
-package maxdevos.maxraid.raid;
+package maxdevos.maxraid.base;
 
 import org.bukkit.World;
 import org.bukkit.block.Block;

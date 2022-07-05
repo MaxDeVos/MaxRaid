@@ -1,4 +1,4 @@
-package maxdevos.maxraid.raid;
+package maxdevos.maxraid.base;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

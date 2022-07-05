@@ -1,7 +1,6 @@
-package maxdevos.maxraid.raid;
+package maxdevos.maxraid.base;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.util.BlockVector;
 
