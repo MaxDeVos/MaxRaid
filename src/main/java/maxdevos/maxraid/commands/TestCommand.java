@@ -1,10 +1,15 @@
 package maxdevos.maxraid.commands;
 
+import baritone.Baritone;
 import maxdevos.maxraid.RaidPlugin;
 import maxdevos.maxraid.items.weapons.projecticles.TrampolineArrow;
 import maxdevos.maxraid.raid.NMSRaid;
 import maxdevos.maxraid.raid.RaidFactory;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Zombie;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,26 +32,26 @@ public class TestCommand implements CommandExecutor {
         CraftWorld w = ((CraftWorld)p.getWorld());
         ServerLevel sLevel = w.getHandle();
 
-        if(args.length == 0){
-//           ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
-//           helmet.setAmount(1);
-//           helmet.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("GENERIC_ARMOR", 100, AttributeModifier.Operation.ADD_NUMBER));
-//           p.getEquipment().setHelmet(helmet);
-//            new BunkerBuster(p.getWorld(), p.getTargetBlockExact(5).getLocation().toVector().toBlockVector(), 20, Integer.parseInt(args[0])).initiate();
-            NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
-//            new SniperSkeleton(raid, ((Player) sender).getEyeLocation().blo);
+//        NMSRaid raid = RaidFactory.createOrExtendRaid(w, p);
 
-        }
-        else if (args.length == 2){
-//            new BaseArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
-//            new SniperArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity());
-            new TrampolineArrow(sLevel.getPlayerByUUID(p.getUniqueId()).getBukkitEntity()).shootWhereLooking(1f, 0.0001f);
-        }
-        else{
-//            sLevel.addFreshEntity(new NMSSpider(sLevel, new BlockVector(25, -55, 25)));
-        }
 
+        Zombie creeper = new Zombie(EntityType.ZOMBIE, w.getHandle());
+        creeper.goalSelector.removeAllGoals();
+        creeper.targetSelector.removeAllGoals();
+        creeper.setPos(-500, 75, 500);
+        w.getHandle().addFreshEntity(creeper);
+
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(RaidPlugin.getInstance(),() ->{
+
+            Baritone b = new Baritone(creeper);
+            b.spigotGameEventHandlerWrapper.loadWorld(w.getHandle());
+            Location loc = RaidPlugin.savedLoc;
+            b.getCommandManager().execute("goto " + loc.getX() + " " + loc.getY() + " " + loc.getZ());
+
+        }, 10);
 
         return true;
+
     }
 }

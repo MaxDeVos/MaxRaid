@@ -1,6 +1,7 @@
 package maxdevos.maxraid;
 
 import maxdevos.maxraid.commands.*;
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,6 +17,7 @@ import java.util.Objects;
 public final class RaidPlugin extends JavaPlugin implements Listener {
 
 
+    public static Location savedLoc;
     private FileConfiguration customConfig;
     private static RaidPlugin plugin;
 
@@ -31,9 +33,11 @@ public final class RaidPlugin extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand());
         Objects.requireNonNull(getCommand("endraid")).setExecutor(new EndRaidCommand());
         Objects.requireNonNull(getCommand("endwave")).setExecutor(new EndWaveCommand());
+        Objects.requireNonNull(getCommand("pos")).setExecutor(new PosCommand());
         
         getServer().getPluginManager().registerEvents(this, this);
-        plugin = this;
+
+        savedLoc = new Location(getServerInstance().getWorlds().get(0), -500, 74, 500);
 
     }
 
