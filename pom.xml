@@ -87,6 +87,11 @@
                 <version>3.3.0</version>
                 <configuration>
                     <minimizeJar>true</minimizeJar>
+                    <artifactSet>
+                        <excludes>
+                            <exclude>org.locationtech.jts</exclude>
+                        </excludes>
+                    </artifactSet>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -95,6 +100,7 @@
                                 <exclude>META-INF/*.DSA</exclude>
                                 <exclude>META-INF/*.RSA</exclude>
                                 <exclude>META-INF/*.MF</exclude>
+                                <exclude>META-INF/</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -146,16 +152,6 @@
                     <artifactId>xercesImpl</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>baritone</groupId>
-            <artifactId>baritone</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>baritone-api</groupId>
-            <artifactId>baritone-api</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

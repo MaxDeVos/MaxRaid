@@ -156,6 +156,7 @@ public class MovementTraverse extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
+        System.out.println("TRAVERSE TO " + dest);
         super.updateState(state);
         BlockState pb0 = BlockStateInterface.get(ctx, positionsToBreak[0]);
         BlockState pb1 = BlockStateInterface.get(ctx, positionsToBreak[1]);

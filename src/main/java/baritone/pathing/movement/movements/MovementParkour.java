@@ -241,6 +241,7 @@ public class MovementParkour extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
+        System.out.println("PARKOUR TO " + dest);
         super.updateState(state);
         if (state.getStatus() != MovementStatus.RUNNING) {
             return state;

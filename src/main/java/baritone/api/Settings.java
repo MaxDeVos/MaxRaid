@@ -54,7 +54,7 @@ public final class Settings {
     /**
      * Allow Baritone to place blocks
      */
-    public final Setting<Boolean> allowPlace = new Setting<>(false);
+    public final Setting<Boolean> allowPlace = new Setting<>(true);
 
     /**
      * Allow Baritone to move items in your inventory to your hotbar

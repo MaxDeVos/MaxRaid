@@ -157,6 +157,7 @@ public class MovementAscend extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
+        System.out.println("MOVEMENT_ASCEND TO " + dest);
         if (ctx.playerFeet().y < src.y) {
             // this check should run even when in preparing state (breaking blocks)
             return state.setStatus(MovementStatus.UNREACHABLE);
@@ -174,11 +175,8 @@ public class MovementAscend extends Movement {
         BlockState jumpingOnto = BlockStateInterface.get(ctx, positionToPlace);
         if (!MovementHelper.canWalkOn(ctx, positionToPlace, jumpingOnto)) {
             ticksWithoutPlacement++;
-            if (MovementHelper.attemptToPlaceABlock(state, baritone, dest.below(), false, true) == PlaceResult.READY_TO_PLACE) {
-                state.setInput(Input.SNEAK, true);
-                if (ctx.mob().isCrouching()) {
-                    state.setInput(Input.CLICK_RIGHT, true);
-                }
+            if (MovementHelper.attemptToPlaceABlock(state, baritone, dest.below(), false, false) == PlaceResult.READY_TO_PLACE) {
+                state.setInput(Input.CLICK_RIGHT, true);
             }
             if (ticksWithoutPlacement > 10) {
                 // After 10 ticks without placement, we might be standing in the way, move back

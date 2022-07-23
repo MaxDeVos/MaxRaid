@@ -18,11 +18,21 @@
 package baritone.behavior;
 
 import baritone.Baritone;
+import baritone.api.BaritoneAPI;
 import baritone.api.event.events.TickEvent;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SandBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import org.bukkit.Location;
 
 import java.util.OptionalInt;
 import java.util.function.Predicate;
@@ -126,19 +136,25 @@ public final class InventoryBehavior extends Behavior {
     }
 
     public boolean hasGenericThrowaway() {
-        for (Item item : Baritone.settings().acceptableThrowawayItems.value) {
-            if (throwaway(false, stack -> item.equals(stack.getItem()))) {
-                return true;
-            }
-        }
-        return false;
+//        for (Item item : Baritone.settings().acceptableThrowawayItems.value) {
+//            if (throwaway(false, stack -> item.equals(stack.getItem()))) {
+//                return true;
+//            }
+//        }
+        return true;
     }
 
     public boolean selectThrowawayForLocation(boolean select, int x, int y, int z) {
-        return false; //TODO mobs cannot place blocks in this state
+//        return false; //TODO mobs cannot place blocks in this state, uhhhhhhhhhhhhhhhhh
+        return true;
 //        BlockState maybe = baritone.getBuilderProcess().placeAt(x, y, z, baritone.bsi.get0(x, y, z));
-//        if (maybe != null && throwaway(select, stack -> stack.getItem() instanceof BlockItem && maybe.equals(((BlockItem) stack.getItem()).getBlock().getStateForPlacement(new BlockPlaceContext(new UseOnContext(ctx.world(), ctx.mob(), InteractionHand.MAIN_HAND, stack, new BlockHitResult(new Vec3(ctx.mob().position().x, ctx.mob().position().y, ctx.mob().position().z), Direction.UP, ctx.playerFeet(), false)) {}))))) {
-//            return true; // gotem
+//        if (maybe != null &&
+//                throwaway(select, stack -> stack.getItem() instanceof BlockItem &&
+//                maybe.equals(((BlockItem) stack.getItem()).getBlock().getStateForPlacement(new BlockPlaceContext(new UseOnContext(ctx.world(), ctx.mob(), InteractionHand.MAIN_HAND, stack, new BlockHitResult(new Vec3(ctx.mob().position().x, ctx.mob().position().y, ctx.mob().position().z), Direction.UP, ctx.playerFeet(), false)) {
+//        }))))) {
+//        ctx.world().getWorld().setBlockData(new Location(ctx.world().getWorld(), x, y, z), );
+//        ctx.world().setBlockAndUpdate(new BlockPos(x, y, z), );
+//        return true; // gotem
 //        }
 //        if (maybe != null && throwaway(select, stack -> stack.getItem() instanceof BlockItem && ((BlockItem) stack.getItem()).getBlock().equals(maybe.getBlock()))) {
 //            return true;
@@ -149,6 +165,7 @@ public final class InventoryBehavior extends Behavior {
 //            }
 //        }
 //        return false;
+//        }
     }
 
     public boolean throwaway(boolean select, Predicate<? super ItemStack> desired) {

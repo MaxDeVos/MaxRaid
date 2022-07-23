@@ -10,11 +10,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class TestCommand implements CommandExecutor {
 
@@ -40,6 +43,7 @@ public class TestCommand implements CommandExecutor {
         creeper.targetSelector.removeAllGoals();
         creeper.setPos(-500, 75, 500);
         w.getHandle().addFreshEntity(creeper);
+        ((CraftZombie) creeper.getBukkitEntity()).getEquipment().setItemInMainHand(new ItemStack(Material.COBBLESTONE));
 
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(RaidPlugin.getInstance(),() ->{

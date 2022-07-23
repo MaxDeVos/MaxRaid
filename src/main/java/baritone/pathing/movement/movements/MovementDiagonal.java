@@ -246,6 +246,7 @@ public class MovementDiagonal extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
+        System.out.println("MOVEMENT_DIAGONAL TO " + dest);
         super.updateState(state);
         if (state.getStatus() != MovementStatus.RUNNING) {
             return state;

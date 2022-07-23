@@ -84,7 +84,7 @@ public class MovementFall extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
-
+        System.out.println("FALL TO " + dest);
         //TODO make updateState actually do something
         super.updateState(state);
         if (state.getStatus() != MovementStatus.RUNNING) {

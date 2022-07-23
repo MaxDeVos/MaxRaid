@@ -28,6 +28,7 @@ import baritone.api.utils.input.Input;
 import baritone.pathing.movement.MovementState.MovementTarget;
 import baritone.utils.BlockStateInterface;
 import baritone.utils.ToolSet;
+import maxdevos.maxraid.util.MaterialWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.PathfinderMob;
@@ -457,21 +458,14 @@ public interface MovementHelper extends ActionCosts, Helper {
     }
 
     static void moveTowards(IPlayerContext ctx, MovementState state, BlockPos pos) {
-        System.out.println("moving towards " + pos);
         state.setTarget(new MovementTarget(
                 new Rotation(RotationUtils.calcRotationFromVec3d(ctx.playerHead(),
                         VecUtils.getBlockPosCenter(pos),
                         ctx.playerRotations()).getYaw(), ctx.mob().getXRot()),
                 false
         )).setInput(Input.MOVE_FORWARD, true);
-        ctx.mob().getLookControl().setLookAt(new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5));
-//            if(state.getInputStates().get(Input.CLICK_RIGHT)){
-//            }
-//            Vec3 delta = new Vec3(pos.getX(), pos.getY(), pos.getZ()).subtract(ctx.mob().position()).multiply(1,0,1).normalize();
-//            ctx.mob().setDeltaMovement(delta.scale(.1));
-//            Vec3 normalizedLookAngle = ctx.mob().getLookAngle().multiply(new Vec3(1, 0, 1)).normalize();
-//            Vec2 xzLook = new Vec2((float) normalizedLookAngle.x, (float) normalizedLookAngle.z);
-        ctx.mob().getMoveControl().setWantedPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 1.0);
+        ctx.mob().getLookControl().setLookAt(VecUtils.getBlockPosCenter(pos));
+//        ctx.mob().getMoveControl().setWantedPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 1.0);
     }
 
     static void handleMobMove(PathfinderMob mob, MovementState state, BlockPos pos){
@@ -564,6 +558,7 @@ public interface MovementHelper extends ActionCosts, Helper {
     }
 
     static PlaceResult attemptToPlaceABlock(MovementState state, IBaritone baritone, BlockPos placeAt, boolean preferDown, boolean wouldSneak) {
+//            return PlaceResult.READY_TO_PLACE;  //TODO THIS IS STUPID!!!!!!!!
         IPlayerContext ctx = baritone.getPlayerContext();
         Optional<Rotation> direct = RotationUtils.reachable(ctx, placeAt, wouldSneak); // we assume that if there is a block there, it must be replacable
         boolean found = false;
@@ -613,6 +608,7 @@ public interface MovementHelper extends ActionCosts, Helper {
                 state.setInput(Input.SNEAK, true);
             }
             ((Baritone) baritone).getInventoryBehavior().selectThrowawayForLocation(true, placeAt.getX(), placeAt.getY(), placeAt.getZ());
+            MaterialWrapper.setBlockAsMaterial(ctx.world().getWorld().getBlockAt(placeAt.getX(), placeAt.getY(), placeAt.getZ()), "COBBLESTONE");
             return PlaceResult.ATTEMPTING;
         }
         return PlaceResult.NO_OPTION;

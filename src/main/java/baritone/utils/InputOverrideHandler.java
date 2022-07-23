@@ -90,18 +90,8 @@ public final class InputOverrideHandler extends Behavior implements IInputOverri
         }
         blockBreakHelper.tick(isInputForcedDown(Input.CLICK_LEFT));
         blockPlaceHelper.tick(isInputForcedDown(Input.CLICK_RIGHT));
-
-//        if (inControl()) {
-//            if (ctx.player().input.getClass() != PlayerMovementInput.class) {
-//                ctx.player().input = new PlayerMovementInput(this);
-//            }
-//        }
-
-        //TODO there's no way in hell this will work
-        new PlayerMovementInput(this, ctx.mob());
-
-        // only set it if it was previously incorrect
-        // gotta do it this way, or else it constantly thinks you're beginning a double tap W sprint lol
+//        ctx.mob().getMoveControl().setWantedPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 1.0);
+        new PlayerMovementInput(this, ctx.mob()).tick(true);
     }
 
 //    private boolean inControl() {

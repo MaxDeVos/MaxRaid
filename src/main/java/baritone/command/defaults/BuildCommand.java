@@ -19,6 +19,7 @@ package baritone.command.defaults;
 
 import baritone.Baritone;
 import baritone.api.IBaritone;
+import baritone.api.Spigot;
 import baritone.api.command.Command;
 import baritone.api.command.argument.IArgConsumer;
 import baritone.api.command.datatypes.RelativeBlockPos;
@@ -35,7 +36,7 @@ import java.util.stream.Stream;
 
 public class BuildCommand extends Command {
 
-    private static final File schematicsDir = new File(mc.plugin.getDataFolder(), "schematics");
+    private static final File schematicsDir = new File(Spigot.plugin.getDataFolder(), "schematics");
 
     public BuildCommand(IBaritone baritone) {
         super(baritone, "build");

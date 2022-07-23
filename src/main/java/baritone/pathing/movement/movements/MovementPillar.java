@@ -31,11 +31,16 @@ import baritone.pathing.movement.MovementHelper;
 import baritone.pathing.movement.MovementState;
 import baritone.utils.BlockStateInterface;
 import com.google.common.collect.ImmutableSet;
+import maxdevos.maxraid.RaidPlugin;
+import maxdevos.maxraid.util.MaterialWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.Vec3;
+import org.bukkit.Location;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.craftbukkit.v1_19_R1.block.impl.CraftBarrel;
 
 import java.util.Set;
 
@@ -158,6 +163,7 @@ public class MovementPillar extends Movement {
 
     @Override
     public MovementState updateState(MovementState state) {
+        System.out.println("PILLAR TO " + dest);
         super.updateState(state);
         if (state.getStatus() != MovementStatus.RUNNING) {
             return state;
@@ -250,8 +256,11 @@ public class MovementPillar extends Movement {
                     state.setInput(Input.JUMP, false); // breaking is like 5x slower when you're jumping
                     state.setInput(Input.CLICK_LEFT, true);
                     blockIsThere = false;
-                } else if (ctx.mob().isCrouching() && (ctx.isLookingAt(src.below()) || ctx.isLookingAt(src)) && ctx.mob().position().y > dest.getY() + 0.1) {
-                    state.setInput(Input.CLICK_RIGHT, true);
+                    ///(ctx.isLookingAt(src.below()) || ctx.isLookingAt(src)) &&   <- should be in below else if statement
+                } else if ( ctx.mob().position().y > dest.getY() + 0.1) {
+                    RaidPlugin.getServerInstance().getScheduler().runTask(RaidPlugin.getInstance(), () ->{
+                        MaterialWrapper.setBlockAsMaterial(ctx.world().getWorld().getBlockAt(src.x, src.y, src.z), "COBBLESTONE");
+                    });
                 }
             }
         }

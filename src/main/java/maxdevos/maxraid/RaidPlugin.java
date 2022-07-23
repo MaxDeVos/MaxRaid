@@ -1,5 +1,6 @@
 package maxdevos.maxraid;
 
+import baritone.api.Spigot;
 import maxdevos.maxraid.commands.*;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -26,6 +27,7 @@ public final class RaidPlugin extends JavaPlugin implements Listener {
 
         // Plugin startup logic
         plugin = this;
+        Spigot.setPlugin(this);
         createCustomConfig();
         new CatchAllListener();
         Objects.requireNonNull(getCommand("r")).setExecutor(new ResetCommand());
